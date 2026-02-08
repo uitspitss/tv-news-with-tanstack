@@ -73,6 +73,19 @@ bun run test:ui      # テストUI起動
 bun run test:coverage # カバレッジレポート生成
 ```
 
+### Cloudflareデプロイ
+
+```bash
+# Cloudflare認証（初回のみ）
+bunx wrangler login
+
+# ローカルプレビュー
+bun run preview:wrangler
+
+# 本番デプロイ
+bun run deploy
+```
+
 ## 🔧 技術スタック
 
 ### コアフレームワーク
