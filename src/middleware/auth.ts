@@ -13,7 +13,8 @@ function timingSafeEqual(a: string, b: string): boolean {
     return false;
   }
 
-  return crypto.subtle.timingSafeEqual(aBuffer, bBuffer);
+  // Type assertion for Cloudflare Workers crypto.subtle.timingSafeEqual
+  return (crypto.subtle as any).timingSafeEqual(aBuffer, bBuffer);
 }
 
 /**
