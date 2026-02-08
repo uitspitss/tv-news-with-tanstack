@@ -197,6 +197,62 @@ bunx wrangler secret list
 
 **注意**: GitHub ActionsからデプロイされたWorkerには、wranglerで設定したsecretsが引き継がれます。
 
+### カスタムドメイン設定
+
+独自ドメインでアプリケーションを公開する場合の手順：
+
+**1. Cloudflareにドメインを追加**
+
+1. [Cloudflare Dashboard](https://dash.cloudflare.com/) でドメインを追加
+2. ネームサーバーをCloudflareに変更（ドメインレジストラで設定）
+3. DNSレコードが有効になるまで待機（最大48時間、通常は数分）
+
+**2. カスタムドメインをWorkerに紐付け**
+
+```bash
+# wrangler.jsonc にルート設定を追加
+{
+  "name": "tv-news-with-tanstack",
+  "routes": [
+    {
+      "pattern": "example.com/*",
+      "zone_name": "example.com"
+    }
+  ]
+}
+```
+
+または、Cloudflare Dashboardから設定：
+
+1. Workers & Pages → アプリケーションを選択
+2. Settings → Triggers → Custom Domains
+3. "Add Custom Domain" をクリック
+4. ドメイン名を入力（例: `app.example.com`）
+5. "Add Domain" をクリック
+
+**3. DNS設定確認**
+
+Cloudflare DNSで自動的にCNAMEレコードが作成されます：
+
+```
+app.example.com CNAME <worker-name>.<account>.workers.dev
+```
+
+**4. デプロイと確認**
+
+```bash
+# カスタムドメイン設定後に再デプロイ
+bun run deploy
+
+# 動作確認
+curl -I https://app.example.com
+```
+
+**注意**:
+- HTTPSは自動的に有効化されます（Cloudflare SSL/TLS）
+- Basic認証はカスタムドメインでも有効です
+- *.workers.devドメインも引き続き利用可能です
+
 ## 🔧 技術スタック
 
 ### コアフレームワーク
@@ -274,6 +330,63 @@ bun run dev -- --port 3001
 1. Biome拡張機能がインストールされているか確認
 2. VS Codeを再起動
 3. `.vscode/settings.json`が存在するか確認
+
+### Cloudflareデプロイが失敗する
+
+**認証エラー（401/403）**
+```bash
+# ログイン状態を確認
+bunx wrangler whoami
+
+# 再ログイン
+bunx wrangler login
+```
+
+**ビルドエラー**
+```bash
+# 依存関係を再インストール
+rm -rf node_modules bun.lock
+bun install
+
+# 型チェック
+bun run type-check
+
+# ローカルビルドを確認
+bun run build
+```
+
+**GitHub Actions失敗**
+1. GitHub Secretsが正しく設定されているか確認
+   - `CLOUDFLARE_API_TOKEN`
+   - `CLOUDFLARE_ACCOUNT_ID`
+2. API Tokenの権限を確認（Workers Scripts: Edit必須）
+3. ワークフローログで詳細を確認：
+   ```bash
+   gh run list
+   gh run view <run-id> --log-failed
+   ```
+
+**デプロイ後に500エラー**
+```bash
+# Cloudflare Workersのログを確認
+bunx wrangler tail
+
+# 環境変数が設定されているか確認
+bunx wrangler secret list
+```
+
+**Basic認証が動作しない**
+```bash
+# シークレットが設定されているか確認
+bunx wrangler secret list
+
+# シークレットを再設定
+bunx wrangler secret put BASIC_AUTH_USER
+bunx wrangler secret put BASIC_AUTH_PASSWORD
+
+# 再デプロイ
+bun run deploy
+```
 
 ## 📖 ドキュメント
 
