@@ -73,6 +73,130 @@ bun run test:ui      # テストUI起動
 bun run test:coverage # カバレッジレポート生成
 ```
 
+### Cloudflareデプロイ
+
+#### 初回デプロイ手順
+
+**1. Cloudflare認証（初回のみ）**
+```bash
+bunx wrangler login
+```
+ブラウザが開き、Cloudflareアカウントでの認証を求められます。認証が完了すると「Successfully logged in.」と表示されます。
+
+**2. 認証確認**
+```bash
+bunx wrangler whoami
+```
+現在のCloudflareアカウント情報が表示されれば認証成功です。
+
+**3. ローカルプレビュー（オプション）**
+```bash
+bun run preview:wrangler
+```
+本番環境と同じWorkers環境でローカルテストが可能です。
+
+**4. 本番デプロイ**
+```bash
+bun run deploy
+```
+ビルドとデプロイが自動実行され、完了後にデプロイURLが表示されます：
+```
+https://<your-app>.workers.dev
+```
+
+**5. デプロイ確認**
+```bash
+curl -I https://<your-app>.workers.dev
+```
+HTTP 200 OKが返れば正常にデプロイされています。
+
+#### トラブルシューティング
+
+**認証エラーが出る場合**
+```bash
+# 再度ログイン
+bunx wrangler login
+
+# 認証状態を確認
+bunx wrangler whoami
+```
+
+**デプロイに失敗する場合**
+```bash
+# ビルドのみ実行して問題を特定
+bun run build
+
+# wrangler設定を確認
+cat wrangler.jsonc
+```
+
+### CI/CD（継続的デプロイ）
+
+#### GitHub Actions自動デプロイ設定
+
+mainブランチへのプッシュで自動的にCloudflare Workersにデプロイされます。
+
+**1. Cloudflare API Token作成**
+
+1. [Cloudflare Dashboard](https://dash.cloudflare.com/profile/api-tokens) を開く
+2. "Create Token" をクリック
+3. "Edit Cloudflare Workers" テンプレートを選択
+4. Permissionsを確認：
+   - Account / Workers Scripts / Edit
+   - Account / Account Settings / Read
+5. "Continue to summary" → "Create Token"
+6. 表示されたトークンをコピー（一度しか表示されません）
+
+**2. Cloudflare Account ID取得**
+
+```bash
+bunx wrangler whoami
+```
+
+Account IDをコピーします。
+
+**3. GitHub Secretsに追加**
+
+GitHubリポジトリの Settings → Secrets and variables → Actions で以下を追加：
+
+- `CLOUDFLARE_API_TOKEN`: 手順1で作成したAPI token
+- `CLOUDFLARE_ACCOUNT_ID`: 手順2で取得したAccount ID
+
+**4. 動作確認**
+
+mainブランチにプッシュすると、GitHub Actionsが自動的に：
+1. 依存関係のインストール
+2. 型チェック
+3. リント
+4. テスト実行
+5. ビルド
+6. Cloudflare Workersへのデプロイ
+
+を実行します。
+
+**ワークフロー状況の確認**
+```bash
+# GitHubリポジトリのActionsタブで確認
+# または
+gh run list
+gh run view <run-id>
+```
+
+#### 環境変数（Secrets）の設定
+
+本番環境のシークレット（Basic認証など）は別途設定が必要です：
+
+```bash
+# Basic認証のユーザー名とパスワードを設定
+bunx wrangler secret put BASIC_AUTH_USER
+bunx wrangler secret put BASIC_AUTH_PASSWORD
+
+# 設定確認
+bunx wrangler secret list
+```
+
+**注意**: GitHub ActionsからデプロイされたWorkerには、wranglerで設定したsecretsが引き継がれます。
+
 ## 🔧 技術スタック
 
 ### コアフレームワーク
