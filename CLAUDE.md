@@ -27,6 +27,38 @@ TypeScript 5.x + Node.js 22 (管理: mise): Follow standard conventions
 
 <!-- MANUAL ADDITIONS START -->
 
+## Git Workflow
+
+### Feature開発時のWorktree使用
+
+機能開発時は git worktree を使用してください。
+
+**基本的な使い方：**
+
+```bash
+# 新しいfeature用のworktreeを作成
+git worktree add ../tv-news-feature-name -b feature-name
+
+# 作業ディレクトリに移動
+cd ../tv-news-feature-name
+
+# 開発作業...
+
+# 作業完了後、元のディレクトリに戻る
+cd -
+
+# worktreeを削除
+git worktree remove ../tv-news-feature-name
+```
+
+**利点：**
+- 複数のブランチで同時に作業可能
+- ブランチ切り替え時のstash不要
+- クリーンな作業環境を維持
+- メインブランチを汚さずに実験的な開発が可能
+
+**参考：** using-git-worktrees スキルを使用すると、worktreeの操作をより簡単に行えます。
+
 ## 推奨Claude Codeスキル
 
 このプロジェクトでは以下のClaude Codeスキルの使用を推奨します：
