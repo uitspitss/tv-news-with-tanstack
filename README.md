@@ -75,15 +75,59 @@ bun run test:coverage # カバレッジレポート生成
 
 ### Cloudflareデプロイ
 
+#### 初回デプロイ手順
+
+**1. Cloudflare認証（初回のみ）**
 ```bash
-# Cloudflare認証（初回のみ）
+bunx wrangler login
+```
+ブラウザが開き、Cloudflareアカウントでの認証を求められます。認証が完了すると「Successfully logged in.」と表示されます。
+
+**2. 認証確認**
+```bash
+bunx wrangler whoami
+```
+現在のCloudflareアカウント情報が表示されれば認証成功です。
+
+**3. ローカルプレビュー（オプション）**
+```bash
+bun run preview:wrangler
+```
+本番環境と同じWorkers環境でローカルテストが可能です。
+
+**4. 本番デプロイ**
+```bash
+bun run deploy
+```
+ビルドとデプロイが自動実行され、完了後にデプロイURLが表示されます：
+```
+https://<your-app>.workers.dev
+```
+
+**5. デプロイ確認**
+```bash
+curl -I https://<your-app>.workers.dev
+```
+HTTP 200 OKが返れば正常にデプロイされています。
+
+#### トラブルシューティング
+
+**認証エラーが出る場合**
+```bash
+# 再度ログイン
 bunx wrangler login
 
-# ローカルプレビュー
-bun run preview:wrangler
+# 認証状態を確認
+bunx wrangler whoami
+```
 
-# 本番デプロイ
-bun run deploy
+**デプロイに失敗する場合**
+```bash
+# ビルドのみ実行して問題を特定
+bun run build
+
+# wrangler設定を確認
+cat wrangler.jsonc
 ```
 
 ## 🔧 技術スタック
