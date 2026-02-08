@@ -17,7 +17,7 @@ interface Env {
 
 // TanStack Start型拡張
 declare module "@tanstack/react-start" {
-	interface Register {
-		router: ReturnType<typeof import("./src/router").getRouter>;
-	}
+  interface Register {
+    router: ReturnType<typeof import("./src/router").getRouter>;
+  }
 }

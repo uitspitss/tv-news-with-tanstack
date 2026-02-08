@@ -130,6 +130,73 @@ bun run build
 cat wrangler.jsonc
 ```
 
+### CI/CD（継続的デプロイ）
+
+#### GitHub Actions自動デプロイ設定
+
+mainブランチへのプッシュで自動的にCloudflare Workersにデプロイされます。
+
+**1. Cloudflare API Token作成**
+
+1. [Cloudflare Dashboard](https://dash.cloudflare.com/profile/api-tokens) を開く
+2. "Create Token" をクリック
+3. "Edit Cloudflare Workers" テンプレートを選択
+4. Permissionsを確認：
+   - Account / Workers Scripts / Edit
+   - Account / Account Settings / Read
+5. "Continue to summary" → "Create Token"
+6. 表示されたトークンをコピー（一度しか表示されません）
+
+**2. Cloudflare Account ID取得**
+
+```bash
+bunx wrangler whoami
+```
+
+Account IDをコピーします。
+
+**3. GitHub Secretsに追加**
+
+GitHubリポジトリの Settings → Secrets and variables → Actions で以下を追加：
+
+- `CLOUDFLARE_API_TOKEN`: 手順1で作成したAPI token
+- `CLOUDFLARE_ACCOUNT_ID`: 手順2で取得したAccount ID
+
+**4. 動作確認**
+
+mainブランチにプッシュすると、GitHub Actionsが自動的に：
+1. 依存関係のインストール
+2. 型チェック
+3. リント
+4. テスト実行
+5. ビルド
+6. Cloudflare Workersへのデプロイ
+
+を実行します。
+
+**ワークフロー状況の確認**
+```bash
+# GitHubリポジトリのActionsタブで確認
+# または
+gh run list
+gh run view <run-id>
+```
+
+#### 環境変数（Secrets）の設定
+
+本番環境のシークレット（Basic認証など）は別途設定が必要です：
+
+```bash
+# Basic認証のユーザー名とパスワードを設定
+bunx wrangler secret put BASIC_AUTH_USER
+bunx wrangler secret put BASIC_AUTH_PASSWORD
+
+# 設定確認
+bunx wrangler secret list
+```
+
+**注意**: GitHub ActionsからデプロイされたWorkerには、wranglerで設定したsecretsが引き継がれます。
+
 ## 🔧 技術スタック
 
 ### コアフレームワーク
