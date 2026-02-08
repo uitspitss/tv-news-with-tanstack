@@ -15,6 +15,15 @@
       "linter": {
         "enabled": false
       }
+    },
+    {
+      "includes": [".agents/**", ".claude/**"],
+      "linter": {
+        "enabled": false
+      },
+      "formatter": {
+        "enabled": false
+      }
     }
   ],
   "formatter": {
