@@ -32,6 +32,4 @@ coverage
 .temp
 .tmp
 
-# Claude Code
-.agents
-.claude
+# Claude Code (project-specific skills and commands are tracked)
