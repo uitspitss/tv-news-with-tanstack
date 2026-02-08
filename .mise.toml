@@ -1,0 +1,10 @@
+min_version = "2024.9.5"
+
+[tools]
+node = "22"
+bun = "latest"
+
+[env]
+NODE_ENV = "development"
+
+_.path = ['{{config_root}}/node_modules/.bin']
