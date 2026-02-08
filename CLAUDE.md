@@ -3,6 +3,8 @@
 Auto-generated from all feature plans. Last updated: 2026-02-08
 
 ## Active Technologies
+- TypeScript 5.x + Node.js 22 (mise管理) (002-cloudflare-deploy)
+- N/A (初期実装ではデータベース不要) (002-cloudflare-deploy)
 
 - TypeScript 5.x + Node.js 22 (管理: mise) (001-dev-setup)
 
@@ -15,17 +17,95 @@ tests/
 
 ## Commands
 
-npm test && npm run lint
+bun test && bun run lint
 
 ## Code Style
 
 TypeScript 5.x + Node.js 22 (管理: mise): Follow standard conventions
 
 ## Recent Changes
+- 002-cloudflare-deploy: Added TypeScript 5.x + Node.js 22 (mise管理)
 
 - 001-dev-setup: Added TypeScript 5.x + Node.js 22 (管理: mise)
 
 <!-- MANUAL ADDITIONS START -->
+
+## パッケージマネージャーとランタイム
+
+**重要**: このプロジェクトでは **Bun** を使用します。
+
+### 基本コマンド
+
+すべてのドキュメント、スクリプト、ガイドでは以下のコマンドを使用してください：
+
+| 操作 | コマンド | 説明 |
+|------|----------|------|
+| パッケージインストール | `bun install` | 依存関係をインストール |
+| スクリプト実行 | `bun run <script>` | package.jsonのスクリプトを実行 |
+| 開発サーバー起動 | `bun run dev` | 開発サーバーを起動 |
+| ビルド | `bun run build` | プロダクションビルド |
+| テスト実行 | `bun test` | テストを実行 |
+| CLIツール実行 | `bunx <command>` | CLIツールを実行 (npxの代替) |
+
+### 具体例
+
+**❌ 使用しないでください：**
+```bash
+npm install
+npm run dev
+npx wrangler deploy
+```
+
+**✅ 正しい使用方法：**
+```bash
+bun install
+bun run dev
+bunx wrangler deploy
+```
+
+### 注意事項
+
+- **npm**、**npx**、**yarn**、**pnpm** は使用しない
+- すべてのCIパイプライン、ドキュメント、ガイドで`bun`を使用
+- Bunは高速で互換性が高いため、ほとんどのnpmパッケージがそのまま動作
+
+## ビルドツール
+
+**重要**: このプロジェクトでは **Vite** を使用します。
+
+### TanStack Startのビルドツール変更履歴
+
+- **〜v1.120.x**: Vinxiを使用（廃止）
+- **v1.121.0+**: **Viteに移行**（現在）
+
+### 正しいコマンド
+
+```json
+{
+  "scripts": {
+    "dev": "vite dev",      // ✅ 開発サーバー
+    "build": "vite build",  // ✅ プロダクションビルド
+    "start": "vite preview" // ✅ ビルド後のプレビュー
+  }
+}
+```
+
+### ❌ 使用しないでください
+
+```json
+{
+  "scripts": {
+    "dev": "vinxi dev",     // ❌ 古い（v1.120.x以前）
+    "build": "vinxi build", // ❌ 古い
+    "start": "vinxi start"  // ❌ 古い
+  }
+}
+```
+
+### キャッシュディレクトリ
+
+- ✅ `.vite/` - Viteのキャッシュ
+- ❌ `.vinxi/` - 古いVinxiのキャッシュ（削除推奨）
 
 ## Git Workflow
 
