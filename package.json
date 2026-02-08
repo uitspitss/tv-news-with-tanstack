@@ -11,6 +11,7 @@
     "dev": "bun --bun vite dev",
     "build": "bun --bun vite build",
     "serve": "bun --bun vite preview",
+    "generate-routes": "tsr generate",
     "type-check": "tsc --noEmit",
     "format": "biome format --write .",
     "lint": "biome lint .",
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.3.14",
     "@evilmartians/lefthook": "^2.1.0",
+    "@tanstack/router-cli": "^1.158.4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
