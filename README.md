@@ -130,6 +130,29 @@ bun run build
 cat wrangler.jsonc
 ```
 
+#### Workers Subdomainの変更
+
+デフォルトの`*.workers.dev`サブドメインを短縮・変更できます：
+
+**手順**:
+1. [Cloudflare Dashboard](https://dash.cloudflare.com/) にログイン
+2. 右上のアカウントアイコン → **Manage Account** をクリック
+3. 左メニューから **Account Details** を選択
+4. **Workers Subdomain** セクションで「Change」をクリック
+5. 新しいサブドメイン名を入力（例: `placeastro-test-u7s` → `u7s`）
+6. **Save** をクリック
+
+**変更後**:
+- すべてのWorkersのURLが自動的に更新されます
+- 旧URL: `https://worker-name.old-subdomain.workers.dev`
+- 新URL: `https://worker-name.new-subdomain.workers.dev`
+- 再デプロイは**不要**（即座に反映）
+
+**注意**:
+- サブドメインは**アカウント全体**に適用されます
+- 短く覚えやすい名前にすると便利です
+- 一度変更すると、古いURLは使えなくなります
+
 ### CI/CD（継続的デプロイ）
 
 #### GitHub Actions自動デプロイ設定
