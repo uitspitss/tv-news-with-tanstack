@@ -32,7 +32,6 @@ coverage
 .temp
 .tmp
 
-# Claude Code & Speckit
+# Claude Code
 .agents
 .claude
-.specify
