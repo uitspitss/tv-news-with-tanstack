@@ -97,7 +97,7 @@
 
 - [X] T025 [US2] タイトルヘッダーをindex.tsxに追加 in `src/routes/index.tsx`
 - [X] T026 [US2] Tailwind CSSでタイトルスタイリング（固定配置、z-index管理）in `src/routes/index.tsx`
-- [ ] T027 [US2] タイトルが地図の表示領域を妨げないことを確認
+- [X] T027 [US2] タイトルが地図の表示領域を妨げないことを確認
 - [X] T028 [US2] T024のテストが通ることを確認
 
 **Checkpoint**: ユーザーストーリー1と2の両方が独立して動作
@@ -114,26 +114,26 @@
 
 > **NOTE: TDD - これらのテストを最初に書き、実装前に失敗することを確認**
 
-- [ ] T029 [P] [US3] useMapInteractionフックのテストを作成 in `src/hooks/useMapInteraction.test.ts`
-- [ ] T030 [P] [US3] useKeyboardNavフックのテストを作成 in `src/hooks/useKeyboardNav.test.ts`
-- [ ] T031 [P] [US3] PrefectureTooltipコンポーネントのテストを作成 in `src/components/PrefectureTooltip.test.tsx`
-- [ ] T032 [US3] JapanMapインタラクションテストを追加 in `src/components/JapanMap.test.tsx`
+- [X] T029 [P] [US3] useMapInteractionフックのテストを作成 in `src/hooks/useMapInteraction.test.ts`
+- [X] T030 [P] [US3] useKeyboardNavフックのテストを作成 in `src/hooks/useKeyboardNav.test.ts`
+- [X] T031 [P] [US3] PrefectureTooltipコンポーネントのテストを作成 in `src/components/PrefectureTooltip.test.tsx`
+- [X] T032 [US3] JapanMapインタラクションテストを追加 in `src/components/JapanMap.test.tsx`
 
 ### Implementation for User Story 3
 
-- [ ] T033 [P] [US3] useMapInteractionフックを実装（hover/click/focus状態管理）in `src/hooks/useMapInteraction.ts`
-- [ ] T034 [P] [US3] useKeyboardNavフックを実装（Tab/Enter/Space対応）in `src/hooks/useKeyboardNav.ts`
-- [ ] T035 [P] [US3] PrefectureTooltipコンポーネントを実装（shadcn/ui Tooltipを使用）in `src/components/PrefectureTooltip.tsx`
-- [ ] T036 [US3] MapContainerのズーム設定（minZoom/maxZoom）を追加 in `src/components/JapanMap.tsx`
-- [ ] T037 [US3] GeoJSONコンポーネントのonEachFeatureでhover/clickイベントを追加 in `src/components/JapanMap.tsx`
-- [ ] T038 [US3] useMapInteractionをJapanMapに統合 in `src/components/JapanMap.tsx`
-- [ ] T039 [US3] PrefectureTooltipをGeoJSON layerに統合（Leaflet popup/tooltip使用）in `src/components/JapanMap.tsx`
-- [ ] T040 [US3] キーボードナビゲーションを実装（tabIndex、aria-label、role属性）in `src/components/JapanMap.tsx`
-- [ ] T041 [US3] useKeyboardNavをJapanMapに統合 in `src/components/JapanMap.tsx`
-- [ ] T042 [US3] フォーカスインジケーターのスタイリング（WCAG 2.1 AA準拠）in `src/components/JapanMap.tsx`
-- [ ] T043 [US3] useCallback()でイベントハンドラーをメモ化 in `src/components/JapanMap.tsx`
-- [ ] T044 [US3] T029-T032のすべてのテストが通ることを確認
-- [ ] T045 [US3] 統合テストを拡張（インタラクション検証）in `tests/integration/japan-map.test.ts`
+- [X] T033 [P] [US3] useMapInteractionフックを実装（hover/click/focus状態管理）in `src/hooks/useMapInteraction.ts`
+- [X] T034 [P] [US3] useKeyboardNavフックを実装（Tab/Enter/Space対応）in `src/hooks/useKeyboardNav.ts`
+- [X] T035 [P] [US3] PrefectureTooltipコンポーネントを実装（shadcn/ui Tooltipを使用）in `src/components/PrefectureTooltip.tsx`
+- [X] T036 [US3] MapContainerのズーム設定（minZoom/maxZoom）を追加 in `src/components/JapanMap.tsx`
+- [X] T037 [US3] GeoJSONコンポーネントのonEachFeatureでhover/clickイベントを追加 in `src/components/JapanMap.tsx`
+- [X] T038 [US3] useMapInteractionをJapanMapに統合 in `src/components/JapanMap.tsx`
+- [X] T039 [US3] PrefectureTooltipをGeoJSON layerに統合（Leaflet popup/tooltip使用）in `src/components/JapanMap.tsx`
+- [X] T040 [US3] キーボードナビゲーションを実装（tabIndex、aria-label、role属性）in `src/components/JapanMap.tsx`
+- [X] T041 [US3] useKeyboardNavをJapanMapに統合 in `src/components/JapanMap.tsx`
+- [X] T042 [US3] フォーカスインジケーターのスタイリング（WCAG 2.1 AA準拠）in `src/components/JapanMap.tsx`
+- [X] T043 [US3] useCallback()でイベントハンドラーをメモ化 in `src/components/JapanMap.tsx`
+- [X] T044 [US3] T029-T032のすべてのテストが通ることを確認
+- [X] T045 [US3] 統合テストを拡張（インタラクション検証）in `tests/integration/japan-map.test.ts`
 
 **Checkpoint**: すべてのユーザーストーリーが独立して機能
 
@@ -143,17 +143,17 @@
 
 **目的**: 複数のユーザーストーリーに影響する改善
 
-- [ ] T046 [P] パフォーマンス最適化: GeoJSON最適化（不要属性削除、座標精度調整）
-- [ ] T047 [P] レスポンシブデザイン検証（320px〜4K解像度）
-- [ ] T048 [P] 200ms遅延ローディング表示の調整
-- [ ] T049 [P] エラーメッセージの日本語化・改善
-- [ ] T050 コードクリーンアップとリファクタリング
-- [ ] T051 [P] 型定義の最終確認（TypeScript strict mode）
-- [ ] T052 [P] アクセシビリティ最終検証（WCAG 2.1 AA準拠）
-- [ ] T053 [P] ドキュメント更新（README.md, quickstart.md）
+- [X] T046 [P] パフォーマンス最適化: GeoJSON最適化（不要属性削除、座標精度調整）
+- [X] T047 [P] レスポンシブデザイン検証（320px〜4K解像度）
+- [X] T048 [P] 200ms遅延ローディング表示の調整
+- [X] T049 [P] エラーメッセージの日本語化・改善
+- [X] T050 コードクリーンアップとリファクタリング
+- [X] T051 [P] 型定義の最終確認（TypeScript strict mode）
+- [X] T052 [P] アクセシビリティ最終検証（WCAG 2.1 AA準拠）
+- [X] T053 [P] ドキュメント更新（README.md, quickstart.md）
 - [ ] T054 quickstart.mdの検証手順を実行
-- [ ] T055 全テストを実行: `bun test`
-- [ ] T056 ビルド検証: `bun run build`
+- [X] T055 全テストを実行: `bun test`
+- [X] T056 ビルド検証: `bun run build`
 - [ ] T057 本番環境でのスモークテスト
 
 ---

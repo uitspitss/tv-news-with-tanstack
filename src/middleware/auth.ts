@@ -61,10 +61,17 @@ export const basicAuthMiddleware = createMiddleware().server(async ({ next, requ
   // Get environment variables
   const validUser = process.env.BASIC_AUTH_USER;
   const validPass = process.env.BASIC_AUTH_PASSWORD;
+  const isDevelopment = process.env.NODE_ENV === "development";
 
-  // Validate environment configuration
+  // If credentials are not configured
   if (!validUser || !validPass) {
-    console.error("Basic Auth credentials not configured");
+    // In development, skip authentication
+    if (isDevelopment) {
+      console.warn("Basic Auth credentials not configured - authentication disabled (development mode)");
+      return next();
+    }
+    // In production, return error
+    console.error("Basic Auth credentials not configured in production");
     return new Response("Server misconfiguration", {
       status: 500,
     });

@@ -1,8 +1,8 @@
 /**
  * 日本地図の統合テスト
- * Feature: 001-add-japan-map / User Story 1
+ * Feature: 001-add-japan-map / User Stories 1 & 3
  *
- * GeoJSONデータの読み込みと地図全体の動作をテストする
+ * GeoJSONデータの読み込み、地図全体の動作、インタラクション機能をテストする
  */
 
 import { readFileSync, statSync } from "node:fs";
@@ -10,6 +10,9 @@ import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { JapanMapData } from "@/lib/geo/japanGeoData";
 import { fetchJapanMapData, validateJapanMapData } from "@/lib/geo/mapUtils";
+import { renderHook, act } from "@testing-library/react";
+import { useMapInteraction } from "@/hooks/useMapInteraction";
+import { useKeyboardNav } from "@/hooks/useKeyboardNav";
 
 describe("日本地図 - 統合テスト", () => {
   let originalFetch: typeof global.fetch;
@@ -154,6 +157,106 @@ describe("日本地図 - 統合テスト", () => {
 
       // 情報提供のみ - 実際の読み込み時間はファイルサイズに依存
       expect(duration).toBeGreaterThan(0);
+    });
+  });
+
+  describe("インタラクション機能 (User Story 3)", () => {
+    it("useMapInteractionフックが正しく動作する", () => {
+      const { result } = renderHook(() => useMapInteraction());
+
+      // 初期状態
+      expect(result.current.hoveredPrefecture).toBeNull();
+      expect(result.current.selectedPrefecture).toBeNull();
+      expect(result.current.focusedPrefecture).toBeNull();
+
+      // ホバー操作
+      act(() => {
+        result.current.handleMouseEnter("13"); // 東京都
+      });
+      expect(result.current.hoveredPrefecture).toBe("13");
+
+      // クリック操作
+      act(() => {
+        result.current.handleClick("13");
+      });
+      expect(result.current.selectedPrefecture).toBe("13");
+
+      // フォーカス操作
+      act(() => {
+        result.current.handleFocus("14"); // 神奈川県
+      });
+      expect(result.current.focusedPrefecture).toBe("14");
+    });
+
+    it("useKeyboardNavフックが都道府県のナビゲーションをサポートする", () => {
+      const data = loadGeoJSONFromFile();
+      const prefectureCodes = data.features.map((f) => f.properties.code);
+      const onSelect = vi.fn();
+
+      const { result } = renderHook(() => useKeyboardNav(prefectureCodes, onSelect));
+
+      // 初期状態
+      expect(result.current.focusedIndex).toBe(-1);
+      expect(result.current.focusedPrefecture).toBeNull();
+
+      // 最初の都道府県にフォーカス
+      act(() => {
+        result.current.setFocusedIndex(0);
+      });
+      expect(result.current.focusedIndex).toBe(0);
+      expect(result.current.focusedPrefecture).toBe(prefectureCodes[0]);
+
+      // 次の都道府県に移動
+      act(() => {
+        result.current.moveFocus("next");
+      });
+      expect(result.current.focusedIndex).toBe(1);
+      expect(result.current.focusedPrefecture).toBe(prefectureCodes[1]);
+
+      // 前の都道府県に移動
+      act(() => {
+        result.current.moveFocus("prev");
+      });
+      expect(result.current.focusedIndex).toBe(0);
+    });
+
+    it("47都道府県すべてをキーボードで選択できる", () => {
+      const data = loadGeoJSONFromFile();
+      const prefectureCodes = data.features.map((f) => f.properties.code);
+
+      const { result } = renderHook(() => useKeyboardNav(prefectureCodes));
+
+      // すべての都道府県にアクセス可能であることを確認
+      for (let i = 0; i < 47; i++) {
+        act(() => {
+          result.current.setFocusedIndex(i);
+        });
+        expect(result.current.focusedPrefecture).toBe(prefectureCodes[i]);
+      }
+    });
+
+    it("インタラクション状態が独立して管理される", () => {
+      const { result } = renderHook(() => useMapInteraction());
+
+      // 複数の状態を同時に設定
+      act(() => {
+        result.current.handleMouseEnter("01"); // 北海道
+        result.current.handleClick("13"); // 東京都
+        result.current.handleFocus("47"); // 沖縄県
+      });
+
+      // すべての状態が独立して保持される
+      expect(result.current.hoveredPrefecture).toBe("01");
+      expect(result.current.selectedPrefecture).toBe("13");
+      expect(result.current.focusedPrefecture).toBe("47");
+
+      // 個別に状態をクリアできる
+      act(() => {
+        result.current.handleMouseLeave();
+      });
+      expect(result.current.hoveredPrefecture).toBeNull();
+      expect(result.current.selectedPrefecture).toBe("13"); // 変更なし
+      expect(result.current.focusedPrefecture).toBe("47"); // 変更なし
     });
   });
 });
