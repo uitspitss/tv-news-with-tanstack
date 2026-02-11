@@ -20,6 +20,16 @@ vi.mock("react-leaflet", () => ({
   GeoJSON: ({ data }: any) => (
     <div data-testid="geojson-layer" data-features={data?.features?.length} />
   ),
+  Marker: ({ children }: any) => <div data-testid="prefecture-office-marker">{children}</div>,
+  Tooltip: ({ children }: any) => <div data-testid="marker-tooltip">{children}</div>,
+  useMapEvents: () => null,
+}));
+
+// PrefectureOfficeMarkersのモック
+vi.mock("@/components/PrefectureOfficeMarkers", () => ({
+  PrefectureOfficeMarkers: ({ handlers }: any) => (
+    <div data-testid="prefecture-office-markers" data-handlers={Object.keys(handlers).length} />
+  ),
 }));
 
 // モックGeoJSONデータ
@@ -294,6 +304,107 @@ describe("JapanMap - Interactions (User Story 3)", () => {
       });
 
       // State tracking will be verified through visual indicators
+    });
+  });
+});
+
+describe("JapanMap - Prefecture Office Markers (Feature: 001-prefecture-office-button)", () => {
+  beforeEach(() => {
+    // fetchをモック（GeoJSONと庁舎所在地データの両方）
+    global.fetch = vi.fn().mockImplementation((url: string) => {
+      if (url.includes("japan-prefectures.json")) {
+        return Promise.resolve({
+          ok: true,
+          json: async () => mockGeoJSONData,
+        });
+      }
+      if (url.includes("prefecture-offices.json")) {
+        return Promise.resolve({
+          ok: true,
+          json: async () =>
+            Array.from({ length: 47 }, (_, i) => ({
+              code: String(i + 1).padStart(2, "0"),
+              name: `都道府県${i + 1}`,
+              officeName: `都道府県${i + 1}庁`,
+              lat: 35.0 + i * 0.1,
+              lon: 135.0 + i * 0.1,
+            })),
+        });
+      }
+      return Promise.reject(new Error("Unknown URL"));
+    });
+  });
+
+  it("should render PrefectureOfficeMarkers component", async () => {
+    render(<JapanMap />);
+
+    await waitFor(() => {
+      expect(screen.getByTestId("prefecture-office-markers")).toBeInTheDocument();
+    });
+  });
+
+  it("should pass correct handlers to PrefectureOfficeMarkers", async () => {
+    render(<JapanMap />);
+
+    await waitFor(() => {
+      const markersComponent = screen.getByTestId("prefecture-office-markers");
+      expect(markersComponent).toHaveAttribute("data-handlers", "5");
+    });
+  });
+
+  it("should render markers after map data loads", async () => {
+    render(<JapanMap />);
+
+    await waitFor(() => {
+      expect(screen.getByTestId("map-container")).toBeInTheDocument();
+      expect(screen.getByTestId("geojson-layer")).toBeInTheDocument();
+      expect(screen.getByTestId("prefecture-office-markers")).toBeInTheDocument();
+    });
+  });
+
+  describe("Marker Click and Popup (User Story 2)", () => {
+    it.skip("should display popup when marker is clicked", async () => {
+      render(<JapanMap />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId("prefecture-office-markers")).toBeInTheDocument();
+      });
+
+      // マーカークリック後、ポップアップが表示されることを確認
+      // 実装後にテストを追加
+    });
+
+    it.skip("should close previous popup when clicking another marker", async () => {
+      render(<JapanMap />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId("prefecture-office-markers")).toBeInTheDocument();
+      });
+
+      // 複数のマーカーをクリックしたとき、前のポップアップが閉じられることを確認
+      // 実装後にテストを追加
+    });
+
+    it.skip("should close popup when close button is clicked", async () => {
+      render(<JapanMap />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId("prefecture-office-markers")).toBeInTheDocument();
+      });
+
+      // 閉じるボタンをクリックしたとき、ポップアップが閉じられることを確認
+      // 実装後にテストを追加
+    });
+
+    it.skip("should close popup when clicking outside", async () => {
+      render(<JapanMap />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId("prefecture-office-markers")).toBeInTheDocument();
+      });
+
+      // ポップアップ外をクリックしたとき、ポップアップが閉じられることを確認
+      // 実装後にテストを追加
     });
   });
 });
