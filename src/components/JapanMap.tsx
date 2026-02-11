@@ -209,10 +209,10 @@ function JapanMapComponent({
         style={{ height: "100%", width: "100%" }}
         aria-label="日本の都道府県地図"
       >
-        {/* OpenStreetMapタイルレイヤー */}
+        {/* CartoDB Dark Matterタイルレイヤー（暗めの配色） */}
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
         />
 
         {/* GeoJSONレイヤー - 47都道府県すべてを表示（インタラクション機能付き） */}
