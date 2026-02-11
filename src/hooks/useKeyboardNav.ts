@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState } from "react";
 
 /**
  * キーボードナビゲーション管理フック
@@ -12,7 +12,7 @@ export interface KeyboardNavReturn {
   /** キーボードイベントハンドラー */
   handleKeyDown: (event: React.KeyboardEvent) => void;
   /** フォーカスを移動する関数 */
-  moveFocus: (direction: 'next' | 'prev') => void;
+  moveFocus: (direction: "next" | "prev") => void;
   /** フォーカスインデックスを設定する関数 */
   setFocusedIndex: (index: number) => void;
 }
@@ -33,7 +33,7 @@ export interface KeyboardNavReturn {
  */
 export function useKeyboardNav(
   prefectureCodes: string[],
-  onSelect?: (prefectureCode: string) => void
+  onSelect?: (prefectureCode: string) => void,
 ): KeyboardNavReturn {
   const [focusedIndex, setFocusedIndexState] = useState<number>(-1);
 
@@ -44,7 +44,7 @@ export function useKeyboardNav(
   }, []);
 
   const moveFocus = useCallback(
-    (direction: 'next' | 'prev') => {
+    (direction: "next" | "prev") => {
       setFocusedIndexState((prevIndex) => {
         if (prefectureCodes.length === 0) return -1;
 
@@ -52,8 +52,8 @@ export function useKeyboardNav(
 
         if (prevIndex === -1) {
           // 初回フォーカス
-          newIndex = direction === 'next' ? 0 : prefectureCodes.length - 1;
-        } else if (direction === 'next') {
+          newIndex = direction === "next" ? 0 : prefectureCodes.length - 1;
+        } else if (direction === "next") {
           // 次へ移動（末尾で先頭に戻る）
           newIndex = (prevIndex + 1) % prefectureCodes.length;
         } else {
@@ -64,7 +64,7 @@ export function useKeyboardNav(
         return newIndex;
       });
     },
-    [prefectureCodes.length]
+    [prefectureCodes.length],
   );
 
   const handleKeyDown = useCallback(
@@ -72,32 +72,32 @@ export function useKeyboardNav(
       const { key, shiftKey } = event;
 
       switch (key) {
-        case 'Tab':
+        case "Tab":
           event.preventDefault();
-          moveFocus(shiftKey ? 'prev' : 'next');
+          moveFocus(shiftKey ? "prev" : "next");
           break;
 
-        case 'ArrowDown':
-        case 'ArrowRight':
+        case "ArrowDown":
+        case "ArrowRight":
           event.preventDefault();
-          moveFocus('next');
+          moveFocus("next");
           break;
 
-        case 'ArrowUp':
-        case 'ArrowLeft':
+        case "ArrowUp":
+        case "ArrowLeft":
           event.preventDefault();
-          moveFocus('prev');
+          moveFocus("prev");
           break;
 
-        case 'Enter':
-        case ' ': // Space key
+        case "Enter":
+        case " ": // Space key
           event.preventDefault();
           if (focusedPrefecture && onSelect) {
             onSelect(focusedPrefecture);
           }
           break;
 
-        case 'Escape':
+        case "Escape":
           event.preventDefault();
           setFocusedIndexState(-1);
           break;
@@ -107,7 +107,7 @@ export function useKeyboardNav(
           break;
       }
     },
-    [focusedPrefecture, moveFocus, onSelect]
+    [focusedPrefecture, moveFocus, onSelect],
   );
 
   return {

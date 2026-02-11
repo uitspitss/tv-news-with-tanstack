@@ -6,13 +6,13 @@
  * インタラクション機能（ホバー、クリック、キーボードナビゲーション）をサポート
  */
 
+import type { Layer } from "leaflet";
 import { memo, useCallback, useEffect, useState } from "react";
 import { GeoJSON, MapContainer, TileLayer } from "react-leaflet";
-import type { Layer } from "leaflet";
+import { useKeyboardNav } from "@/hooks/useKeyboardNav";
+import { useMapInteraction } from "@/hooks/useMapInteraction";
 import type { JapanMapData } from "@/lib/geo/japanGeoData";
 import { fetchJapanMapData } from "@/lib/geo/mapUtils";
-import { useMapInteraction } from "@/hooks/useMapInteraction";
-import { useKeyboardNav } from "@/hooks/useKeyboardNav";
 import "leaflet/dist/leaflet.css";
 
 export interface JapanMapProps {
@@ -133,7 +133,7 @@ function JapanMapComponent({
         fillOpacity,
       };
     },
-    [hoveredPrefecture, selectedPrefecture, focusedPrefecture]
+    [hoveredPrefecture, selectedPrefecture, focusedPrefecture],
   );
 
   // GeoJSONレイヤーのイベントハンドラー（useCallback でメモ化 - T043）
@@ -161,14 +161,14 @@ function JapanMapComponent({
       // キーボードアクセシビリティ（T040）
       const element = (layer as any).getElement?.();
       if (element) {
-        element.setAttribute('role', 'button');
-        element.setAttribute('aria-label', `${prefectureName}を選択`);
-        element.setAttribute('tabindex', '0');
+        element.setAttribute("role", "button");
+        element.setAttribute("aria-label", `${prefectureName}を選択`);
+        element.setAttribute("tabindex", "0");
 
         // キーボードイベント（T041）
-        element.addEventListener('focus', () => handleFocus(prefectureCode));
-        element.addEventListener('blur', () => handleBlur());
-        element.addEventListener('keydown', (e: KeyboardEvent) => {
+        element.addEventListener("focus", () => handleFocus(prefectureCode));
+        element.addEventListener("blur", () => handleBlur());
+        element.addEventListener("keydown", (e: KeyboardEvent) => {
           handleKeyDown(e as any);
         });
       }
@@ -176,11 +176,20 @@ function JapanMapComponent({
       // ツールチップを設定（シンプルなLeaflet popup - T039）
       layer.bindTooltip(prefectureName, {
         permanent: false,
-        direction: 'top',
-        className: 'prefecture-tooltip',
+        direction: "top",
+        className: "prefecture-tooltip",
       });
     },
-    [handleMouseEnter, handleMouseLeave, handleClick, handleFocus, handleBlur, handleKeyDown, onPrefectureClick, onPrefectureHover]
+    [
+      handleMouseEnter,
+      handleMouseLeave,
+      handleClick,
+      handleFocus,
+      handleBlur,
+      handleKeyDown,
+      onPrefectureClick,
+      onPrefectureHover,
+    ],
   );
 
   // SSR中またはクライアントマウント前は何も表示しない

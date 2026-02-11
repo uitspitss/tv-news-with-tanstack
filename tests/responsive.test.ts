@@ -3,18 +3,18 @@
  * 320px（モバイル）〜3840px（4K）までの解像度をテスト
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-describe('レスポンシブデザイン検証', () => {
+describe("レスポンシブデザイン検証", () => {
   const viewportSizes = [
-    { name: 'Mobile (Small)', width: 320, height: 568 },
-    { name: 'Mobile (Medium)', width: 375, height: 667 },
-    { name: 'Mobile (Large)', width: 414, height: 896 },
-    { name: 'Tablet (Portrait)', width: 768, height: 1024 },
-    { name: 'Tablet (Landscape)', width: 1024, height: 768 },
-    { name: 'Desktop (Small)', width: 1280, height: 720 },
-    { name: 'Desktop (Medium)', width: 1920, height: 1080 },
-    { name: 'Desktop (Large - 4K)', width: 3840, height: 2160 },
+    { name: "Mobile (Small)", width: 320, height: 568 },
+    { name: "Mobile (Medium)", width: 375, height: 667 },
+    { name: "Mobile (Large)", width: 414, height: 896 },
+    { name: "Tablet (Portrait)", width: 768, height: 1024 },
+    { name: "Tablet (Landscape)", width: 1024, height: 768 },
+    { name: "Desktop (Small)", width: 1280, height: 720 },
+    { name: "Desktop (Medium)", width: 1920, height: 1080 },
+    { name: "Desktop (Large - 4K)", width: 3840, height: 2160 },
   ];
 
   viewportSizes.forEach(({ name, width, height }) => {
@@ -41,7 +41,7 @@ describe('レスポンシブデザイン検証', () => {
     });
   });
 
-  it('タイトルヘッダーがすべての解像度で表示される', () => {
+  it("タイトルヘッダーがすべての解像度で表示される", () => {
     // ヘッダー高さ 24px
     const headerHeight = 24;
 
@@ -57,7 +57,7 @@ describe('レスポンシブデザイン検証', () => {
     });
   });
 
-  it('地図コンポーネントがすべての解像度でビューポートに収まる', () => {
+  it("地図コンポーネントがすべての解像度でビューポートに収まる", () => {
     const headerHeight = 24;
 
     viewportSizes.forEach(({ name, width, height }) => {
@@ -76,7 +76,7 @@ describe('レスポンシブデザイン検証', () => {
     });
   });
 
-  it('モバイル端末で地図が縦画面・横画面の両方で動作する', () => {
+  it("モバイル端末で地図が縦画面・横画面の両方で動作する", () => {
     const mobilePortrait = { width: 375, height: 667 };
     const mobileLandscape = { width: 667, height: 375 };
 

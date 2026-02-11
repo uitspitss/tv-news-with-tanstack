@@ -67,7 +67,9 @@ export const basicAuthMiddleware = createMiddleware().server(async ({ next, requ
   if (!validUser || !validPass) {
     // In development, skip authentication
     if (isDevelopment) {
-      console.warn("Basic Auth credentials not configured - authentication disabled (development mode)");
+      console.warn(
+        "Basic Auth credentials not configured - authentication disabled (development mode)",
+      );
       return next();
     }
     // In production, return error

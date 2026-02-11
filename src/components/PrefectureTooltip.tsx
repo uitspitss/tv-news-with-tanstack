@@ -1,5 +1,5 @@
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export interface PrefectureTooltipProps {
   /** 都道府県名（日本語） */
@@ -30,16 +30,14 @@ export function PrefectureTooltip({
   position,
 }: PrefectureTooltipProps) {
   // 都道府県名が空またはnullの場合は、ツールチップなしで子要素のみをレンダリング
-  if (!prefectureName || prefectureName.trim() === '') {
+  if (!prefectureName || prefectureName.trim() === "") {
     return <>{children}</>;
   }
 
   return (
     <TooltipProvider>
       <Tooltip open={isVisible} delayDuration={0}>
-        <TooltipTrigger asChild>
-          {children}
-        </TooltipTrigger>
+        <TooltipTrigger asChild>{children}</TooltipTrigger>
         {isVisible && (
           <TooltipContent
             side="top"
@@ -49,7 +47,7 @@ export function PrefectureTooltip({
             style={
               position
                 ? {
-                    position: 'fixed',
+                    position: "fixed",
                     left: `${position.x}px`,
                     top: `${position.y}px`,
                   }
