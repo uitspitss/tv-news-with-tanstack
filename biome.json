@@ -10,6 +10,13 @@
     "ignoreUnknown": false,
     "maxSize": 10485760
   },
+  "css": {
+    "parser": {
+      "cssModules": false,
+      "allowWrongLineComments": false,
+      "tailwindDirectives": true
+    }
+  },
   "overrides": [
     {
       "includes": ["**/*.css"],
@@ -27,11 +34,14 @@
       }
     },
     {
-      "includes": ["src/routeTree.gen.ts"],
+      "includes": ["src/routeTree.gen.ts", "scripts/**", "**/*.test.ts", "**/*.test.tsx"],
       "linter": {
         "enabled": false
       },
       "formatter": {
+        "enabled": false
+      },
+      "assist": {
         "enabled": false
       }
     },
