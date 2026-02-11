@@ -3,11 +3,11 @@
  * Feature: 001-add-japan-map / User Story 1
  */
 
-import { render, screen, waitFor, fireEvent } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { JapanMapData } from "@/lib/geo/japanGeoData";
 import { JapanMap } from "./JapanMap";
-import userEvent from "@testing-library/user-event";
 
 // Leafletのモック
 vi.mock("react-leaflet", () => ({

@@ -7,12 +7,12 @@
 
 import { readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
+import { act, renderHook } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { useKeyboardNav } from "@/hooks/useKeyboardNav";
+import { useMapInteraction } from "@/hooks/useMapInteraction";
 import type { JapanMapData } from "@/lib/geo/japanGeoData";
 import { fetchJapanMapData, validateJapanMapData } from "@/lib/geo/mapUtils";
-import { renderHook, act } from "@testing-library/react";
-import { useMapInteraction } from "@/hooks/useMapInteraction";
-import { useKeyboardNav } from "@/hooks/useKeyboardNav";
 
 describe("日本地図 - 統合テスト", () => {
   let originalFetch: typeof global.fetch;

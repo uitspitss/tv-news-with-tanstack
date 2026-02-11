@@ -3,8 +3,8 @@
  * 座標精度を調整し、不要なプロパティを削除してファイルサイズを削減
  */
 
-import { readFileSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
 
 interface GeoJSONFeature {
   type: string;
@@ -24,7 +24,7 @@ interface GeoJSONData {
  * 座標の精度を調整（小数点以下の桁数を制限）
  */
 function roundCoordinate(coord: number, precision: number = 4): number {
-  const multiplier = Math.pow(10, precision);
+  const multiplier = 10 ** precision;
   return Math.round(coord * multiplier) / multiplier;
 }
 
@@ -62,15 +62,15 @@ function optimizeGeoJSON(data: GeoJSONData, precision: number = 4): GeoJSONData 
 }
 
 // メイン処理
-const inputPath = join(process.cwd(), 'public/data/japan-prefectures.json');
-const outputPath = join(process.cwd(), 'public/data/japan-prefectures.optimized.json');
+const inputPath = join(process.cwd(), "public/data/japan-prefectures.json");
+const outputPath = join(process.cwd(), "public/data/japan-prefectures.optimized.json");
 
-console.log('🔧 GeoJSON最適化を開始...');
+console.log("🔧 GeoJSON最適化を開始...");
 console.log(`📁 入力: ${inputPath}`);
 
 // ファイルを読み込む
-const rawData = readFileSync(inputPath, 'utf-8');
-const originalSize = Buffer.byteLength(rawData, 'utf-8');
+const rawData = readFileSync(inputPath, "utf-8");
+const originalSize = Buffer.byteLength(rawData, "utf-8");
 const data: GeoJSONData = JSON.parse(rawData);
 
 console.log(`📊 元のファイルサイズ: ${(originalSize / (1024 * 1024)).toFixed(2)} MB`);
@@ -81,15 +81,17 @@ const optimized = optimizeGeoJSON(data, 4); // 小数点以下4桁
 
 // 最適化されたデータを書き込む
 const optimizedData = JSON.stringify(optimized);
-const optimizedSize = Buffer.byteLength(optimizedData, 'utf-8');
+const optimizedSize = Buffer.byteLength(optimizedData, "utf-8");
 
-writeFileSync(outputPath, optimizedData, 'utf-8');
+writeFileSync(outputPath, optimizedData, "utf-8");
 
 console.log(`📊 最適化後のファイルサイズ: ${(optimizedSize / (1024 * 1024)).toFixed(2)} MB`);
 console.log(`📉 削減率: ${(((originalSize - optimizedSize) / originalSize) * 100).toFixed(2)}%`);
 console.log(`✅ 最適化完了: ${outputPath}`);
-console.log('');
-console.log('次のステップ:');
-console.log('1. 最適化されたファイルを確認: public/data/japan-prefectures.optimized.json');
-console.log('2. 問題なければ、元のファイルを置き換え:');
-console.log('   mv public/data/japan-prefectures.optimized.json public/data/japan-prefectures.json');
+console.log("");
+console.log("次のステップ:");
+console.log("1. 最適化されたファイルを確認: public/data/japan-prefectures.optimized.json");
+console.log("2. 問題なければ、元のファイルを置き換え:");
+console.log(
+  "   mv public/data/japan-prefectures.optimized.json public/data/japan-prefectures.json",
+);
