@@ -108,21 +108,21 @@ function JapanMapComponent({
       const isFocused = focusedPrefecture === prefectureCode;
 
       // 状態に応じたスタイル
-      let fillColor = "#3388ff"; // デフォルト
+      let fillColor = "#1e40af"; // デフォルト：濃い青
       let weight = 2;
-      let fillOpacity = 0.7;
+      let fillOpacity = 0.75;
 
       if (isSelected) {
-        fillColor = "#ff6b35"; // 選択時：オレンジ
+        fillColor = "#dc2626"; // 選択時：濃い赤
         weight = 3;
         fillOpacity = 0.9;
       } else if (isHovered) {
-        fillColor = "#66b3ff"; // ホバー時：明るい青
-        fillOpacity = 0.8;
+        fillColor = "#3b82f6"; // ホバー時：中間の青
+        fillOpacity = 0.85;
       } else if (isFocused) {
-        fillColor = "#4da6ff"; // フォーカス時：中間の青
+        fillColor = "#2563eb"; // フォーカス時：やや濃い青
         weight = 3; // フォーカスインジケーター（WCAG 2.1 AA準拠）
-        fillOpacity = 0.8;
+        fillOpacity = 0.85;
       }
 
       return {
