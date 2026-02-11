@@ -6,7 +6,7 @@
  */
 
 import { divIcon } from "leaflet";
-import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { Marker, Tooltip, useMapEvents } from "react-leaflet";
 import { PrefectureOfficePopup } from "@/components/PrefectureOfficePopup";
 import type { MapInteractionHandlers, MapInteractionState } from "@/hooks/useMapInteraction";
@@ -100,13 +100,12 @@ function PrefectureOfficeMarkersComponent({ state, handlers }: PrefectureOfficeM
   );
 
   // 選択された都道府県のデータを取得（useMemoでメモ化）
-  const selectedPrefecture = useMemo(
-    () => {
-      if (!data) return null;
-      return state.selectedCapital ? data.find((office) => office.code === state.selectedCapital) : null;
-    },
-    [state.selectedCapital, data],
-  );
+  const selectedPrefecture = useMemo(() => {
+    if (!data) return null;
+    return state.selectedCapital
+      ? data.find((office) => office.code === state.selectedCapital)
+      : null;
+  }, [state.selectedCapital, data]);
 
   // ローディング中・エラー時・データなしの場合は何も表示しない
   // （エラーはusePrefectureOfficesフック内でログ出力済み）

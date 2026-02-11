@@ -6,7 +6,7 @@
  * インタラクション機能（ホバー、クリック、キーボードナビゲーション）をサポート
  */
 
-import type { Layer } from "leaflet";
+import type { Layer, Path } from "leaflet";
 import { memo, useCallback, useEffect, useState } from "react";
 import { GeoJSON, MapContainer, TileLayer } from "react-leaflet";
 import { PrefectureOfficeMarkers } from "@/components/PrefectureOfficeMarkers";
@@ -167,7 +167,7 @@ function JapanMapComponent({
       });
 
       // キーボードアクセシビリティ（T040）
-      const element = (layer as any).getElement?.();
+      const element = (layer as Path).getElement?.();
       if (element) {
         element.setAttribute("role", "button");
         element.setAttribute("aria-label", `${prefectureName}を選択`);
@@ -177,7 +177,13 @@ function JapanMapComponent({
         element.addEventListener("focus", () => handleFocus(prefectureCode));
         element.addEventListener("blur", () => handleBlur());
         element.addEventListener("keydown", (e: KeyboardEvent) => {
-          handleKeyDown(e as any);
+          // ネイティブKeyboardEventをReact.KeyboardEvent互換の形式で処理
+          const syntheticEvent = {
+            key: e.key,
+            shiftKey: e.shiftKey,
+            preventDefault: () => e.preventDefault(),
+          } as React.KeyboardEvent;
+          handleKeyDown(syntheticEvent);
         });
       }
 

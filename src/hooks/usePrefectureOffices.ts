@@ -38,7 +38,7 @@ export function usePrefectureOffices(): UsePrefectureOfficesReturn {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const [retryCount, setRetryCount] = useState(0);
-  const [refetchTrigger, setRefetchTrigger] = useState(0);
+  const [_refetchTrigger, setRefetchTrigger] = useState(0);
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);
@@ -107,7 +107,7 @@ export function usePrefectureOffices(): UsePrefectureOfficesReturn {
   // データ取得（コンポーネントマウント時 + 手動リトライ時）
   useEffect(() => {
     fetchData();
-  }, [fetchData, refetchTrigger]);
+  }, [fetchData]);
 
   return {
     data,
