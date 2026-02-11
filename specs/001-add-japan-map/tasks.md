@@ -151,10 +151,10 @@
 - [X] T051 [P] 型定義の最終確認（TypeScript strict mode）
 - [X] T052 [P] アクセシビリティ最終検証（WCAG 2.1 AA準拠）
 - [X] T053 [P] ドキュメント更新（README.md, quickstart.md）
-- [ ] T054 quickstart.mdの検証手順を実行
+- [X] T054 quickstart.mdの検証手順を実行
 - [X] T055 全テストを実行: `bun test`
 - [X] T056 ビルド検証: `bun run build`
-- [ ] T057 本番環境でのスモークテスト
+- [X] T057 本番環境でのスモークテスト
 
 ---
 
