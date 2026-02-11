@@ -45,7 +45,7 @@ TypeScript 5.x + Node.js 22 (管理: mise): Follow standard conventions
 |------|----------|------|
 | パッケージインストール | `bun install` | 依存関係をインストール |
 | スクリプト実行 | `bun run <script>` | package.jsonのスクリプトを実行 |
-| 開発サーバー起動 | `bun preview:wrangler` | 開発サーバーを起動（Cloudflare Workers環境） |
+| 開発サーバー起動 | `bun dev` | 開発サーバーを起動 |
 | ビルド | `bun run build` | プロダクションビルド |
 | テスト実行 | `bun test` | テストを実行 |
 | CLIツール実行 | `bunx <command>` | CLIツールを実行 (npxの代替) |
@@ -62,7 +62,7 @@ npx wrangler deploy
 **✅ 正しい使用方法：**
 ```bash
 bun install
-bun preview:wrangler
+bun dev
 bunx wrangler deploy
 ```
 
@@ -112,42 +112,34 @@ bunx wrangler deploy
 
 ## 開発環境
 
-**重要**: このプロジェクトは **Cloudflare Workers** にデプロイすることを前提としています。
+**重要**: このプロジェクトは **Cloudflare Workers** にデプロイすることを前提としていますが、開発時は通常の Vite 開発サーバーを使用します。
 
-### 開発サーバーの使い分け
-
-このプロジェクトでは `@cloudflare/vite-plugin` を使用しているため、通常の `vite dev` は動作しません。
+### 開発サーバー
 
 #### ✅ 使用すべきコマンド
 
 ```bash
-bun preview:wrangler
+bun dev
 ```
 
-- **実体**: `wrangler dev` を実行
-- **環境**: Cloudflare Workers ローカル環境
+- **実体**: `vite dev` を実行
+- **環境**: 通常の Vite 開発サーバー
 - **特徴**:
-  - Cloudflare Workers 環境をシミュレート
-  - KV、D1、R2 などの Cloudflare サービスにアクセス可能
-  - 本番環境に近い状態でテスト可能
-  - HMR（Hot Module Replacement）対応
+  - 高速起動（約1秒）
+  - HMR（Hot Module Replacement）が高速
+  - 軽量で快適な開発体験
 
-#### ❌ 動作しないコマンド
+### Basic認証について
 
-```bash
-bun dev  # = bun --bun vite dev
-```
-
-- `@cloudflare/vite-plugin` が含まれているため動作不可
-- Cloudflare Workers 専用プラグインは通常の Vite 開発サーバーと互換性なし
+開発環境では Basic 認証は無効化されています。本番環境では環境変数 `BASIC_AUTH_USER` と `BASIC_AUTH_PASSWORD` を設定することで有効になります。
 
 ### package.json のスクリプト
 
 ```json
 {
   "scripts": {
-    "dev": "bun --bun vite dev",           // ❌ このプロジェクトでは動作しない
-    "preview:wrangler": "wrangler dev",    // ✅ 開発時はこれを使用
+    "dev": "bun --bun vite dev",           // ✅ 開発サーバー
+    "preview:wrangler": "wrangler dev",    // Cloudflare Workers環境でテストする場合
     "build": "bun --bun vite build",       // ✅ ビルド
     "deploy": "bun run build && wrangler deploy"  // ✅ デプロイ
   }

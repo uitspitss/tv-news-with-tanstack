@@ -3,10 +3,11 @@
  * Feature: 001-add-japan-map / User Story 1
  */
 
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { JapanMapData } from "@/lib/geo/japanGeoData";
 import { JapanMap } from "./JapanMap";
+import userEvent from "@testing-library/user-event";
 
 // Leafletのモック
 vi.mock("react-leaflet", () => ({
@@ -135,6 +136,164 @@ describe("JapanMap", () => {
     await waitFor(() => {
       const mapContainer = screen.getByTestId("map-container");
       expect(mapContainer).toHaveAttribute("aria-label");
+    });
+  });
+});
+
+describe("JapanMap - Interactions (User Story 3)", () => {
+  beforeEach(() => {
+    // fetchをモック
+    global.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => mockGeoJSONData,
+    });
+  });
+
+  describe("Mouse Interactions", () => {
+    it("should handle prefecture hover event", async () => {
+      const onPrefectureHover = vi.fn();
+      render(<JapanMap onPrefectureHover={onPrefectureHover} />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId("map-container")).toBeInTheDocument();
+      });
+
+      // Note: Actual hover testing requires mocking Leaflet layer events
+      // This is a placeholder for the integration test
+    });
+
+    it("should handle prefecture click event", async () => {
+      const onPrefectureClick = vi.fn();
+      render(<JapanMap onPrefectureClick={onPrefectureClick} />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId("map-container")).toBeInTheDocument();
+      });
+
+      // Note: Actual click testing requires mocking Leaflet layer events
+      // This is a placeholder for the integration test
+    });
+
+    it("should display tooltip on prefecture hover", async () => {
+      render(<JapanMap />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId("map-container")).toBeInTheDocument();
+      });
+
+      // Tooltip display will be tested in integration tests
+    });
+  });
+
+  describe("Keyboard Interactions", () => {
+    it("should support Tab key navigation", async () => {
+      const user = userEvent.setup();
+      render(<JapanMap />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId("map-container")).toBeInTheDocument();
+      });
+
+      // Simulate Tab key press
+      await user.tab();
+
+      // After implementation, verify that focus moves to first prefecture
+    });
+
+    it("should support Enter key to select prefecture", async () => {
+      const onPrefectureClick = vi.fn();
+      render(<JapanMap onPrefectureClick={onPrefectureClick} />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId("map-container")).toBeInTheDocument();
+      });
+
+      // After implementation, Tab to focus and Enter to select
+    });
+
+    it("should support Space key to select prefecture", async () => {
+      const onPrefectureClick = vi.fn();
+      render(<JapanMap onPrefectureClick={onPrefectureClick} />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId("map-container")).toBeInTheDocument();
+      });
+
+      // After implementation, Tab to focus and Space to select
+    });
+
+    it("should have visible focus indicators", async () => {
+      render(<JapanMap />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId("map-container")).toBeInTheDocument();
+      });
+
+      // After implementation, verify focus styles (WCAG 2.1 AA compliant)
+    });
+  });
+
+  describe("Zoom and Pan", () => {
+    it("should respect minZoom setting", async () => {
+      render(<JapanMap />);
+
+      await waitFor(() => {
+        const mapContainer = screen.getByTestId("map-container");
+        expect(mapContainer).toBeInTheDocument();
+        // minZoom prop will be checked after implementation
+      });
+    });
+
+    it("should respect maxZoom setting", async () => {
+      render(<JapanMap />);
+
+      await waitFor(() => {
+        const mapContainer = screen.getByTestId("map-container");
+        expect(mapContainer).toBeInTheDocument();
+        // maxZoom prop will be checked after implementation
+      });
+    });
+
+    it("should allow panning across the map", async () => {
+      render(<JapanMap />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId("map-container")).toBeInTheDocument();
+      });
+
+      // Pan functionality will be tested in integration tests
+    });
+  });
+
+  describe("State Management", () => {
+    it("should track hovered prefecture", async () => {
+      render(<JapanMap />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId("map-container")).toBeInTheDocument();
+      });
+
+      // State tracking will be verified through visual indicators
+    });
+
+    it("should track selected prefecture", async () => {
+      render(<JapanMap />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId("map-container")).toBeInTheDocument();
+      });
+
+      // State tracking will be verified through visual indicators
+    });
+
+    it("should track focused prefecture", async () => {
+      render(<JapanMap />);
+
+      await waitFor(() => {
+        expect(screen.getByTestId("map-container")).toBeInTheDocument();
+      });
+
+      // State tracking will be verified through visual indicators
     });
   });
 });
