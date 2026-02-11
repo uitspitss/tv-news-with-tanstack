@@ -6,10 +6,9 @@ import { hydrateRoot } from "react-dom/client";
 import "./globals.css";
 
 const App = (
-  <>
-    {import.meta.env.DEV && <div>Development Mode</div>}
+  <StrictMode>
     <StartClient />
-  </>
+  </StrictMode>
 );
 
-hydrateRoot(document, import.meta.env.DEV ? <StrictMode>{App}</StrictMode> : App);
+hydrateRoot(document, App);

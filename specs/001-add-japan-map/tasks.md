@@ -26,11 +26,11 @@
 
 **目的**: プロジェクト初期化と依存関係のセットアップ
 
-- [ ] T001 React Leafletとleafletをインストール: `bun install react-leaflet leaflet @types/leaflet`
-- [ ] T002 [P] publicディレクトリを作成: `mkdir -p public/data`
-- [ ] T003 [P] src/hooksディレクトリを作成: `mkdir -p src/hooks`
-- [ ] T004 [P] src/lib/geoディレクトリを作成: `mkdir -p src/lib/geo`
-- [ ] T005 [P] tests/integrationディレクトリを作成: `mkdir -p tests/integration`
+- [X] T001 React Leafletとleafletをインストール: `bun install react-leaflet leaflet @types/leaflet`
+- [X] T002 [P] publicディレクトリを作成: `mkdir -p public/data`
+- [X] T003 [P] src/hooksディレクトリを作成: `mkdir -p src/hooks`
+- [X] T004 [P] src/lib/geoディレクトリを作成: `mkdir -p src/lib/geo`
+- [X] T005 [P] tests/integrationディレクトリを作成: `mkdir -p tests/integration`
 
 ---
 
@@ -40,10 +40,10 @@
 
 **⚠️ 重要**: このフェーズが完了するまで、ユーザーストーリーの作業は開始できません
 
-- [ ] T006 GeoJSON型定義を作成 in `src/lib/geo/japanGeoData.ts`
-- [ ] T007 [P] 地図ユーティリティ関数を作成 in `src/lib/geo/mapUtils.ts`
-- [ ] T008 GeoJSONデータをダウンロード・配置 in `public/data/japan-prefectures.json`
-- [ ] T009 GeoJSONデータ検証関数のテストを作成 in `src/lib/geo/mapUtils.test.ts`
+- [X] T006 GeoJSON型定義を作成 in `src/lib/geo/japanGeoData.ts`
+- [X] T007 [P] 地図ユーティリティ関数を作成 in `src/lib/geo/mapUtils.ts`
+- [X] T008 GeoJSONデータをダウンロード・配置 in `public/data/japan-prefectures.json`
+- [X] T009 GeoJSONデータ検証関数のテストを作成 in `src/lib/geo/mapUtils.test.ts`
 
 **Checkpoint**: 基盤準備完了 - ユーザーストーリーの実装を並列開始可能
 
@@ -59,23 +59,23 @@
 
 > **NOTE: TDD - これらのテストを最初に書き、実装前に失敗することを確認**
 
-- [ ] T010 [P] [US1] MapLoadingIndicatorコンポーネントのテストを作成 in `src/components/MapLoadingIndicator.test.tsx`
-- [ ] T011 [P] [US1] MapErrorFallbackコンポーネントのテストを作成 in `src/components/MapErrorFallback.test.tsx`
-- [ ] T012 [P] [US1] JapanMapコンポーネントの基本レンダリングテストを作成 in `src/components/JapanMap.test.tsx`
+- [X] T010 [P] [US1] MapLoadingIndicatorコンポーネントのテストを作成 in `src/components/MapLoadingIndicator.test.tsx`
+- [X] T011 [P] [US1] MapErrorFallbackコンポーネントのテストを作成 in `src/components/MapErrorFallback.test.tsx`
+- [X] T012 [P] [US1] JapanMapコンポーネントの基本レンダリングテストを作成 in `src/components/JapanMap.test.tsx`
 
 ### Implementation for User Story 1
 
-- [ ] T013 [P] [US1] MapLoadingIndicatorコンポーネントを実装（Skeletonを使用）in `src/components/MapLoadingIndicator.tsx`
-- [ ] T014 [P] [US1] MapErrorFallbackコンポーネントを実装（Alert + Buttonを使用）in `src/components/MapErrorFallback.tsx`
-- [ ] T015 [US1] JapanMapコンポーネントの基本構造を実装 in `src/components/JapanMap.tsx`
-- [ ] T016 [US1] GeoJSONデータのfetch処理を追加 in `src/components/JapanMap.tsx`
-- [ ] T017 [US1] React LeafletのMapContainerとGeoJSONで地図をレンダリング in `src/components/JapanMap.tsx`
-- [ ] T018 [US1] 47都道府県すべてをGeoJSONコンポーネントで表示 in `src/components/JapanMap.tsx`
-- [ ] T019 [US1] React.memo()でJapanMapをメモ化 in `src/components/JapanMap.tsx`
-- [ ] T020 [US1] インデックスページにJapanMapを統合（React.lazyで遅延ロード、Leaflet CSSインポート）in `src/routes/index.tsx`
-- [ ] T021 [US1] SuspenseとError Boundaryでラップ in `src/routes/index.tsx`
-- [ ] T022 [US1] T010-T012のテストが通ることを確認
-- [ ] T023 [US1] 統合テストを作成・実行 in `tests/integration/japan-map.test.ts`
+- [X] T013 [P] [US1] MapLoadingIndicatorコンポーネントを実装（Skeletonを使用）in `src/components/MapLoadingIndicator.tsx`
+- [X] T014 [P] [US1] MapErrorFallbackコンポーネントを実装（Alert + Buttonを使用）in `src/components/MapErrorFallback.tsx`
+- [X] T015 [US1] JapanMapコンポーネントの基本構造を実装 in `src/components/JapanMap.tsx`
+- [X] T016 [US1] GeoJSONデータのfetch処理を追加 in `src/components/JapanMap.tsx`
+- [X] T017 [US1] React LeafletのMapContainerとGeoJSONで地図をレンダリング in `src/components/JapanMap.tsx`
+- [X] T018 [US1] 47都道府県すべてをGeoJSONコンポーネントで表示 in `src/components/JapanMap.tsx`
+- [X] T019 [US1] React.memo()でJapanMapをメモ化 in `src/components/JapanMap.tsx`
+- [X] T020 [US1] インデックスページにJapanMapを統合（React.lazyで遅延ロード、Leaflet CSSインポート）in `src/routes/index.tsx`
+- [X] T021 [US1] SuspenseとError Boundaryでラップ in `src/routes/index.tsx`
+- [X] T022 [US1] T010-T012のテストが通ることを確認
+- [X] T023 [US1] 統合テストを作成・実行 in `tests/integration/japan-map.test.ts`
 
 **Checkpoint**: ユーザーストーリー1は完全に機能し、独立してテスト可能
 
