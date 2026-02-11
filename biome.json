@@ -7,9 +7,25 @@
     "defaultBranch": "main"
   },
   "files": {
-    "ignoreUnknown": false
+    "ignoreUnknown": false,
+    "maxSize": 10485760
   },
   "overrides": [
+    {
+      "includes": ["**/*.css"],
+      "linter": {
+        "enabled": false
+      }
+    },
+    {
+      "includes": ["public/data/*.json"],
+      "linter": {
+        "enabled": false
+      },
+      "formatter": {
+        "enabled": false
+      }
+    },
     {
       "includes": ["src/routeTree.gen.ts"],
       "linter": {
@@ -52,6 +68,9 @@
       },
       "correctness": {
         "useExhaustiveDependencies": "warn"
+      },
+      "a11y": {
+        "useSemanticElements": "off"
       }
     }
   }

@@ -1,26 +1,27 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { type ComponentType, useEffect, useState } from "react";
+import type { JapanMapProps } from "@/components/JapanMap";
+import { MapErrorFallback } from "@/components/MapErrorFallback";
+import { MapLoadingIndicator } from "@/components/MapLoadingIndicator";
 
 export const Route = createFileRoute("/")({
   component: Home,
+  errorComponent: ({ error, reset }) => <MapErrorFallback error={error as Error} onRetry={reset} />,
 });
 
 function Home() {
+  const [MapComponent, setMapComponent] = useState<ComponentType<JapanMapProps> | null>(null);
+
+  useEffect(() => {
+    // クライアントサイドでのみ地図コンポーネントを動的インポート（SSR回避）
+    import("@/components/JapanMap").then((mod) => {
+      setMapComponent(() => mod.JapanMap);
+    });
+  }, []);
+
   return (
-    <main>
-      <h1>TV News with TanStack へようこそ</h1>
-      <p>開発環境のセットアップが完了しました！</p>
-      <h2>次のステップ:</h2>
-      <ul>
-        <li>
-          <code>bun run type-check</code> - TypeScript型チェック
-        </li>
-        <li>
-          <code>bun run check</code> - リント・フォーマット
-        </li>
-        <li>
-          <code>bun run test</code> - テスト実行
-        </li>
-      </ul>
+    <main className="relative h-screen w-full">
+      {!MapComponent ? <MapLoadingIndicator /> : <MapComponent />}
     </main>
   );
 }
