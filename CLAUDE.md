@@ -5,6 +5,8 @@ Auto-generated from all feature plans. Last updated: 2026-02-08
 ## Active Technologies
 - TypeScript 5.x + Node.js 22 (mise管理) (002-cloudflare-deploy)
 - N/A (初期実装ではデータベース不要) (002-cloudflare-deploy)
+- TypeScript 5.x (strictモード) + Node.js 22 (miseで管理) (001-add-japan-map)
+- 静的GeoJSONファイル（public/data/japan-prefectures.json） (001-add-japan-map)
 
 - TypeScript 5.x + Node.js 22 (管理: mise) (001-dev-setup)
 
@@ -24,9 +26,10 @@ bun test && bun run lint
 TypeScript 5.x + Node.js 22 (管理: mise): Follow standard conventions
 
 ## Recent Changes
+- 001-add-japan-map: Added TypeScript 5.x (strictモード) + Node.js 22 (miseで管理)
+- 001-add-japan-map: Added TypeScript 5.x (strictモード) + Node.js 22 (miseで管理)
 - 002-cloudflare-deploy: Added TypeScript 5.x + Node.js 22 (mise管理)
 
-- 001-dev-setup: Added TypeScript 5.x + Node.js 22 (管理: mise)
 
 <!-- MANUAL ADDITIONS START -->
 
@@ -42,7 +45,7 @@ TypeScript 5.x + Node.js 22 (管理: mise): Follow standard conventions
 |------|----------|------|
 | パッケージインストール | `bun install` | 依存関係をインストール |
 | スクリプト実行 | `bun run <script>` | package.jsonのスクリプトを実行 |
-| 開発サーバー起動 | `bun run dev` | 開発サーバーを起動 |
+| 開発サーバー起動 | `bun dev` | 開発サーバーを起動 |
 | ビルド | `bun run build` | プロダクションビルド |
 | テスト実行 | `bun test` | テストを実行 |
 | CLIツール実行 | `bunx <command>` | CLIツールを実行 (npxの代替) |
@@ -59,7 +62,7 @@ npx wrangler deploy
 **✅ 正しい使用方法：**
 ```bash
 bun install
-bun run dev
+bun dev
 bunx wrangler deploy
 ```
 
@@ -106,6 +109,42 @@ bunx wrangler deploy
 
 - ✅ `.vite/` - Viteのキャッシュ
 - ❌ `.vinxi/` - 古いVinxiのキャッシュ（削除推奨）
+
+## 開発環境
+
+**重要**: このプロジェクトは **Cloudflare Workers** にデプロイすることを前提としていますが、開発時は通常の Vite 開発サーバーを使用します。
+
+### 開発サーバー
+
+#### ✅ 使用すべきコマンド
+
+```bash
+bun dev
+```
+
+- **実体**: `vite dev` を実行
+- **環境**: 通常の Vite 開発サーバー
+- **特徴**:
+  - 高速起動（約1秒）
+  - HMR（Hot Module Replacement）が高速
+  - 軽量で快適な開発体験
+
+### Basic認証について
+
+開発環境では Basic 認証は無効化されています。本番環境では環境変数 `BASIC_AUTH_USER` と `BASIC_AUTH_PASSWORD` を設定することで有効になります。
+
+### package.json のスクリプト
+
+```json
+{
+  "scripts": {
+    "dev": "bun --bun vite dev",           // ✅ 開発サーバー
+    "preview:wrangler": "wrangler dev",    // Cloudflare Workers環境でテストする場合
+    "build": "bun --bun vite build",       // ✅ ビルド
+    "deploy": "bun run build && wrangler deploy"  // ✅ デプロイ
+  }
+}
+```
 
 ## Git Workflow
 
