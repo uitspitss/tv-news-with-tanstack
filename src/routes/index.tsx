@@ -1,26 +1,48 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { type ComponentType, useEffect, useState } from "react";
+import type { JapanMapProps } from "@/components/JapanMap";
+import { MapErrorFallback } from "@/components/MapErrorFallback";
+import { MapLoadingIndicator } from "@/components/MapLoadingIndicator";
 
 export const Route = createFileRoute("/")({
   component: Home,
+  errorComponent: ({ error, reset }) => <MapErrorFallback error={error as Error} onRetry={reset} />,
 });
 
-function Home() {
+export function Home() {
+  const [MapComponent, setMapComponent] = useState<ComponentType<JapanMapProps> | null>(null);
+  const [showLoading, setShowLoading] = useState(false);
+
+  useEffect(() => {
+    // 200ms遅延後にローディング表示を有効化（短時間のローディングでちらつきを防ぐ）
+    const loadingTimer = setTimeout(() => {
+      if (!MapComponent) {
+        setShowLoading(true);
+      }
+    }, 200);
+
+    // クライアントサイドでのみ地図コンポーネントを動的インポート（SSR回避）
+    import("@/components/JapanMap").then((mod) => {
+      setMapComponent(() => mod.JapanMap);
+      setShowLoading(false); // ローディング完了
+    });
+
+    return () => {
+      clearTimeout(loadingTimer);
+    };
+  }, [MapComponent]);
+
   return (
-    <main>
-      <h1>TV News with TanStack へようこそ</h1>
-      <p>開発環境のセットアップが完了しました！</p>
-      <h2>次のステップ:</h2>
-      <ul>
-        <li>
-          <code>bun run type-check</code> - TypeScript型チェック
-        </li>
-        <li>
-          <code>bun run check</code> - リント・フォーマット
-        </li>
-        <li>
-          <code>bun run test</code> - テスト実行
-        </li>
-      </ul>
-    </main>
+    <>
+      <header className="fixed top-0 left-0 right-0 w-screen z-[1000] bg-background border-b h-6 flex items-center will-change-transform">
+        <h1 className="text-sm font-bold text-center w-full leading-none m-0 p-0">tv-news</h1>
+      </header>
+      <main className="h-screen w-screen m-0 p-0">
+        <div className="h-full w-full pt-6">
+          {!MapComponent && showLoading && <MapLoadingIndicator />}
+          {MapComponent && <MapComponent />}
+        </div>
+      </main>
+    </>
   );
 }

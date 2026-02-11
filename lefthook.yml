@@ -2,5 +2,8 @@ pre-commit:
   commands:
     biome-check:
       glob: "*.{js,jsx,ts,tsx,json}"
-      exclude: "(.agents/|.claude/)"
-      run: bunx --bun biome check --staged --write {staged_files}
+      run: |
+        FILES=$(echo {staged_files} | tr ' ' '\n' | grep -v '^\\.agents/' | grep -v '^\\.claude/' | tr '\n' ' ')
+        if [ -n "$FILES" ]; then
+          bunx --bun biome check --write $FILES
+        fi
