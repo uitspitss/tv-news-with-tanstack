@@ -34,11 +34,20 @@
       }
     },
     {
-      "includes": ["src/routeTree.gen.ts", "scripts/**", "**/*.test.ts", "**/*.test.tsx"],
+      "includes": ["src/routeTree.gen.ts", "scripts/**"],
       "linter": {
         "enabled": false
       },
       "formatter": {
+        "enabled": false
+      },
+      "assist": {
+        "enabled": false
+      }
+    },
+    {
+      "includes": ["**/*.test.ts", "**/*.test.tsx"],
+      "linter": {
         "enabled": false
       },
       "assist": {

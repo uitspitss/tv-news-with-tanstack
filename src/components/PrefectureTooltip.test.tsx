@@ -10,7 +10,10 @@ describe("PrefectureTooltip", () => {
       </PrefectureTooltip>,
     );
 
-    expect(screen.getByText("東京都")).toBeInTheDocument();
+    // Tooltip renders text multiple times for accessibility (visible + aria label)
+    const elements = screen.getAllByText("東京都");
+    expect(elements.length).toBeGreaterThan(0);
+    expect(elements[0]).toBeInTheDocument();
   });
 
   it("should not render tooltip when isVisible is false", () => {
@@ -68,21 +71,24 @@ describe("PrefectureTooltip", () => {
         </PrefectureTooltip>,
       );
 
-      expect(screen.getByText(prefecture)).toBeInTheDocument();
+      // Tooltip renders text multiple times for accessibility
+      const elements = screen.getAllByText(prefecture);
+      expect(elements.length).toBeGreaterThan(0);
+      expect(elements[0]).toBeInTheDocument();
 
       unmount();
     });
   });
 
   it("should have proper accessibility attributes", () => {
-    const { container } = render(
+    render(
       <PrefectureTooltip prefectureName="東京都" isVisible={true}>
         <div>Map Element</div>
       </PrefectureTooltip>,
     );
 
-    // Check for aria-label or role="tooltip"
-    const tooltipElements = container.querySelectorAll('[role="tooltip"], [aria-label]');
+    // Check for role="tooltip" - shadcn/ui Tooltip adds this for accessibility
+    const tooltipElements = screen.getAllByRole("tooltip");
     expect(tooltipElements.length).toBeGreaterThan(0);
   });
 
@@ -93,6 +99,9 @@ describe("PrefectureTooltip", () => {
       </PrefectureTooltip>,
     );
 
-    expect(screen.getByText("東京都")).toBeInTheDocument();
+    // Tooltip renders text multiple times for accessibility
+    const elements = screen.getAllByText("東京都");
+    expect(elements.length).toBeGreaterThan(0);
+    expect(elements[0]).toBeInTheDocument();
   });
 });
