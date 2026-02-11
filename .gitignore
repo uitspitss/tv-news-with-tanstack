@@ -34,5 +34,6 @@ coverage
 .tmp
 .vite
 .wrangler
+.tanstack
 
 # Claude Code (project-specific skills and commands are tracked)
