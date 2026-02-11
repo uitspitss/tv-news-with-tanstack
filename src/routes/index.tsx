@@ -9,7 +9,7 @@ export const Route = createFileRoute("/")({
   errorComponent: ({ error, reset }) => <MapErrorFallback error={error as Error} onRetry={reset} />,
 });
 
-function Home() {
+export function Home() {
   const [MapComponent, setMapComponent] = useState<ComponentType<JapanMapProps> | null>(null);
 
   useEffect(() => {
@@ -20,8 +20,13 @@ function Home() {
   }, []);
 
   return (
-    <main className="relative h-screen w-full">
-      {!MapComponent ? <MapLoadingIndicator /> : <MapComponent />}
-    </main>
+    <>
+      <header className="fixed top-0 z-10 w-full bg-background/80 p-4 backdrop-blur-sm">
+        <h1 className="text-2xl font-bold">tv-news</h1>
+      </header>
+      <main className="relative h-screen w-full">
+        {!MapComponent ? <MapLoadingIndicator /> : <MapComponent />}
+      </main>
+    </>
   );
 }

@@ -91,14 +91,14 @@
 
 > **NOTE: TDD - これらのテストを最初に書き、実装前に失敗することを確認**
 
-- [ ] T024 [US2] タイトルヘッダー表示のテストを追加 in `src/routes/index.test.tsx`
+- [X] T024 [US2] タイトルヘッダー表示のテストを追加 in `src/routes/index.test.tsx`
 
 ### Implementation for User Story 2
 
-- [ ] T025 [US2] タイトルヘッダーをindex.tsxに追加 in `src/routes/index.tsx`
-- [ ] T026 [US2] Tailwind CSSでタイトルスタイリング（固定配置、z-index管理）in `src/routes/index.tsx`
+- [X] T025 [US2] タイトルヘッダーをindex.tsxに追加 in `src/routes/index.tsx`
+- [X] T026 [US2] Tailwind CSSでタイトルスタイリング（固定配置、z-index管理）in `src/routes/index.tsx`
 - [ ] T027 [US2] タイトルが地図の表示領域を妨げないことを確認
-- [ ] T028 [US2] T024のテストが通ることを確認
+- [X] T028 [US2] T024のテストが通ることを確認
 
 **Checkpoint**: ユーザーストーリー1と2の両方が独立して動作
 
