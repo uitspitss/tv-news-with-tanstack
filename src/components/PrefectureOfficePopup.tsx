@@ -34,7 +34,9 @@ function PrefectureOfficePopupComponent({ prefecture, onClose }: PrefectureOffic
   return (
     <Popup
       position={[prefecture.lat, prefecture.lon]}
-      onClose={onClose}
+      eventHandlers={{
+        remove: onClose,
+      }}
       closeButton={true}
       closeOnClick={false} // マーカークリックで閉じないようにする
       autoClose={false} // 他のポップアップを開いたときに自動で閉じないようにする

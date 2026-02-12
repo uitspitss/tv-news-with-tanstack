@@ -5,7 +5,7 @@
  */
 
 import { useCallback, useEffect, useState } from "react";
-import type { PrefectureOfficeData } from "@/lib/geo/prefectureOfficeData";
+import type { PrefectureOffice, PrefectureOfficeData } from "@/lib/geo/prefectureOfficeData";
 import { validatePrefectureOfficeData } from "@/lib/geo/prefectureOfficeData";
 
 interface UsePrefectureOfficesReturn {

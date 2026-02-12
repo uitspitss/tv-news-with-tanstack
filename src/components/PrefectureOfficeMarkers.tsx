@@ -146,8 +146,6 @@ function PrefectureOfficeMarkersComponent({ state, handlers }: PrefectureOfficeM
               mouseover: () => handlers.handleCapitalMouseEnter(office.code),
               mouseout: () => handlers.handleCapitalMouseLeave(),
               click: () => handlers.handleCapitalClick(office.code),
-              focus: () => handlers.handleCapitalFocus(office.code),
-              blur: () => handlers.handleCapitalBlur(),
               keydown: (e: { originalEvent: KeyboardEvent }) => {
                 // EnterまたはSpaceキーでクリックと同じ動作
                 if (e.originalEvent.key === "Enter" || e.originalEvent.key === " ") {
