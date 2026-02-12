@@ -4,7 +4,7 @@
  * Custom hook for fetching and managing prefecture office location data.
  */
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { PrefectureOffice, PrefectureOfficeData } from "@/lib/geo/prefectureOfficeData";
 import { validatePrefectureOfficeData } from "@/lib/geo/prefectureOfficeData";
 
@@ -38,72 +38,66 @@ export function usePrefectureOffices(): UsePrefectureOfficesReturn {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const [refetchTrigger, setRefetchTrigger] = useState(0);
+  const retryCountRef = useRef(0);
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);
     setError(null);
 
-    // リトライカウンターはローカル変数として管理
-    let currentRetryCount = 0;
+    try {
+      const response = await fetch("/data/prefecture-offices.json");
 
-    const attemptFetch = async (): Promise<void> => {
-      try {
-        const response = await fetch("/data/prefecture-offices.json");
-
-        if (!response.ok) {
-          throw new Error(
-            `Failed to fetch prefecture office data: ${response.status} ${response.statusText}`,
-          );
-        }
-
-        const json = await response.json();
-
-        // データ検証
-        if (!validatePrefectureOfficeData(json)) {
-          throw new Error(
-            "VALIDATION_ERROR: Invalid prefecture office data format or incomplete data (expected 47 prefectures)",
-          );
-        }
-
-        // データ欠落のチェック（改善版 - すべての期待されるコードが存在するかチェック）
-        const existingCodes = new Set(json.map((office: PrefectureOffice) => office.code));
-        for (let i = 1; i <= 47; i++) {
-          const expectedCode = String(i).padStart(2, "0");
-          if (!existingCodes.has(expectedCode)) {
-            console.warn(`⚠️ Missing prefecture code: ${expectedCode}`);
-          }
-        }
-
-        setData(json);
-        setIsLoading(false);
-      } catch (err) {
-        const error = err instanceof Error ? err : new Error("Unknown error occurred");
-        console.error("❌ Failed to load prefecture office data:", error);
-
-        // データ検証エラーの場合はリトライしない（一時的なエラーではないため）
-        const isValidationError = error.message.startsWith("VALIDATION_ERROR:");
-        const shouldRetry = currentRetryCount === 0 && !isValidationError;
-
-        if (shouldRetry) {
-          console.log("🔄 Auto-retrying once...");
-          currentRetryCount = 1;
-          // 少し待ってから再試行
-          await new Promise((resolve) => setTimeout(resolve, 1000));
-          await attemptFetch();
-          return;
-        }
-
-        // リトライしない、またはリトライ失敗時はエラーを設定
-        setError(error);
-        setIsLoading(false);
+      if (!response.ok) {
+        throw new Error(
+          `Failed to fetch prefecture office data: ${response.status} ${response.statusText}`,
+        );
       }
-    };
 
-    await attemptFetch();
-  }, []); // 依存配列を空にして無限ループを回避
+      const json = await response.json();
+
+      // データ検証
+      if (!validatePrefectureOfficeData(json)) {
+        throw new Error(
+          "Invalid prefecture office data format or incomplete data (expected 47 prefectures)",
+        );
+      }
+
+      // データ欠落のチェック（改善版 - すべての期待されるコードが存在するかチェック）
+      const existingCodes = new Set(json.map((office: PrefectureOffice) => office.code));
+      for (let i = 1; i <= 47; i++) {
+        const expectedCode = String(i).padStart(2, "0");
+        if (!existingCodes.has(expectedCode)) {
+          console.warn(`⚠️ Missing prefecture code: ${expectedCode}`);
+        }
+      }
+
+      setData(json);
+      setIsLoading(false);
+      retryCountRef.current = 0; // 成功時にリセット
+    } catch (err) {
+      const error = err instanceof Error ? err : new Error("Unknown error occurred");
+      console.error("❌ Failed to load prefecture office data:", error);
+
+      // 自動リトライ（1回のみ）
+      if (retryCountRef.current === 0) {
+        console.log("🔄 Auto-retrying once...");
+        retryCountRef.current = 1;
+        // 少し待ってから再試行
+        setTimeout(() => {
+          fetchData();
+        }, 1000);
+        return;
+      }
+
+      // リトライ失敗時はエラーを設定
+      setError(error);
+      setIsLoading(false);
+    }
+  }, []);
 
   // 手動リトライ関数
   const retry = useCallback(() => {
+    retryCountRef.current = 0;
     setRefetchTrigger((prev) => prev + 1);
   }, []);
 
