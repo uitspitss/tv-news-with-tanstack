@@ -37,77 +37,77 @@ export function usePrefectureOffices(): UsePrefectureOfficesReturn {
   const [data, setData] = useState<PrefectureOfficeData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const [retryCount, setRetryCount] = useState(0);
-  const [_refetchTrigger, setRefetchTrigger] = useState(0);
+  const [refetchTrigger, setRefetchTrigger] = useState(0);
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);
     setError(null);
 
-    try {
-      const response = await fetch("/data/prefecture-offices.json");
+    // リトライカウンターはローカル変数として管理
+    let currentRetryCount = 0;
 
-      if (!response.ok) {
-        throw new Error(
-          `Failed to fetch prefecture office data: ${response.status} ${response.statusText}`,
-        );
-      }
+    const attemptFetch = async (): Promise<void> => {
+      try {
+        const response = await fetch("/data/prefecture-offices.json");
 
-      const json = await response.json();
+        if (!response.ok) {
+          throw new Error(
+            `Failed to fetch prefecture office data: ${response.status} ${response.statusText}`,
+          );
+        }
 
-      // データ検証
-      if (!validatePrefectureOfficeData(json)) {
-        throw new Error(
-          "Invalid prefecture office data format or incomplete data (expected 47 prefectures)",
-        );
-      }
+        const json = await response.json();
 
-      // データ欠落のチェック（ログに警告を出力）
-      if (json.length < 47) {
-        console.warn(`⚠️ Prefecture office data is incomplete: ${json.length}/47 prefectures`);
-        json.forEach((office, index) => {
-          const expectedCode = String(index + 1).padStart(2, "0");
-          if (office.code !== expectedCode) {
-            console.warn(
-              `⚠️ Missing or incorrect prefecture code at index ${index}: expected ${expectedCode}, got ${office.code}`,
-            );
+        // データ検証
+        if (!validatePrefectureOfficeData(json)) {
+          throw new Error(
+            "Invalid prefecture office data format or incomplete data (expected 47 prefectures)",
+          );
+        }
+
+        // データ欠落のチェック（改善版 - すべての期待されるコードが存在するかチェック）
+        const existingCodes = new Set(json.map((office: PrefectureOffice) => office.code));
+        for (let i = 1; i <= 47; i++) {
+          const expectedCode = String(i).padStart(2, "0");
+          if (!existingCodes.has(expectedCode)) {
+            console.warn(`⚠️ Missing prefecture code: ${expectedCode}`);
           }
-        });
+        }
+
+        setData(json);
+        setIsLoading(false);
+      } catch (err) {
+        const error = err instanceof Error ? err : new Error("Unknown error occurred");
+        console.error("❌ Failed to load prefecture office data:", error);
+
+        // 自動リトライ（1回のみ）
+        if (currentRetryCount === 0) {
+          console.log("🔄 Auto-retrying once...");
+          currentRetryCount = 1;
+          // 少し待ってから再試行
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          await attemptFetch();
+          return;
+        }
+
+        // リトライ失敗時はエラーを設定
+        setError(error);
+        setIsLoading(false);
       }
+    };
 
-      setData(json);
-      setIsLoading(false);
-    } catch (err) {
-      const error = err instanceof Error ? err : new Error("Unknown error occurred");
-      console.error("❌ Failed to load prefecture office data:", error);
-
-      // 自動リトライ（1回のみ）
-      if (retryCount === 0) {
-        console.log("🔄 Auto-retrying once...");
-        setRetryCount(1);
-        // 少し待ってから再試行
-        setTimeout(() => {
-          fetchData();
-        }, 1000);
-        return;
-      }
-
-      // リトライ失敗時はエラーを設定
-      setError(error);
-      setIsLoading(false);
-    }
-  }, [retryCount]);
+    await attemptFetch();
+  }, []); // 依存配列を空にして無限ループを回避
 
   // 手動リトライ関数
   const retry = useCallback(() => {
-    setRetryCount(0);
     setRefetchTrigger((prev) => prev + 1);
   }, []);
 
   // データ取得（コンポーネントマウント時 + 手動リトライ時）
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, [fetchData, refetchTrigger]);
 
   return {
     data,

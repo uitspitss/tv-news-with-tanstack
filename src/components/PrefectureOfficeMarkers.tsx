@@ -12,6 +12,28 @@ import { PrefectureOfficePopup } from "@/components/PrefectureOfficePopup";
 import type { MapInteractionHandlers, MapInteractionState } from "@/hooks/useMapInteraction";
 import { usePrefectureOffices } from "@/hooks/usePrefectureOffices";
 
+// マーカーサイズの設定定数
+const MARKER_SIZE_CONFIG = {
+  MIN_SIZE: 20,
+  MAX_SIZE: 30,
+  MIN_ZOOM: 4,
+  MAX_ZOOM: 10,
+} as const;
+
+/**
+ * HTMLエスケープ関数（XSS対策）
+ */
+function escapeHtml(str: string): string {
+  const escapeMap: Record<string, string> = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;",
+  };
+  return str.replace(/[&<>"']/g, (char) => escapeMap[char] || char);
+}
+
 export interface PrefectureOfficeMarkersProps {
   /** マーカーインタラクション状態 */
   state: Pick<MapInteractionState, "selectedCapital">;
@@ -56,16 +78,12 @@ function PrefectureOfficeMarkersComponent({ state, handlers }: PrefectureOfficeM
 
   // ズームレベルに応じたマーカーサイズを計算（useMemoでメモ化）
   const getMarkerSize = useCallback((currentZoom: number): number => {
-    // ズームレベル5で20px、ズームレベル10で30pxとなるように線形補間
-    const minSize = 20;
-    const maxSize = 30;
-    const minZoom = 4;
-    const maxZoom = 10;
+    const { MIN_SIZE, MAX_SIZE, MIN_ZOOM, MAX_ZOOM } = MARKER_SIZE_CONFIG;
 
-    if (currentZoom <= minZoom) return minSize;
-    if (currentZoom >= maxZoom) return maxSize;
+    if (currentZoom <= MIN_ZOOM) return MIN_SIZE;
+    if (currentZoom >= MAX_ZOOM) return MAX_SIZE;
 
-    return minSize + ((currentZoom - minZoom) / (maxZoom - minZoom)) * (maxSize - minSize);
+    return MIN_SIZE + ((currentZoom - MIN_ZOOM) / (MAX_ZOOM - MIN_ZOOM)) * (MAX_SIZE - MIN_SIZE);
   }, []);
 
   const markerSize = useMemo(() => getMarkerSize(zoom), [zoom, getMarkerSize]);
@@ -79,8 +97,8 @@ function PrefectureOfficeMarkersComponent({ state, handlers }: PrefectureOfficeM
         <div
           tabindex="0"
           role="button"
-          aria-label="${officeName}を選択"
-          data-prefecture-code="${prefectureCode}"
+          aria-label="${escapeHtml(officeName)}を選択"
+          data-prefecture-code="${escapeHtml(prefectureCode)}"
           style="
             width: ${size}px;
             height: ${size}px;

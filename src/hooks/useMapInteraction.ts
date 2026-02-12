@@ -11,12 +11,8 @@ export interface MapInteractionState {
   selectedPrefecture: string | null;
   /** キーボードフォーカス中の都道府県コード */
   focusedPrefecture: string | null;
-  /** ホバー中の庁舎所在地コード */
-  hoveredCapital: string | null;
   /** 選択中の庁舎所在地コード */
   selectedCapital: string | null;
-  /** キーボードフォーカス中の庁舎所在地コード */
-  focusedCapital: string | null;
 }
 
 export interface MapInteractionHandlers {
@@ -65,9 +61,7 @@ export function useMapInteraction(): MapInteractionReturn {
   const [focusedPrefecture, setFocusedPrefecture] = useState<string | null>(null);
 
   // 庁舎所在地マーカー用の状態
-  const [hoveredCapital, setHoveredCapital] = useState<string | null>(null);
   const [selectedCapital, setSelectedCapital] = useState<string | null>(null);
-  const [focusedCapital, setFocusedCapital] = useState<string | null>(null);
 
   const handleMouseEnter = useCallback((prefectureCode: string) => {
     setHoveredPrefecture(prefectureCode);
@@ -101,12 +95,12 @@ export function useMapInteraction(): MapInteractionReturn {
   }, []);
 
   // 庁舎所在地マーカー用のハンドラー
-  const handleCapitalMouseEnter = useCallback((prefectureCode: string) => {
-    setHoveredCapital(prefectureCode);
+  const handleCapitalMouseEnter = useCallback((_prefectureCode: string) => {
+    // ホバー効果は CSS で実装されているため、状態管理は不要
   }, []);
 
   const handleCapitalMouseLeave = useCallback(() => {
-    setHoveredCapital(null);
+    // ホバー効果は CSS で実装されているため、状態管理は不要
   }, []);
 
   const handleCapitalClick = useCallback((prefectureCode: string) => {
@@ -119,21 +113,19 @@ export function useMapInteraction(): MapInteractionReturn {
     });
   }, []);
 
-  const handleCapitalFocus = useCallback((prefectureCode: string) => {
-    setFocusedCapital(prefectureCode);
+  const handleCapitalFocus = useCallback((_prefectureCode: string) => {
+    // フォーカス効果は CSS で実装されているため、状態管理は不要
   }, []);
 
   const handleCapitalBlur = useCallback(() => {
-    setFocusedCapital(null);
+    // フォーカス効果は CSS で実装されているため、状態管理は不要
   }, []);
 
   return {
     hoveredPrefecture,
     selectedPrefecture,
     focusedPrefecture,
-    hoveredCapital,
     selectedCapital,
-    focusedCapital,
     handleMouseEnter,
     handleMouseLeave,
     handleClick,
