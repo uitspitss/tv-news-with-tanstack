@@ -109,7 +109,10 @@ export function usePrefectureOffices(): UsePrefectureOfficesReturn {
   // データ取得（コンポーネントマウント時 + 手動リトライ時）
   useEffect(() => {
     fetchData();
-  }, [fetchData, refetchTrigger]);
+    // fetchData は useCallback で空の依存配列により変更されないため、
+    // 依存配列には refetchTrigger のみを含める
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [refetchTrigger]);
 
   return {
     data,
