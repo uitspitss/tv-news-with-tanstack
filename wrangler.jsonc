@@ -3,5 +3,5 @@
   "name": "tv-news-with-tanstack",
   "compatibility_date": "2026-02-05",
   "compatibility_flags": ["nodejs_compat"],
-  "main": "@tanstack/react-start/server-entry"
+  "main": "dist/server/server.js"
 }
