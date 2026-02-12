@@ -60,12 +60,9 @@ export function usePrefectureOffices(): UsePrefectureOfficesReturn {
 
         // データ検証
         if (!validatePrefectureOfficeData(json)) {
-          const validationError = new Error(
-            "Invalid prefecture office data format or incomplete data (expected 47 prefectures)",
-          ) as Error & { skipRetry?: boolean };
-          // データ検証エラーはリトライしない（一時的なエラーではないため）
-          validationError.skipRetry = true;
-          throw validationError;
+          throw new Error(
+            "VALIDATION_ERROR: Invalid prefecture office data format or incomplete data (expected 47 prefectures)",
+          );
         }
 
         // データ欠落のチェック（改善版 - すべての期待されるコードが存在するかチェック）
@@ -83,9 +80,9 @@ export function usePrefectureOffices(): UsePrefectureOfficesReturn {
         const error = err instanceof Error ? err : new Error("Unknown error occurred");
         console.error("❌ Failed to load prefecture office data:", error);
 
-        // データ検証エラーやリトライ済みの場合はリトライしない
-        const errorWithFlag = error as Error & { skipRetry?: boolean };
-        const shouldRetry = currentRetryCount === 0 && !errorWithFlag.skipRetry;
+        // データ検証エラーの場合はリトライしない（一時的なエラーではないため）
+        const isValidationError = error.message.startsWith("VALIDATION_ERROR:");
+        const shouldRetry = currentRetryCount === 0 && !isValidationError;
 
         if (shouldRetry) {
           console.log("🔄 Auto-retrying once...");
