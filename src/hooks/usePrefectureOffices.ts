@@ -4,8 +4,8 @@
  * Custom hook for fetching and managing prefecture office location data.
  */
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import type { PrefectureOffice, PrefectureOfficeData } from "@/lib/geo/prefectureOfficeData";
+import { useCallback, useEffect, useState } from "react";
+import type { PrefectureOfficeData } from "@/lib/geo/prefectureOfficeData";
 import { validatePrefectureOfficeData } from "@/lib/geo/prefectureOfficeData";
 
 interface UsePrefectureOfficesReturn {
@@ -37,8 +37,8 @@ export function usePrefectureOffices(): UsePrefectureOfficesReturn {
   const [data, setData] = useState<PrefectureOfficeData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+  const [retryCount, setRetryCount] = useState(0);
   const [refetchTrigger, setRefetchTrigger] = useState(0);
-  const retryCountRef = useRef(0);
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);
@@ -62,31 +62,29 @@ export function usePrefectureOffices(): UsePrefectureOfficesReturn {
         );
       }
 
-      // データ欠落のチェック（改善版 - すべての期待されるコードが存在するかチェック）
-      const existingCodes = new Set(json.map((office: PrefectureOffice) => office.code));
-      for (let i = 1; i <= 47; i++) {
-        const expectedCode = String(i).padStart(2, "0");
-        if (!existingCodes.has(expectedCode)) {
-          console.warn(`⚠️ Missing prefecture code: ${expectedCode}`);
-        }
+      // データ欠落のチェック（ログに警告を出力）
+      if (json.length < 47) {
+        console.warn(`⚠️ Prefecture office data is incomplete: ${json.length}/47 prefectures`);
+        json.forEach((office, index) => {
+          const expectedCode = String(index + 1).padStart(2, "0");
+          if (office.code !== expectedCode) {
+            console.warn(
+              `⚠️ Missing or incorrect prefecture code at index ${index}: expected ${expectedCode}, got ${office.code}`,
+            );
+          }
+        });
       }
 
       setData(json);
       setIsLoading(false);
-      retryCountRef.current = 0; // 成功時にリセット
     } catch (err) {
       const error = err instanceof Error ? err : new Error("Unknown error occurred");
       console.error("❌ Failed to load prefecture office data:", error);
 
-      // バリデーションエラーはリトライしない（データの問題なのでリトライしても無意味）
-      const isValidationError =
-        error.message.includes("Invalid prefecture office data") ||
-        error.message.includes("incomplete data");
-
-      // ネットワークエラーのみ自動リトライ（1回のみ）
-      if (!isValidationError && retryCountRef.current === 0) {
+      // 自動リトライ（1回のみ）
+      if (retryCount === 0) {
         console.log("🔄 Auto-retrying once...");
-        retryCountRef.current = 1;
+        setRetryCount(1);
         // 少し待ってから再試行
         setTimeout(() => {
           fetchData();
@@ -94,22 +92,21 @@ export function usePrefectureOffices(): UsePrefectureOfficesReturn {
         return;
       }
 
-      // リトライ失敗時またはバリデーションエラー時はエラーを設定
+      // リトライ失敗時はエラーを設定
       setError(error);
       setIsLoading(false);
     }
-  }, []);
+  }, [retryCount]);
 
   // 手動リトライ関数
   const retry = useCallback(() => {
-    retryCountRef.current = 0;
+    setRetryCount(0);
     setRefetchTrigger((prev) => prev + 1);
   }, []);
 
   // データ取得（コンポーネントマウント時 + 手動リトライ時）
   useEffect(() => {
     fetchData();
-    // biome-ignore lint/correctness/useExhaustiveDependencies: fetchDataは空の依存配列で安定、refetchTriggerのみ実質的な依存
   }, [fetchData, refetchTrigger]);
 
   return {
