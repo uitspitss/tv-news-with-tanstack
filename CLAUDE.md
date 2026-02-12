@@ -30,7 +30,6 @@ TypeScript 5.x + Node.js 22 (管理: mise): Follow standard conventions
 ## Recent Changes
 - 001-prefecture-office-button: Added TypeScript 5.x（strictモード）、Node.js 22（mise管理）
 - 001-add-japan-map: Added TypeScript 5.x (strictモード) + Node.js 22 (miseで管理)
-- 001-add-japan-map: Added TypeScript 5.x (strictモード) + Node.js 22 (miseで管理)
 
 ## Implementation Notes
 
