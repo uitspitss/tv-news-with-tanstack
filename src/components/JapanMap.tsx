@@ -6,9 +6,10 @@
  * インタラクション機能（ホバー、クリック、キーボードナビゲーション）をサポート
  */
 
-import type { Layer } from "leaflet";
+import type { Layer, Path } from "leaflet";
 import { memo, useCallback, useEffect, useState } from "react";
 import { GeoJSON, MapContainer, TileLayer } from "react-leaflet";
+import { PrefectureOfficeMarkers } from "@/components/PrefectureOfficeMarkers";
 import { useKeyboardNav } from "@/hooks/useKeyboardNav";
 import { useMapInteraction } from "@/hooks/useMapInteraction";
 import type { JapanMapData } from "@/lib/geo/japanGeoData";
@@ -37,7 +38,7 @@ function JapanMapComponent({
   const [error, setError] = useState<Error | null>(null);
   const [isMounted, setIsMounted] = useState(false);
 
-  // インタラクション状態管理（User Story 3）
+  // インタラクション状態管理（User Story 3 + Prefecture Office Markers）
   const {
     hoveredPrefecture,
     selectedPrefecture,
@@ -47,6 +48,13 @@ function JapanMapComponent({
     handleClick,
     handleFocus,
     handleBlur,
+    // Prefecture Office Markers用の状態とハンドラー
+    selectedCapital,
+    handleCapitalMouseEnter,
+    handleCapitalMouseLeave,
+    handleCapitalClick,
+    handleCapitalFocus,
+    handleCapitalBlur,
   } = useMapInteraction();
 
   // 都道府県コードの配列を取得（キーボードナビゲーション用）
@@ -101,8 +109,8 @@ function JapanMapComponent({
 
   // GeoJSONスタイル関数（useCallback でメモ化 - T043）
   const getFeatureStyle = useCallback(
-    (feature: any) => {
-      const prefectureCode = feature.properties.code;
+    (feature?: GeoJSON.Feature) => {
+      const prefectureCode = feature?.properties?.code;
       const isHovered = hoveredPrefecture === prefectureCode;
       const isSelected = selectedPrefecture === prefectureCode;
       const isFocused = focusedPrefecture === prefectureCode;
@@ -138,9 +146,9 @@ function JapanMapComponent({
 
   // GeoJSONレイヤーのイベントハンドラー（useCallback でメモ化 - T043）
   const onEachFeature = useCallback(
-    (feature: any, layer: Layer) => {
-      const prefectureCode = feature.properties.code;
-      const prefectureName = feature.properties.name;
+    (feature: GeoJSON.Feature, layer: Layer) => {
+      const prefectureCode = feature.properties?.code;
+      const prefectureName = feature.properties?.name;
 
       // マウスイベント（T037）
       layer.on({
@@ -159,7 +167,7 @@ function JapanMapComponent({
       });
 
       // キーボードアクセシビリティ（T040）
-      const element = (layer as any).getElement?.();
+      const element = (layer as Path).getElement?.();
       if (element) {
         element.setAttribute("role", "button");
         element.setAttribute("aria-label", `${prefectureName}を選択`);
@@ -168,9 +176,15 @@ function JapanMapComponent({
         // キーボードイベント（T041）
         element.addEventListener("focus", () => handleFocus(prefectureCode));
         element.addEventListener("blur", () => handleBlur());
-        element.addEventListener("keydown", (e: KeyboardEvent) => {
-          handleKeyDown(e as any);
-        });
+        element.addEventListener("keydown", ((e: KeyboardEvent) => {
+          // ネイティブKeyboardEventをReact.KeyboardEvent互換の形式で処理
+          const syntheticEvent = {
+            key: e.key,
+            shiftKey: e.shiftKey,
+            preventDefault: () => e.preventDefault(),
+          } as React.KeyboardEvent;
+          handleKeyDown(syntheticEvent);
+        }) as EventListener);
       }
 
       // ツールチップを設定（シンプルなLeaflet popup - T039）
@@ -209,10 +223,10 @@ function JapanMapComponent({
         style={{ height: "100%", width: "100%" }}
         aria-label="日本の都道府県地図"
       >
-        {/* OpenStreetMapタイルレイヤー */}
+        {/* CartoDB Dark Matterタイルレイヤー（暗めの配色） */}
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
         />
 
         {/* GeoJSONレイヤー - 47都道府県すべてを表示（インタラクション機能付き） */}
@@ -220,6 +234,18 @@ function JapanMapComponent({
           data={mapData}
           style={getFeatureStyle} // T037: 動的スタイリング
           onEachFeature={onEachFeature} // T037, T038, T039, T040, T041: イベントハンドラー
+        />
+
+        {/* 都道府県庁舎所在地マーカー（Feature: 001-prefecture-office-button） */}
+        <PrefectureOfficeMarkers
+          state={{ selectedCapital }}
+          handlers={{
+            handleCapitalMouseEnter,
+            handleCapitalMouseLeave,
+            handleCapitalClick,
+            handleCapitalFocus,
+            handleCapitalBlur,
+          }}
         />
       </MapContainer>
 
@@ -245,6 +271,37 @@ function JapanMapComponent({
         .leaflet-interactive:focus-visible {
           outline: 3px solid #0066cc;
           outline-offset: 2px;
+        }
+
+        /* Prefecture Office Markers スタイル（T013） */
+        .prefecture-office-marker {
+          transition: transform 0.2s ease-in-out;
+        }
+
+        /* マーカーホバー効果 */
+        .prefecture-office-marker:hover {
+          transform: scale(1.2);
+          z-index: 1000 !important;
+        }
+
+        /* マーカーフォーカス効果（WCAG 2.1 AA準拠） */
+        .prefecture-office-marker:focus {
+          outline: 3px solid #fbbf24;
+          outline-offset: 2px;
+        }
+
+        .prefecture-office-marker:focus-visible {
+          outline: 3px solid #fbbf24;
+          outline-offset: 2px;
+        }
+
+        /* マーカー内の div 要素のスタイル */
+        .prefecture-office-marker div {
+          transition: all 0.2s ease-in-out;
+        }
+
+        .prefecture-office-marker:hover div {
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4) !important;
         }
       `}</style>
     </div>

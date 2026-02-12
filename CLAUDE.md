@@ -7,6 +7,8 @@ Auto-generated from all feature plans. Last updated: 2026-02-08
 - N/A (初期実装ではデータベース不要) (002-cloudflare-deploy)
 - TypeScript 5.x (strictモード) + Node.js 22 (miseで管理) (001-add-japan-map)
 - 静的GeoJSONファイル（public/data/japan-prefectures.json） (001-add-japan-map)
+- TypeScript 5.x（strictモード）、Node.js 22（mise管理） (001-prefecture-office-button)
+- 静的JSONファイル（public/data/prefecture-offices.json - 新規作成） (001-prefecture-office-button)
 
 - TypeScript 5.x + Node.js 22 (管理: mise) (001-dev-setup)
 
@@ -26,10 +28,44 @@ bun test && bun run lint
 TypeScript 5.x + Node.js 22 (管理: mise): Follow standard conventions
 
 ## Recent Changes
+- 001-prefecture-office-button: Added TypeScript 5.x（strictモード）、Node.js 22（mise管理）
 - 001-add-japan-map: Added TypeScript 5.x (strictモード) + Node.js 22 (miseで管理)
-- 001-add-japan-map: Added TypeScript 5.x (strictモード) + Node.js 22 (miseで管理)
-- 002-cloudflare-deploy: Added TypeScript 5.x + Node.js 22 (mise管理)
 
+## Implementation Notes
+
+### Feature: 001-prefecture-office-button (都道府県庁舎所在地マーカー)
+
+**実装日**: 2026-02-11
+
+**概要**: 日本地図上の47都道府県庁舎所在地にインタラクティブなマーカーを表示する機能。
+
+**実装内容**:
+- **データソース**: dataofjapan/land CSVデータ → JSON変換（public/data/prefecture-offices.json）
+- **コンポーネント**:
+  - `PrefectureOfficeMarkers`: マーカー表示（Leaflet divIcon使用）
+  - `PrefectureOfficePopup`: クリック時のポップアップ（都道府県名表示）
+- **フック**:
+  - `usePrefectureOffices`: データ取得、自動リトライ（1回）、エラーハンドリング
+  - `useMapInteraction`: 拡張（capitalマーカー用の状態管理追加）
+- **アクセシビリティ**:
+  - WCAG 2.1 AA準拠
+  - キーボード操作（Tab, Enter/Space, Esc）
+  - aria-label, role="button", tabindex="0"
+  - フォーカスインジケーター（3:1コントラスト比）
+- **パフォーマンス**:
+  - React.memo, useMemo, useCallback使用
+  - ズームレベル対応（20-30px）
+  - レンダリング時間 < 2秒（開発環境でモニタリング）
+
+**テスト**: 47 tests passing
+- prefectureOfficeData.test.ts: 16 tests
+- usePrefectureOffices.test.ts: 6 tests
+- JapanMap.test.tsx: 25 tests (3 tests added)
+
+**重要な設計決定**:
+- DOM-based markers (L.divIcon) - 47マーカーは軽量なので Canvas 不要
+- 既存の useMapInteraction フックを拡張（新規フック作成せず）
+- エラーログのみ（ユーザー通知なし）- 仕様で明示
 
 <!-- MANUAL ADDITIONS START -->
 
