@@ -78,8 +78,13 @@ export function usePrefectureOffices(): UsePrefectureOfficesReturn {
       const error = err instanceof Error ? err : new Error("Unknown error occurred");
       console.error("❌ Failed to load prefecture office data:", error);
 
-      // 自動リトライ（1回のみ）
-      if (retryCountRef.current === 0) {
+      // バリデーションエラーはリトライしない（データの問題なのでリトライしても無意味）
+      const isValidationError =
+        error.message.includes("Invalid prefecture office data") ||
+        error.message.includes("incomplete data");
+
+      // ネットワークエラーのみ自動リトライ（1回のみ）
+      if (!isValidationError && retryCountRef.current === 0) {
         console.log("🔄 Auto-retrying once...");
         retryCountRef.current = 1;
         // 少し待ってから再試行
@@ -89,7 +94,7 @@ export function usePrefectureOffices(): UsePrefectureOfficesReturn {
         return;
       }
 
-      // リトライ失敗時はエラーを設定
+      // リトライ失敗時またはバリデーションエラー時はエラーを設定
       setError(error);
       setIsLoading(false);
     }
