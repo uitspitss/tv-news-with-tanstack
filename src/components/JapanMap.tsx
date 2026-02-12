@@ -109,8 +109,8 @@ function JapanMapComponent({
 
   // GeoJSONスタイル関数（useCallback でメモ化 - T043）
   const getFeatureStyle = useCallback(
-    (feature: GeoJSON.Feature) => {
-      const prefectureCode = feature.properties?.code;
+    (feature?: GeoJSON.Feature) => {
+      const prefectureCode = feature?.properties?.code;
       const isHovered = hoveredPrefecture === prefectureCode;
       const isSelected = selectedPrefecture === prefectureCode;
       const isFocused = focusedPrefecture === prefectureCode;
@@ -176,7 +176,7 @@ function JapanMapComponent({
         // キーボードイベント（T041）
         element.addEventListener("focus", () => handleFocus(prefectureCode));
         element.addEventListener("blur", () => handleBlur());
-        element.addEventListener("keydown", (e: KeyboardEvent) => {
+        element.addEventListener("keydown", ((e: KeyboardEvent) => {
           // ネイティブKeyboardEventをReact.KeyboardEvent互換の形式で処理
           const syntheticEvent = {
             key: e.key,
@@ -184,7 +184,7 @@ function JapanMapComponent({
             preventDefault: () => e.preventDefault(),
           } as React.KeyboardEvent;
           handleKeyDown(syntheticEvent);
-        });
+        }) as EventListener);
       }
 
       // ツールチップを設定（シンプルなLeaflet popup - T039）
