@@ -1,6 +1,14 @@
 import { createMiddleware } from "@tanstack/react-start";
 
 /**
+ * Extended SubtleCrypto interface for Cloudflare Workers
+ * Cloudflare Workers provides timingSafeEqual which isn't in the standard Web Crypto API
+ */
+interface CloudflareSubtleCrypto extends SubtleCrypto {
+  timingSafeEqual(a: BufferSource, b: BufferSource): boolean;
+}
+
+/**
  * Timing-safe string comparison to prevent timing attacks
  */
 function timingSafeEqual(a: string, b: string): boolean {
@@ -13,8 +21,8 @@ function timingSafeEqual(a: string, b: string): boolean {
     return false;
   }
 
-  // Type assertion for Cloudflare Workers crypto.subtle.timingSafeEqual
-  return (crypto.subtle as any).timingSafeEqual(aBuffer, bBuffer);
+  // Use Cloudflare Workers crypto.subtle.timingSafeEqual
+  return (crypto.subtle as CloudflareSubtleCrypto).timingSafeEqual(aBuffer, bBuffer);
 }
 
 /**

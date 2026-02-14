@@ -3,151 +3,61 @@ import { describe, expect, it } from "vitest";
 import { useMapInteraction } from "./useMapInteraction";
 
 describe("useMapInteraction", () => {
-  it("should initialize with null states", () => {
+  it("should initialize with null state for selectedCapital", () => {
     const { result } = renderHook(() => useMapInteraction());
 
-    expect(result.current.hoveredPrefecture).toBeNull();
-    expect(result.current.selectedPrefecture).toBeNull();
-    expect(result.current.focusedPrefecture).toBeNull();
+    expect(result.current.selectedCapital).toBeNull();
   });
 
-  it("should handle mouse enter event", () => {
+  it("should handle capital click event", () => {
     const { result } = renderHook(() => useMapInteraction());
 
     act(() => {
-      result.current.handleMouseEnter("13"); // 東京都
+      result.current.handleCapitalClick("13"); // 東京都
     });
 
-    expect(result.current.hoveredPrefecture).toBe("13");
-    expect(result.current.selectedPrefecture).toBeNull();
-    expect(result.current.focusedPrefecture).toBeNull();
+    expect(result.current.selectedCapital).toBe("13");
   });
 
-  it("should handle mouse leave event", () => {
+  it("should clear selection when clicking the same capital", () => {
     const { result } = renderHook(() => useMapInteraction());
 
     act(() => {
-      result.current.handleMouseEnter("13");
+      result.current.handleCapitalClick("13");
     });
 
-    expect(result.current.hoveredPrefecture).toBe("13");
+    expect(result.current.selectedCapital).toBe("13");
 
     act(() => {
-      result.current.handleMouseLeave();
+      result.current.handleCapitalClick("13");
     });
 
-    expect(result.current.hoveredPrefecture).toBeNull();
+    expect(result.current.selectedCapital).toBeNull();
   });
 
-  it("should handle click event", () => {
+  it("should change selection when clicking a different capital", () => {
     const { result } = renderHook(() => useMapInteraction());
 
     act(() => {
-      result.current.handleClick("13");
+      result.current.handleCapitalClick("13"); // 東京都
     });
 
-    expect(result.current.selectedPrefecture).toBe("13");
-    expect(result.current.hoveredPrefecture).toBeNull();
-    expect(result.current.focusedPrefecture).toBeNull();
+    expect(result.current.selectedCapital).toBe("13");
+
+    act(() => {
+      result.current.handleCapitalClick("14"); // 神奈川県
+    });
+
+    expect(result.current.selectedCapital).toBe("14");
   });
 
-  it("should clear selection when clicking the same prefecture", () => {
+  it("should provide all required handlers", () => {
     const { result } = renderHook(() => useMapInteraction());
 
-    act(() => {
-      result.current.handleClick("13");
-    });
-
-    expect(result.current.selectedPrefecture).toBe("13");
-
-    act(() => {
-      result.current.handleClick("13");
-    });
-
-    expect(result.current.selectedPrefecture).toBeNull();
-  });
-
-  it("should change selection when clicking a different prefecture", () => {
-    const { result } = renderHook(() => useMapInteraction());
-
-    act(() => {
-      result.current.handleClick("13"); // 東京都
-    });
-
-    expect(result.current.selectedPrefecture).toBe("13");
-
-    act(() => {
-      result.current.handleClick("14"); // 神奈川県
-    });
-
-    expect(result.current.selectedPrefecture).toBe("14");
-  });
-
-  it("should handle focus event", () => {
-    const { result } = renderHook(() => useMapInteraction());
-
-    act(() => {
-      result.current.handleFocus("13");
-    });
-
-    expect(result.current.focusedPrefecture).toBe("13");
-    expect(result.current.hoveredPrefecture).toBeNull();
-    expect(result.current.selectedPrefecture).toBeNull();
-  });
-
-  it("should handle blur event", () => {
-    const { result } = renderHook(() => useMapInteraction());
-
-    act(() => {
-      result.current.handleFocus("13");
-    });
-
-    expect(result.current.focusedPrefecture).toBe("13");
-
-    act(() => {
-      result.current.handleBlur();
-    });
-
-    expect(result.current.focusedPrefecture).toBeNull();
-  });
-
-  it("should clear selection on click outside", () => {
-    const { result } = renderHook(() => useMapInteraction());
-
-    act(() => {
-      result.current.handleClick("13");
-    });
-
-    expect(result.current.selectedPrefecture).toBe("13");
-
-    act(() => {
-      result.current.handleClickOutside();
-    });
-
-    expect(result.current.selectedPrefecture).toBeNull();
-  });
-
-  it("should maintain independent state for hover, select, and focus", () => {
-    const { result } = renderHook(() => useMapInteraction());
-
-    // Set all three states
-    act(() => {
-      result.current.handleMouseEnter("13");
-      result.current.handleClick("14");
-      result.current.handleFocus("27");
-    });
-
-    expect(result.current.hoveredPrefecture).toBe("13");
-    expect(result.current.selectedPrefecture).toBe("14");
-    expect(result.current.focusedPrefecture).toBe("27");
-
-    // Clear hover shouldn't affect others
-    act(() => {
-      result.current.handleMouseLeave();
-    });
-
-    expect(result.current.hoveredPrefecture).toBeNull();
-    expect(result.current.selectedPrefecture).toBe("14");
-    expect(result.current.focusedPrefecture).toBe("27");
+    expect(typeof result.current.handleCapitalMouseEnter).toBe("function");
+    expect(typeof result.current.handleCapitalMouseLeave).toBe("function");
+    expect(typeof result.current.handleCapitalClick).toBe("function");
+    expect(typeof result.current.handleCapitalFocus).toBe("function");
+    expect(typeof result.current.handleCapitalBlur).toBe("function");
   });
 });
