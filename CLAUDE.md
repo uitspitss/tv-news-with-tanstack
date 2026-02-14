@@ -5,8 +5,6 @@ Auto-generated from all feature plans. Last updated: 2026-02-08
 ## Active Technologies
 - TypeScript 5.x + Node.js 22 (mise管理) (002-cloudflare-deploy)
 - N/A (初期実装ではデータベース不要) (002-cloudflare-deploy)
-- TypeScript 5.x (strictモード) + Node.js 22 (miseで管理) (001-add-japan-map)
-- 静的GeoJSONファイル（public/data/japan-prefectures.json） (001-add-japan-map)
 - TypeScript 5.x（strictモード）、Node.js 22（mise管理） (001-prefecture-office-button)
 - 静的JSONファイル（public/data/prefecture-offices.json - 新規作成） (001-prefecture-office-button)
 
@@ -29,7 +27,6 @@ TypeScript 5.x + Node.js 22 (管理: mise): Follow standard conventions
 
 ## Recent Changes
 - 001-prefecture-office-button: Added TypeScript 5.x（strictモード）、Node.js 22（mise管理）
-- 001-add-japan-map: Added TypeScript 5.x (strictモード) + Node.js 22 (miseで管理)
 
 ## Implementation Notes
 
