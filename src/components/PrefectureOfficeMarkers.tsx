@@ -34,7 +34,7 @@ function escapeHtml(str: string): string {
   return str.replace(/[&<>"']/g, (char) => escapeMap[char] || char);
 }
 
-export interface PrefectureOfficeMarkersProps {
+interface PrefectureOfficeMarkersProps {
   /** マーカーインタラクション状態 */
   state: Pick<MapInteractionState, "selectedCapital">;
   /** マーカーインタラクションハンドラー */

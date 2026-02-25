@@ -9,7 +9,7 @@ import { memo, useEffect } from "react";
 import { Popup } from "react-leaflet";
 import type { PrefectureOffice } from "@/lib/geo/prefectureOfficeData";
 
-export interface PrefectureOfficePopupProps {
+interface PrefectureOfficePopupProps {
   /** 表示する都道府県庁舎情報 */
   prefecture: PrefectureOffice;
   /** ポップアップを閉じるコールバック */
