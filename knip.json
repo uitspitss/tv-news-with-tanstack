@@ -1,0 +1,13 @@
+{
+  "entry": [
+    "src/client.tsx",
+    "src/start.ts",
+    "src/middleware/auth.ts",
+    "src/router.tsx",
+    "src/routes/**/*.tsx"
+  ],
+  "project": ["src/**/*.{ts,tsx}"],
+  "ignore": ["src/routeTree.gen.ts", "src/components/ui/**"],
+  "ignoreBinaries": ["tsc", "knip"],
+  "ignoreDependencies": ["@vitest/coverage-v8"]
+}

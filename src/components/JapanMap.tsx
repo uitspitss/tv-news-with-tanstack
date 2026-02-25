@@ -60,8 +60,7 @@ function JapanMapComponent({ initialZoom = 5, initialCenter = [138, 36] }: Japan
         />
 
         {/* 都道府県庁舎所在地マーカー（Feature: 001-prefecture-office-button） */}
-        <Prefectu
-          reOfficeMarkers
+        <PrefectureOfficeMarkers
           state={{ selectedCapital }}
           handlers={{
             handleCapitalMouseEnter,

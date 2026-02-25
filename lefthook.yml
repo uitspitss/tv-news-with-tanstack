@@ -7,3 +7,5 @@ pre-commit:
         if [ -n "$FILES" ]; then
           bunx --bun biome check --write $FILES
         fi
+    knip:
+      run: bun run knip

@@ -22,7 +22,7 @@ export interface MapInteractionHandlers {
   handleCapitalBlur: () => void;
 }
 
-export type MapInteractionReturn = MapInteractionState & MapInteractionHandlers;
+type MapInteractionReturn = MapInteractionState & MapInteractionHandlers;
 
 /**
  * 地図インタラクション管理フック
