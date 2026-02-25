@@ -1,0 +1,752 @@
+[
+  {
+    "prefecture": "東京都",
+    "broadcastName": "日本テレビ放送網",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUuTAXTexrhetbOe3zgskJBQ",
+    "playlistId": "UUuTAXTexrhetbOe3zgskJBQ"
+  },
+  {
+    "prefecture": "東京都",
+    "broadcastName": "テレビ朝日",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUGCZAYq5Xxojl_tSXcVJhiQ",
+    "playlistId": "UUGCZAYq5Xxojl_tSXcVJhiQ"
+  },
+  {
+    "prefecture": "東京都",
+    "broadcastName": "TBSテレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UU6AG81pAkf6Lbi_1VC5NmPA",
+    "playlistId": "UU6AG81pAkf6Lbi_1VC5NmPA"
+  },
+  {
+    "prefecture": "東京都",
+    "broadcastName": "テレビ東京",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUkKVQ_GNjd8FbAuT6xDcWgg",
+    "playlistId": "UUkKVQ_GNjd8FbAuT6xDcWgg"
+  },
+  {
+    "prefecture": "東京都",
+    "broadcastName": "フジテレビジョン",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUoQBJMzcwmXrRSHBFAlTsIw",
+    "playlistId": "UUoQBJMzcwmXrRSHBFAlTsIw"
+  },
+  {
+    "prefecture": "大阪府",
+    "broadcastName": "読売テレビ放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUoQBJMzcwmXrRSHBFAlTsIw",
+    "playlistId": "UUoQBJMzcwmXrRSHBFAlTsIw"
+  },
+  {
+    "prefecture": "大阪府",
+    "broadcastName": "朝日放送テレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUv7_krlrre3GQi79d4guxHQ",
+    "playlistId": "UUv7_krlrre3GQi79d4guxHQ"
+  },
+  {
+    "prefecture": "大阪府",
+    "broadcastName": "毎日放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUkKJhKO73xF1pK5h9R82ZGQ",
+    "playlistId": "UUkKJhKO73xF1pK5h9R82ZGQ"
+  },
+  {
+    "prefecture": "大阪府",
+    "broadcastName": "関西テレビ放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUQhaZjODkIjuv38d-i5TVRw",
+    "playlistId": "UUQhaZjODkIjuv38d-i5TVRw"
+  },
+  {
+    "prefecture": "大阪府",
+    "broadcastName": "テレビ大阪",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUd6GEK664CTEWRZda7Fu7Lg",
+    "playlistId": "UUd6GEK664CTEWRZda7Fu7Lg"
+  },
+  {
+    "prefecture": "愛知県",
+    "broadcastName": "中京テレビ放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUxiRdfyH0FtFCRZTRfRsdsA",
+    "playlistId": "UUxiRdfyH0FtFCRZTRfRsdsA"
+  },
+  {
+    "prefecture": "愛知県",
+    "broadcastName": "名古屋テレビ放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUWnOKASPkCBEL-_O8odMvtg",
+    "playlistId": "UUWnOKASPkCBEL-_O8odMvtg"
+  },
+  {
+    "prefecture": "愛知県",
+    "broadcastName": "CBCテレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUh5mvJtIWycou5b8smpBuxA",
+    "playlistId": "UUh5mvJtIWycou5b8smpBuxA"
+  },
+  {
+    "prefecture": "愛知県",
+    "broadcastName": "東海テレビ放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUUQ0AtI3k10_CyLYcu4WRVA",
+    "playlistId": "UUUQ0AtI3k10_CyLYcu4WRVA"
+  },
+  {
+    "prefecture": "愛知県",
+    "broadcastName": "テレビ愛知",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUk6SzG4qmA7J6CI-QAtWoOg",
+    "playlistId": "UUk6SzG4qmA7J6CI-QAtWoOg"
+  },
+  {
+    "prefecture": "北海道",
+    "broadcastName": "北海道放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUCTpf5c_9HDo_OSu3aX8uFQ",
+    "playlistId": "UUCTpf5c_9HDo_OSu3aX8uFQ"
+  },
+  {
+    "prefecture": "北海道",
+    "broadcastName": "札幌テレビ放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUOZv-6MiXqJdLpmYtR431Ow",
+    "playlistId": "UUOZv-6MiXqJdLpmYtR431Ow"
+  },
+  {
+    "prefecture": "北海道",
+    "broadcastName": "北海道テレビ放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUSWOnDD1KIriGmyQ7SgNA4A",
+    "playlistId": "UUSWOnDD1KIriGmyQ7SgNA4A"
+  },
+  {
+    "prefecture": "北海道",
+    "broadcastName": "北海道文化放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUpQs_warGhUzJhBdwLfF34g",
+    "playlistId": "UUpQs_warGhUzJhBdwLfF34g"
+  },
+  {
+    "prefecture": "北海道",
+    "broadcastName": "テレビ北海道",
+    "playlistURL": "https://www.youtube.com/playlist?list=UU0UE9tQA9KrMMllMIdz2G3w",
+    "playlistId": "UU0UE9tQA9KrMMllMIdz2G3w"
+  },
+  {
+    "prefecture": "青森県",
+    "broadcastName": "青森放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUk_jA9Y8pb50Ab2EzV_KhLw",
+    "playlistId": "UUk_jA9Y8pb50Ab2EzV_KhLw"
+  },
+  {
+    "prefecture": "青森県",
+    "broadcastName": "青森朝日放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUSmgh6ZHdSIoJg0irxaUpEw",
+    "playlistId": "UUSmgh6ZHdSIoJg0irxaUpEw"
+  },
+  {
+    "prefecture": "青森県",
+    "broadcastName": "青森テレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUdNYphHZdRYjpys_gwofUNQ",
+    "playlistId": "UUdNYphHZdRYjpys_gwofUNQ"
+  },
+  {
+    "prefecture": "岩手県",
+    "broadcastName": "IBC岩手放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUMbq0m2vILQTbc0VhOcVWaQ",
+    "playlistId": "UUMbq0m2vILQTbc0VhOcVWaQ"
+  },
+  {
+    "prefecture": "岩手県",
+    "broadcastName": "テレビ岩手",
+    "playlistURL": "https://www.youtube.com/playlist?list=UU7qQJi_WE9yNhA48kP6TT0Q",
+    "playlistId": "UU7qQJi_WE9yNhA48kP6TT0Q"
+  },
+  {
+    "prefecture": "岩手県",
+    "broadcastName": "岩手めんこいテレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUw14eNQAUDqCg-fX3Uvd07w",
+    "playlistId": "UUw14eNQAUDqCg-fX3Uvd07w"
+  },
+  {
+    "prefecture": "岩手県",
+    "broadcastName": "岩手朝日テレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUPPyaDqgxNlbiyOkq2FzMOQ",
+    "playlistId": "UUPPyaDqgxNlbiyOkq2FzMOQ"
+  },
+  {
+    "prefecture": "宮城県",
+    "broadcastName": "東北放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUFUbielypfKRLADGekw0TnA",
+    "playlistId": "UUFUbielypfKRLADGekw0TnA"
+  },
+  {
+    "prefecture": "宮城県",
+    "broadcastName": "宮城テレビ放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUp0vHbq1su20AqZoND_LH_Q",
+    "playlistId": "UUp0vHbq1su20AqZoND_LH_Q"
+  },
+  {
+    "prefecture": "宮城県",
+    "broadcastName": "仙台放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUlElfQ7F1QndkPEFuqrDCLQ",
+    "playlistId": "UUlElfQ7F1QndkPEFuqrDCLQ"
+  },
+  {
+    "prefecture": "宮城県",
+    "broadcastName": "東日本放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUkW_baVbq6aGPWeYY4hOPCA",
+    "playlistId": "UUkW_baVbq6aGPWeYY4hOPCA"
+  },
+  {
+    "prefecture": "秋田県",
+    "broadcastName": "秋田放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUVRs8dYm9OH-_g4V84BfbQw",
+    "playlistId": "UUVRs8dYm9OH-_g4V84BfbQw"
+  },
+  {
+    "prefecture": "秋田県",
+    "broadcastName": "秋田テレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UURTTHlDJMiCrnZOVelyAkuQ",
+    "playlistId": "UURTTHlDJMiCrnZOVelyAkuQ"
+  },
+  {
+    "prefecture": "秋田県",
+    "broadcastName": "秋田朝日放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUEobbi8fWt_DibQzOImnKqQ",
+    "playlistId": "UUEobbi8fWt_DibQzOImnKqQ"
+  },
+  {
+    "prefecture": "山形県",
+    "broadcastName": "山形放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUq4EHq2s9H8hBPXZVOi9alw",
+    "playlistId": "UUq4EHq2s9H8hBPXZVOi9alw"
+  },
+  {
+    "prefecture": "山形県",
+    "broadcastName": "山形テレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUayCFjTKn1SsljcNvzYlDRQ",
+    "playlistId": "UUayCFjTKn1SsljcNvzYlDRQ"
+  },
+  {
+    "prefecture": "山形県",
+    "broadcastName": "テレビユー山形",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUTWatTAOnFVB0vwIetZCTHw",
+    "playlistId": "UUTWatTAOnFVB0vwIetZCTHw"
+  },
+  {
+    "prefecture": "山形県",
+    "broadcastName": "さくらんぼテレビジョン",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUM2MyjD4BtXOcTcHSDKPNjg",
+    "playlistId": "UUM2MyjD4BtXOcTcHSDKPNjg"
+  },
+  {
+    "prefecture": "福島県",
+    "broadcastName": "福島テレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UU8_eP66-QjHHM_pTXA9UuDw",
+    "playlistId": "UU8_eP66-QjHHM_pTXA9UuDw"
+  },
+  {
+    "prefecture": "福島県",
+    "broadcastName": "福島中央テレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UU8Y0ZErdlAnA9uW7ZeRdreQ",
+    "playlistId": "UU8Y0ZErdlAnA9uW7ZeRdreQ"
+  },
+  {
+    "prefecture": "福島県",
+    "broadcastName": "福島放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UU32pF1BZLteNqIaXUVs7Slg",
+    "playlistId": "UU32pF1BZLteNqIaXUVs7Slg"
+  },
+  {
+    "prefecture": "福島県",
+    "broadcastName": "テレビユー福島",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUsci9tL9g8QPOvUwjJeDAgA",
+    "playlistId": "UUsci9tL9g8QPOvUwjJeDAgA"
+  },
+  {
+    "prefecture": "東京都",
+    "broadcastName": "TOKYO MX",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUJf85jSgFayOSsZfJ051ZKw",
+    "playlistId": "UUJf85jSgFayOSsZfJ051ZKw"
+  },
+  {
+    "prefecture": "神奈川県",
+    "broadcastName": "テレビ神奈川",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUqaWGntsmpG4dzWd1sksLMQ",
+    "playlistId": "UUqaWGntsmpG4dzWd1sksLMQ"
+  },
+  {
+    "prefecture": "埼玉県",
+    "broadcastName": "テレビ埼玉",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUW7uiApbFl_E852MGqNILDw",
+    "playlistId": "UUW7uiApbFl_E852MGqNILDw"
+  },
+  {
+    "prefecture": "千葉県",
+    "broadcastName": "千葉テレビ放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUWSxunaMHDB-CJXCs4Cq7Uw",
+    "playlistId": "UUWSxunaMHDB-CJXCs4Cq7Uw"
+  },
+  {
+    "prefecture": "群馬県",
+    "broadcastName": "群馬テレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUYwPpbi6PqfY1KJbg4H6xwA",
+    "playlistId": "UUYwPpbi6PqfY1KJbg4H6xwA"
+  },
+  {
+    "prefecture": "栃木県",
+    "broadcastName": "とちぎテレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UU_SN3bimHrEFQ0qe-5X5zFw",
+    "playlistId": "UU_SN3bimHrEFQ0qe-5X5zFw"
+  },
+  {
+    "prefecture": "新潟県",
+    "broadcastName": "テレビ新潟放送網",
+    "playlistURL": "https://www.youtube.com/playlist?list=UU_0tfCjB-pPNR8r9G9G1fTA",
+    "playlistId": "UU_0tfCjB-pPNR8r9G9G1fTA"
+  },
+  {
+    "prefecture": "新潟県",
+    "broadcastName": "新潟放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUSFteALQuWkhEeKqIGVc_UQ",
+    "playlistId": "UUSFteALQuWkhEeKqIGVc_UQ"
+  },
+  {
+    "prefecture": "新潟県",
+    "broadcastName": "NST新潟総合テレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UU8iN-WKPu820ve-4t9NxHRw",
+    "playlistId": "UU8iN-WKPu820ve-4t9NxHRw"
+  },
+  {
+    "prefecture": "新潟県",
+    "broadcastName": "UX新潟テレビ21",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUmBnPrnbYpbUZ10TMIlY9YA",
+    "playlistId": "UUmBnPrnbYpbUZ10TMIlY9YA"
+  },
+  {
+    "prefecture": "長野県",
+    "broadcastName": "信越放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUpin9fWaJ2bdeOtvx3OGjww",
+    "playlistId": "UUpin9fWaJ2bdeOtvx3OGjww"
+  },
+  {
+    "prefecture": "長野県",
+    "broadcastName": "長野放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UU8Cb__xPfEf6wriBekEpZqA",
+    "playlistId": "UU8Cb__xPfEf6wriBekEpZqA"
+  },
+  {
+    "prefecture": "長野県",
+    "broadcastName": "テレビ信州",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUQfA9KJ3eT-fLk8DPqaeS1A",
+    "playlistId": "UUQfA9KJ3eT-fLk8DPqaeS1A"
+  },
+  {
+    "prefecture": "長野県",
+    "broadcastName": "長野朝日放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUXS-XXaDHDyjYcFqy7UFp4g",
+    "playlistId": "UUXS-XXaDHDyjYcFqy7UFp4g"
+  },
+  {
+    "prefecture": "山梨県",
+    "broadcastName": "山梨放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUL3peEBSiAkEMDuxNkffbvw",
+    "playlistId": "UUL3peEBSiAkEMDuxNkffbvw"
+  },
+  {
+    "prefecture": "山梨県",
+    "broadcastName": "テレビ山梨",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUk2oG--VyYST4SYyQkeadjA",
+    "playlistId": "UUk2oG--VyYST4SYyQkeadjA"
+  },
+  {
+    "prefecture": "富山県",
+    "broadcastName": "北日本放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUX5d3AvqSXbnvvf12BTlgIA",
+    "playlistId": "UUX5d3AvqSXbnvvf12BTlgIA"
+  },
+  {
+    "prefecture": "富山県",
+    "broadcastName": "チューリップテレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUk4bgav5X0rlbGefFnPcuoQ",
+    "playlistId": "UUk4bgav5X0rlbGefFnPcuoQ"
+  },
+  {
+    "prefecture": "富山県",
+    "broadcastName": "富山テレビ放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUF0D1rQCibB7XNZUz0tWEtQ",
+    "playlistId": "UUF0D1rQCibB7XNZUz0tWEtQ"
+  },
+  {
+    "prefecture": "石川県",
+    "broadcastName": "北陸放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUF5te9Y8oBT7oVJNyQkhWWQ",
+    "playlistId": "UUF5te9Y8oBT7oVJNyQkhWWQ"
+  },
+  {
+    "prefecture": "石川県",
+    "broadcastName": "テレビ金沢",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUzeRR8rMI8IkjqGx_MFlUjQ",
+    "playlistId": "UUzeRR8rMI8IkjqGx_MFlUjQ"
+  },
+  {
+    "prefecture": "石川県",
+    "broadcastName": "北陸朝日放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUt6LB-BvEmDm-oWbe_TO7mw",
+    "playlistId": "UUt6LB-BvEmDm-oWbe_TO7mw"
+  },
+  {
+    "prefecture": "石川県",
+    "broadcastName": "石川テレビ放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUA5dBoYZe7dgvk4cTl5PLSg",
+    "playlistId": "UUA5dBoYZe7dgvk4cTl5PLSg"
+  },
+  {
+    "prefecture": "福井県",
+    "broadcastName": "福井放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUS713ZZe80p12889JyaiKCA",
+    "playlistId": "UUS713ZZe80p12889JyaiKCA"
+  },
+  {
+    "prefecture": "福井県",
+    "broadcastName": "福井テレビジョン放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUgJsBXU5ofuzI3ysVtIBvIw",
+    "playlistId": "UUgJsBXU5ofuzI3ysVtIBvIw"
+  },
+  {
+    "prefecture": "静岡県",
+    "broadcastName": "静岡放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUOLVB0iYK8ahQ0mFn-lF-8g",
+    "playlistId": "UUOLVB0iYK8ahQ0mFn-lF-8g"
+  },
+  {
+    "prefecture": "静岡県",
+    "broadcastName": "テレビ静岡",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUFIlFvYMWkPE6uDcjdro1UA",
+    "playlistId": "UUFIlFvYMWkPE6uDcjdro1UA"
+  },
+  {
+    "prefecture": "静岡県",
+    "broadcastName": "静岡朝日テレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUvF5vIejmf-H_XSluaBldfg",
+    "playlistId": "UUvF5vIejmf-H_XSluaBldfg"
+  },
+  {
+    "prefecture": "静岡県",
+    "broadcastName": "静岡第一テレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUNGwxGuezr6aSAn9IYk4F1Q",
+    "playlistId": "UUNGwxGuezr6aSAn9IYk4F1Q"
+  },
+  {
+    "prefecture": "三重県",
+    "broadcastName": "三重テレビ放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUD8zqZumr5CzsmXCMPZVA2g",
+    "playlistId": "UUD8zqZumr5CzsmXCMPZVA2g"
+  },
+  {
+    "prefecture": "滋賀県",
+    "broadcastName": "びわ湖放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUbmPPH1lE7T6AwCQw0ZV8RA",
+    "playlistId": "UUbmPPH1lE7T6AwCQw0ZV8RA"
+  },
+  {
+    "prefecture": "京都府",
+    "broadcastName": "京都放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUGqbhE5MbFdwPjS4goqymrw",
+    "playlistId": "UUGqbhE5MbFdwPjS4goqymrw"
+  },
+  {
+    "prefecture": "兵庫県",
+    "broadcastName": "サンテレビジョン",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUoslznRuvXIAriI5z51-DPg",
+    "playlistId": "UUoslznRuvXIAriI5z51-DPg"
+  },
+  {
+    "prefecture": "奈良県",
+    "broadcastName": "奈良テレビ放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUcd7HqsWwm2vks3oefxEGzA",
+    "playlistId": "UUcd7HqsWwm2vks3oefxEGzA"
+  },
+  {
+    "prefecture": "和歌山県",
+    "broadcastName": "テレビ和歌山",
+    "playlistURL": "https://www.youtube.com/playlist?list=UURIIrdFTB6jdToXF8KkJQFQ",
+    "playlistId": "UURIIrdFTB6jdToXF8KkJQFQ"
+  },
+  {
+    "prefecture": "鳥取県/島根県",
+    "broadcastName": "日本海テレビジョン放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUDeNzPNV3K8nNkOsMFRB-sw",
+    "playlistId": "UUDeNzPNV3K8nNkOsMFRB-sw"
+  },
+  {
+    "prefecture": "鳥取県/島根県",
+    "broadcastName": "山陰放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UU9J9Zv8m2nsOpiGk7FITvRw",
+    "playlistId": "UU9J9Zv8m2nsOpiGk7FITvRw"
+  },
+  {
+    "prefecture": "鳥取県/島根県",
+    "broadcastName": "山陰中央テレビジョン放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UU2IZ5vF-E699LBp7NNqQrpw",
+    "playlistId": "UU2IZ5vF-E699LBp7NNqQrpw"
+  },
+  {
+    "prefecture": "岡山県/香川県",
+    "broadcastName": "RSK山陽放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUTUbmRxExnIYmoXRsRSEdBw",
+    "playlistId": "UUTUbmRxExnIYmoXRsRSEdBw"
+  },
+  {
+    "prefecture": "岡山県/香川県",
+    "broadcastName": "岡山放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUDveJHk8JXfw2ubmixMkogg",
+    "playlistId": "UUDveJHk8JXfw2ubmixMkogg"
+  },
+  {
+    "prefecture": "岡山県/香川県",
+    "broadcastName": "瀬戸内海放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUH9jlbggZY_mRx7Q0k49TuQ",
+    "playlistId": "UUH9jlbggZY_mRx7Q0k49TuQ"
+  },
+  {
+    "prefecture": "岡山県/香川県",
+    "broadcastName": "テレビせとうち",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUAzaZfwgfjYVRGn4S60xM6Q",
+    "playlistId": "UUAzaZfwgfjYVRGn4S60xM6Q"
+  },
+  {
+    "prefecture": "広島県",
+    "broadcastName": "広島テレビ放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUyHdFYJyt4Ihwuscuk5ALJA",
+    "playlistId": "UUyHdFYJyt4Ihwuscuk5ALJA"
+  },
+  {
+    "prefecture": "広島県",
+    "broadcastName": "中国放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUATnyu9lou_Lw43gvyoh8uA",
+    "playlistId": "UUATnyu9lou_Lw43gvyoh8uA"
+  },
+  {
+    "prefecture": "広島県",
+    "broadcastName": "広島ホームテレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UURnFGOp_mjaCYEhMzsE2iHA",
+    "playlistId": "UURnFGOp_mjaCYEhMzsE2iHA"
+  },
+  {
+    "prefecture": "広島県",
+    "broadcastName": "テレビ新広島",
+    "playlistURL": "https://www.youtube.com/playlist?list=UU7_jFLwpm5apDF-v-pXZb4w",
+    "playlistId": "UU7_jFLwpm5apDF-v-pXZb4w"
+  },
+  {
+    "prefecture": "山口県",
+    "broadcastName": "山口放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUUY22wZDhE6MM4E9F7139nQ",
+    "playlistId": "UUUY22wZDhE6MM4E9F7139nQ"
+  },
+  {
+    "prefecture": "山口県",
+    "broadcastName": "テレビ山口",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUAlnFug89RWAIueWw82nWiA",
+    "playlistId": "UUAlnFug89RWAIueWw82nWiA"
+  },
+  {
+    "prefecture": "山口県",
+    "broadcastName": "山口朝日放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUKIglIH9_xIK0feahuKhJEQ",
+    "playlistId": "UUKIglIH9_xIK0feahuKhJEQ"
+  },
+  {
+    "prefecture": "徳島県",
+    "broadcastName": "四国放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUuhA-fogYs0MwglwZbnL_8A",
+    "playlistId": "UUuhA-fogYs0MwglwZbnL_8A"
+  },
+  {
+    "prefecture": "愛媛県",
+    "broadcastName": "南海放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UU-2L3iPWxVyvvnPLplpdCHA",
+    "playlistId": "UU-2L3iPWxVyvvnPLplpdCHA"
+  },
+  {
+    "prefecture": "愛媛県",
+    "broadcastName": "テレビ愛媛",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUISf7aH1HqBtTD9jPgzIfVA",
+    "playlistId": "UUISf7aH1HqBtTD9jPgzIfVA"
+  },
+  {
+    "prefecture": "愛媛県",
+    "broadcastName": "愛媛朝日テレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUXeLyiz18tOeWeeC48nFFQQ",
+    "playlistId": "UUXeLyiz18tOeWeeC48nFFQQ"
+  },
+  {
+    "prefecture": "愛媛県",
+    "broadcastName": "あいテレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUXwz4wdczQnOfL8RAUC8Ibg",
+    "playlistId": "UUXwz4wdczQnOfL8RAUC8Ibg"
+  },
+  {
+    "prefecture": "高知県",
+    "broadcastName": "高知放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUI8NjCAztJIipObtK1sYueQ",
+    "playlistId": "UUI8NjCAztJIipObtK1sYueQ"
+  },
+  {
+    "prefecture": "高知県",
+    "broadcastName": "テレビ高知",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUoc4gX4ZhI8TMBpv8EJMnXQ",
+    "playlistId": "UUoc4gX4ZhI8TMBpv8EJMnXQ"
+  },
+  {
+    "prefecture": "高知県",
+    "broadcastName": "高知さんさんテレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUpgGl1uKYpx5eN-gvSnbCSQ",
+    "playlistId": "UUpgGl1uKYpx5eN-gvSnbCSQ"
+  },
+  {
+    "prefecture": "福岡県",
+    "broadcastName": "九州朝日放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUS8ZQejq2CL-nZcnRWZCA5Q",
+    "playlistId": "UUS8ZQejq2CL-nZcnRWZCA5Q"
+  },
+  {
+    "prefecture": "福岡県",
+    "broadcastName": "RKB毎日放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUgrmHAblzN-QzMMgl2oNRog",
+    "playlistId": "UUgrmHAblzN-QzMMgl2oNRog"
+  },
+  {
+    "prefecture": "福岡県",
+    "broadcastName": "福岡放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UU3X-tn7gpipCqOdYWCmdyJQ",
+    "playlistId": "UU3X-tn7gpipCqOdYWCmdyJQ"
+  },
+  {
+    "prefecture": "福岡県",
+    "broadcastName": "テレビ西日本",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUZ0U1AoJOKVdlejhjUU1fBg",
+    "playlistId": "UUZ0U1AoJOKVdlejhjUU1fBg"
+  },
+  {
+    "prefecture": "福岡県",
+    "broadcastName": "TVQ九州放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UU0O1BPRKdBRt86b9JcvxjuQ",
+    "playlistId": "UU0O1BPRKdBRt86b9JcvxjuQ"
+  },
+  {
+    "prefecture": "佐賀県",
+    "broadcastName": "サガテレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUmXfKCasdSTe9B49-Es9XZA",
+    "playlistId": "UUmXfKCasdSTe9B49-Es9XZA"
+  },
+  {
+    "prefecture": "長崎県",
+    "broadcastName": "長崎放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUh0-nAqSYSYed_A4Qdz-0ww",
+    "playlistId": "UUh0-nAqSYSYed_A4Qdz-0ww"
+  },
+  {
+    "prefecture": "長崎県",
+    "broadcastName": "長崎国際テレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UU5cpRf7BIMj9DKebtJxR8Ig",
+    "playlistId": "UU5cpRf7BIMj9DKebtJxR8Ig"
+  },
+  {
+    "prefecture": "長崎県",
+    "broadcastName": "テレビ長崎",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUFVI14YKxx42CZPRyZX_g0A",
+    "playlistId": "UUFVI14YKxx42CZPRyZX_g0A"
+  },
+  {
+    "prefecture": "長崎県",
+    "broadcastName": "長崎文化放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUWkqxFZQSdkR_q8kGz6p9mw",
+    "playlistId": "UUWkqxFZQSdkR_q8kGz6p9mw"
+  },
+  {
+    "prefecture": "熊本県",
+    "broadcastName": "熊本放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUG1ApxYbWaC9xUxgHCWyR5Q",
+    "playlistId": "UUG1ApxYbWaC9xUxgHCWyR5Q"
+  },
+  {
+    "prefecture": "熊本県",
+    "broadcastName": "テレビ熊本",
+    "playlistURL": "https://www.youtube.com/playlist?list=UU4wpY8jmg-n4W-UddQBr1Ag",
+    "playlistId": "UU4wpY8jmg-n4W-UddQBr1Ag"
+  },
+  {
+    "prefecture": "熊本県",
+    "broadcastName": "くまもと県民テレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUHVgNZeav4snXQs93TyNp8g",
+    "playlistId": "UUHVgNZeav4snXQs93TyNp8g"
+  },
+  {
+    "prefecture": "熊本県",
+    "broadcastName": "熊本朝日放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUu8GW2WcGp_9Lic2wZY_IVg",
+    "playlistId": "UUu8GW2WcGp_9Lic2wZY_IVg"
+  },
+  {
+    "prefecture": "大分県",
+    "broadcastName": "大分放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UU04SqLqLWaH01DOka8e2yEQ",
+    "playlistId": "UU04SqLqLWaH01DOka8e2yEQ"
+  },
+  {
+    "prefecture": "大分県",
+    "broadcastName": "テレビ大分",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUhx_y6aLWNkifSDUt2TVAzg",
+    "playlistId": "UUhx_y6aLWNkifSDUt2TVAzg"
+  },
+  {
+    "prefecture": "大分県",
+    "broadcastName": "大分朝日放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUekmK9BsmFY_PujFeV6ryqg",
+    "playlistId": "UUekmK9BsmFY_PujFeV6ryqg"
+  },
+  {
+    "prefecture": "宮崎県",
+    "broadcastName": "宮崎放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUET0Zu3...",
+    "playlistId": "UUET0Zu3..."
+  },
+  {
+    "prefecture": "宮崎県",
+    "broadcastName": "テレビ宮崎",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUI0X48iL7B320_2-uX26z1w",
+    "playlistId": "UUI0X48iL7B320_2-uX26z1w"
+  },
+  {
+    "prefecture": "鹿児島県",
+    "broadcastName": "南日本放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUnR1N22hU8K89v5e2y6yVZA",
+    "playlistId": "UUnR1N22hU8K89v5e2y6yVZA"
+  },
+  {
+    "prefecture": "鹿児島県",
+    "broadcastName": "鹿児島読売テレビ",
+    "playlistURL": "https://www.youtube.com/playlist?list=UU6lJg_L-g2FwVz-T3U-Vn0A",
+    "playlistId": "UU6lJg_L-g2FwVz-T3U-Vn0A"
+  },
+  {
+    "prefecture": "鹿児島県",
+    "broadcastName": "鹿児島テレビ放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUXeP1b66m10X4wP10-7wJ1w",
+    "playlistId": "UUXeP1b66m10X4wP10-7wJ1w"
+  },
+  {
+    "prefecture": "鹿児島県",
+    "broadcastName": "鹿児島放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UU1sL4dJ9iLg_oR0v2nK2t3Q",
+    "playlistId": "UU1sL4dJ9iLg_oR0v2nK2t3Q"
+  },
+  {
+    "prefecture": "沖縄県",
+    "broadcastName": "琉球放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UUgL-2nLzX9I1G9d-7fB3DFA",
+    "playlistId": "UUgL-2nLzX9I1G9d-7fB3DFA"
+  },
+  {
+    "prefecture": "沖縄県",
+    "broadcastName": "沖縄テレビ放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UU-o3Qp_c8E48v23T4gP1U8w",
+    "playlistId": "UU-o3Qp_c8E48v23T4gP1U8w"
+  },
+  {
+    "prefecture": "沖縄県",
+    "broadcastName": "琉球朝日放送",
+    "playlistURL": "https://www.youtube.com/playlist?list=UULjC_0nOqM10x8-30K_9q2g",
+    "playlistId": "UULjC_0nOqM10x8-30K_9q2g"
+  }
+]
