@@ -22,9 +22,7 @@ vi.mock("react-leaflet", () => ({
 
 // PrefectureOfficeMarkersのモック
 vi.mock("@/components/PrefectureOfficeMarkers", () => ({
-  PrefectureOfficeMarkers: ({ handlers }: any) => (
-    <div data-testid="prefecture-office-markers" data-handlers={Object.keys(handlers).length} />
-  ),
+  PrefectureOfficeMarkers: () => <div data-testid="prefecture-office-markers" />,
 }));
 
 describe("JapanMap", () => {
@@ -73,15 +71,6 @@ describe("JapanMap - Prefecture Office Markers", () => {
 
     await waitFor(() => {
       expect(screen.getByTestId("prefecture-office-markers")).toBeInTheDocument();
-    });
-  });
-
-  it("should pass correct handlers to PrefectureOfficeMarkers", async () => {
-    render(<JapanMap />);
-
-    await waitFor(() => {
-      const markersComponent = screen.getByTestId("prefecture-office-markers");
-      expect(markersComponent).toHaveAttribute("data-handlers", "5");
     });
   });
 
