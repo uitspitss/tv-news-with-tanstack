@@ -1,28 +1,10 @@
-/**
- * PrefectureOfficeMarkers Component
- * Feature: 001-prefecture-office-button / User Story 1 (P1)
- *
- * 日本の47都道府県の庁舎所在地にマーカーを表示するコンポーネント
- */
-
+import type { DivIcon } from "leaflet";
 import { divIcon } from "leaflet";
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
-import { Marker, Tooltip, useMapEvents } from "react-leaflet";
-import { PrefectureOfficePopup } from "@/components/PrefectureOfficePopup";
-import type { MapInteractionHandlers, MapInteractionState } from "@/hooks/useMapInteraction";
+import { memo, useMemo } from "react";
+import { Marker } from "react-leaflet";
+import { useBroadcasts } from "@/hooks/useBroadcasts";
 import { usePrefectureOffices } from "@/hooks/usePrefectureOffices";
 
-// マーカーサイズの設定定数
-const MARKER_SIZE_CONFIG = {
-  MIN_SIZE: 20,
-  MAX_SIZE: 30,
-  MIN_ZOOM: 4,
-  MAX_ZOOM: 10,
-} as const;
-
-/**
- * HTMLエスケープ関数（XSS対策）
- */
 function escapeHtml(str: string): string {
   const escapeMap: Record<string, string> = {
     "&": "&amp;",
@@ -31,147 +13,80 @@ function escapeHtml(str: string): string {
     '"': "&quot;",
     "'": "&#039;",
   };
-  return str.replace(/[&<>"']/g, (char) => escapeMap[char] || char);
+  return str.replaceAll(/[&<>"']/g, (char) => escapeMap[char] || char);
 }
 
-interface PrefectureOfficeMarkersProps {
-  /** マーカーインタラクション状態 */
-  state: Pick<MapInteractionState, "selectedCapital">;
-  /** マーカーインタラクションハンドラー */
-  handlers: Pick<
-    MapInteractionHandlers,
-    | "handleCapitalMouseEnter"
-    | "handleCapitalMouseLeave"
-    | "handleCapitalClick"
-    | "handleCapitalFocus"
-    | "handleCapitalBlur"
-  >;
+// 複合エリア（"鳥取県/島根県"等）はスラッシュ前の県のみに表示する
+function getPrimaryPrefecture(prefecture: string): string {
+  return prefecture.split("/")[0];
 }
 
-function PrefectureOfficeMarkersComponent({ state, handlers }: PrefectureOfficeMarkersProps) {
-  const { data, isLoading, error } = usePrefectureOffices();
-  const [zoom, setZoom] = useState(5);
+function createBroadcastLabelIcon(broadcastNames: string[]) {
+  const LINE_HEIGHT = 14;
+  const height = Math.max(broadcastNames.length * LINE_HEIGHT, LINE_HEIGHT);
+  const linesHtml = broadcastNames
+    .map((name) => `<div class="broadcast-name">${escapeHtml(name)}</div>`)
+    .join("");
 
-  // パフォーマンスモニタリング（開発環境のみ）
-  useEffect(() => {
-    if (data && process.env.NODE_ENV === "development") {
-      const startTime = performance.now();
-      // 次のフレームでレンダリング完了を計測
-      requestAnimationFrame(() => {
-        const endTime = performance.now();
-        const renderTime = endTime - startTime;
-        if (renderTime > 2000) {
-          console.warn(`⚠️ Marker rendering took ${renderTime.toFixed(2)}ms (expected < 2000ms)`);
-        } else {
-          console.log(`✓ Marker rendering completed in ${renderTime.toFixed(2)}ms`);
-        }
-      });
-    }
-  }, [data]);
-
-  // ズームイベントをリッスン（マーカーサイズ調整用）
-  useMapEvents({
-    zoomend: (e) => {
-      setZoom(e.target.getZoom());
-    },
+  return divIcon({
+    className: "broadcast-label-marker",
+    html: `<div class="broadcast-label-container">${linesHtml}</div>`,
+    iconSize: [120, height],
+    iconAnchor: [60, height / 2],
   });
+}
 
-  // ズームレベルに応じたマーカーサイズを計算（useMemoでメモ化）
-  const getMarkerSize = useCallback((currentZoom: number): number => {
-    const { MIN_SIZE, MAX_SIZE, MIN_ZOOM, MAX_ZOOM } = MARKER_SIZE_CONFIG;
+function PrefectureOfficeMarkersComponent() {
+  const {
+    data: officeData,
+    isLoading: officesLoading,
+    error: officesError,
+  } = usePrefectureOffices();
+  const {
+    data: broadcastData,
+    isLoading: broadcastsLoading,
+    error: broadcastsError,
+  } = useBroadcasts();
 
-    if (currentZoom <= MIN_ZOOM) return MIN_SIZE;
-    if (currentZoom >= MAX_ZOOM) return MAX_SIZE;
+  const broadcastsByPrefecture = useMemo(() => {
+    if (!broadcastData) return new Map<string, string[]>();
 
-    return MIN_SIZE + ((currentZoom - MIN_ZOOM) / (MAX_ZOOM - MIN_ZOOM)) * (MAX_SIZE - MIN_SIZE);
-  }, []);
+    return broadcastData.reduce((acc, broadcast) => {
+      const primary = getPrimaryPrefecture(broadcast.prefecture);
+      const existing = acc.get(primary) ?? [];
+      acc.set(primary, [...existing, broadcast.broadcastName]);
+      return acc;
+    }, new Map<string, string[]>());
+  }, [broadcastData]);
 
-  const markerSize = useMemo(() => getMarkerSize(zoom), [zoom, getMarkerSize]);
+  // アイコンをメモ化して不要なMarker再描画を防止
+  const markerIcons = useMemo(() => {
+    if (!officeData) return new Map<string, DivIcon>();
 
-  // カスタムマーカーアイコン（DOMベース + キーボードアクセシビリティ）
-  const createMarkerIcon = useCallback(
-    (size: number, officeName: string, prefectureCode: string) => {
-      return divIcon({
-        className: "prefecture-office-marker",
-        html: `
-        <div
-          tabindex="0"
-          role="button"
-          aria-label="${escapeHtml(officeName)}を選択"
-          data-prefecture-code="${escapeHtml(prefectureCode)}"
-          style="
-            width: ${size}px;
-            height: ${size}px;
-            background-color: #ef4444;
-            border: 2px solid #ffffff;
-            border-radius: 50%;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-          "
-        ></div>
-      `,
-        iconSize: [size, size],
-        iconAnchor: [size / 2, size / 2],
-      });
-    },
-    [],
-  );
+    const icons = new Map<string, DivIcon>();
+    for (const office of officeData) {
+      const broadcasts = broadcastsByPrefecture.get(office.name) ?? [];
+      if (broadcasts.length > 0) {
+        icons.set(office.code, createBroadcastLabelIcon(broadcasts));
+      }
+    }
+    return icons;
+  }, [officeData, broadcastsByPrefecture]);
 
-  // 選択された都道府県のデータを取得（useMemoでメモ化）
-  const selectedPrefecture = useMemo(() => {
-    if (!data) return null;
-    return state.selectedCapital
-      ? data.find((office) => office.code === state.selectedCapital)
-      : null;
-  }, [state.selectedCapital, data]);
-
-  // ローディング中・エラー時・データなしの場合は何も表示しない
-  // （エラーはusePrefectureOfficesフック内でログ出力済み）
-  if (isLoading || error || !data) {
+  if (officesLoading || broadcastsLoading || officesError || broadcastsError || !officeData) {
     return null;
   }
 
   return (
     <>
-      {data.map((office) => {
-        const markerIcon = createMarkerIcon(markerSize, office.officeName, office.code);
+      {officeData.map((office) => {
+        const markerIcon = markerIcons.get(office.code);
+        if (!markerIcon) return null;
 
-        return (
-          <Marker
-            key={office.code}
-            position={[office.lat, office.lon]}
-            icon={markerIcon}
-            keyboard={true}
-            eventHandlers={{
-              mouseover: () => handlers.handleCapitalMouseEnter(office.code),
-              mouseout: () => handlers.handleCapitalMouseLeave(),
-              click: () => handlers.handleCapitalClick(office.code),
-              keydown: (e: { originalEvent: KeyboardEvent }) => {
-                // EnterまたはSpaceキーでクリックと同じ動作
-                if (e.originalEvent.key === "Enter" || e.originalEvent.key === " ") {
-                  e.originalEvent.preventDefault();
-                  handlers.handleCapitalClick(office.code);
-                }
-              },
-            }}
-          >
-            <Tooltip direction="top" offset={[0, -markerSize / 2]} opacity={0.9}>
-              <div style={{ fontSize: "12px", fontWeight: "500" }}>{office.officeName}</div>
-            </Tooltip>
-          </Marker>
-        );
+        return <Marker key={office.code} position={[office.lat, office.lon]} icon={markerIcon} />;
       })}
-
-      {/* 選択されたマーカーのポップアップを表示 */}
-      {selectedPrefecture && (
-        <PrefectureOfficePopup
-          prefecture={selectedPrefecture}
-          onClose={() => handlers.handleCapitalClick("")}
-        />
-      )}
     </>
   );
 }
 
-// React.memoでパフォーマンス最適化
 export const PrefectureOfficeMarkers = memo(PrefectureOfficeMarkersComponent);
