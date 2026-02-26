@@ -52,9 +52,9 @@ function JapanMapComponent({ initialZoom = 5, initialCenter = [138, 36] }: Japan
         }
 
         .broadcast-name {
-          font-size: 9px;
+          font-size: 11px;
           font-weight: 600;
-          line-height: 13px;
+          line-height: 16px;
           color: #ffffff;
           background-color: rgba(0, 0, 0, 0.65);
           padding: 0 3px;

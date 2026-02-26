@@ -22,7 +22,7 @@ function getPrimaryPrefecture(prefecture: string): string {
 }
 
 function createBroadcastLabelIcon(broadcastNames: string[]) {
-  const LINE_HEIGHT = 14;
+  const LINE_HEIGHT = 17;
   const height = Math.max(broadcastNames.length * LINE_HEIGHT, LINE_HEIGHT);
   const linesHtml = broadcastNames
     .map((name) => `<div class="broadcast-name">${escapeHtml(name)}</div>`)
