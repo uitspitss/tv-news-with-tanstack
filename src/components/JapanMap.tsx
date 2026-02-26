@@ -26,6 +26,7 @@ function JapanMapComponent({ initialZoom = 5, initialCenter = [138, 36] }: Japan
         zoom={initialZoom}
         minZoom={5}
         maxZoom={10}
+        zoomControl={false}
         scrollWheelZoom={true}
         style={{ height: "100%", width: "100%" }}
         aria-label="日本のTV局放送エリア地図"
