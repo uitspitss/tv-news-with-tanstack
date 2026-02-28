@@ -1,749 +1,874 @@
 [
   {
+    "id": "ntv",
     "prefecture": "東京都",
     "broadcastName": "日本テレビ放送網",
     "playlistId": "UUuTAXTexrhetbOe3zgskJBQ",
     "channelURL": "https://www.youtube.com/@nittele"
   },
   {
+    "id": "ex",
     "prefecture": "東京都",
     "broadcastName": "テレビ朝日",
     "playlistId": "UUGCZAYq5Xxojl_tSXcVJhiQ",
     "channelURL": "https://www.youtube.com/@ANNnewsCH"
   },
   {
+    "id": "tbs",
     "prefecture": "東京都",
     "broadcastName": "TBSテレビ",
     "playlistId": "UU6AG81pAkf6Lbi_1VC5NmPA",
     "channelURL": "https://www.youtube.com/@tbsnewsdig"
   },
   {
+    "id": "tx",
     "prefecture": "東京都",
     "broadcastName": "テレビ東京",
     "playlistId": "UUkKVQ_GNjd8FbAuT6xDcWgg",
     "channelURL": "https://www.youtube.com/@tvtokyobiz"
   },
   {
+    "id": "cx",
     "prefecture": "東京都",
     "broadcastName": "フジテレビジョン",
     "playlistId": "UUoQBJMzcwmXrRSHBFAlTsIw",
     "channelURL": "https://www.youtube.com/@FNNnewsCH"
   },
   {
+    "id": "ytv",
     "prefecture": "大阪府",
     "broadcastName": "読売テレビ放送",
     "playlistId": "UUv7_krlrre3GQi79d4guxHQ",
     "channelURL": "https://www.youtube.com/@ytv_news"
   },
   {
+    "id": "abc",
     "prefecture": "大阪府",
     "broadcastName": "朝日放送テレビ",
     "playlistId": "UUPW-5qfYGNR8XYrvESrqJKA",
     "channelURL": "https://www.youtube.com/@abc6ch"
   },
   {
+    "id": "mbs",
     "prefecture": "大阪府",
     "broadcastName": "毎日放送",
     "playlistId": "UUkKJhKO73xF1pK5h9R82ZGQ",
     "channelURL": "https://www.youtube.com/@mbsnews"
   },
   {
+    "id": "ktv",
     "prefecture": "大阪府",
     "broadcastName": "関西テレビ放送",
     "playlistId": "UUQhaZjODkIjuv38d-i5TVRw",
     "channelURL": "https://www.youtube.com/@ktvnews8"
   },
   {
+    "id": "tvo",
     "prefecture": "大阪府",
     "broadcastName": "テレビ大阪",
     "playlistId": "UUd6GEK664CTEWRZda7Fu7Lg",
     "channelURL": "https://www.youtube.com/@tvosakanews"
   },
   {
+    "id": "ctv",
     "prefecture": "愛知県",
     "broadcastName": "中京テレビ放送",
     "playlistId": "UUxiRdfyH0FtFCRZTRfRsdsA",
     "channelURL": "https://www.youtube.com/@CHUKYOTV_NEWS"
   },
   {
+    "id": "nbn",
     "prefecture": "愛知県",
     "broadcastName": "名古屋テレビ放送",
     "playlistId": "UUWnOKASPkCBEL-_O8odMvtg",
     "channelURL": "https://www.youtube.com/@NagoyaTVnewsCH"
   },
   {
+    "id": "cbc",
     "prefecture": "愛知県",
     "broadcastName": "CBCテレビ",
     "playlistId": "UUh5mvJtIWycou5b8smpBuxA",
     "channelURL": "https://www.youtube.com/@cbctv_news"
   },
   {
+    "id": "thk",
     "prefecture": "愛知県",
     "broadcastName": "東海テレビ放送",
     "playlistId": "UUUQ0AtI3k10_CyLYcu4WRVA",
     "channelURL": "https://www.youtube.com/@newsone4365"
   },
   {
+    "id": "tva",
     "prefecture": "愛知県",
     "broadcastName": "テレビ愛知",
     "playlistId": "UUk6SzG4qmA7J6CI-QAtWoOg",
     "channelURL": "https://www.youtube.com/@aichi-news"
   },
   {
+    "id": "hbc",
     "prefecture": "北海道",
     "broadcastName": "北海道放送",
     "playlistId": "UUCTpf5c_9HDo_OSu3aX8uFQ",
     "channelURL": "https://www.youtube.com/@hbc7142"
   },
   {
+    "id": "stv",
     "prefecture": "北海道",
     "broadcastName": "札幌テレビ放送",
     "playlistId": "UUOZv-6MiXqJdLpmYtR431Ow",
     "channelURL": "https://www.youtube.com/@stv9721"
   },
   {
+    "id": "htb",
     "prefecture": "北海道",
     "broadcastName": "北海道テレビ放送",
     "playlistId": "UUSWOnDD1KIriGmyQ7SgNA4A",
     "channelURL": "https://www.youtube.com/@htbnews"
   },
   {
+    "id": "uhb",
     "prefecture": "北海道",
     "broadcastName": "北海道文化放送",
     "playlistId": "UUpQs_warGhUzJhBdwLfF34g",
     "channelURL": "https://www.youtube.com/@uhb1980"
   },
   {
+    "id": "tvh",
     "prefecture": "北海道",
     "broadcastName": "テレビ北海道",
     "playlistId": "UU0UE9tQA9KrMMllMIdz2G3w",
     "channelURL": "https://www.youtube.com/@TVhHokkaidoNEWS"
   },
   {
+    "id": "rab",
     "prefecture": "青森県",
     "broadcastName": "青森放送",
     "playlistId": "UUk_jA9Y8pb50Ab2EzV_KhLw",
     "channelURL": "https://www.youtube.com/@RAB_Aomori"
   },
   {
+    "id": "aba",
     "prefecture": "青森県",
     "broadcastName": "青森朝日放送",
     "playlistId": "UUSmgh6ZHdSIoJg0irxaUpEw",
     "channelURL": "https://www.youtube.com/@aba-news"
   },
   {
+    "id": "atv",
     "prefecture": "青森県",
     "broadcastName": "青森テレビ",
     "playlistId": "UUdNYphHZdRYjpys_gwofUNQ",
     "channelURL": "https://www.youtube.com/@ATV6ch"
   },
   {
+    "id": "ibc",
     "prefecture": "岩手県",
     "broadcastName": "IBC岩手放送",
     "playlistId": "UUMbq0m2vILQTbc0VhOcVWaQ",
     "channelURL": "https://www.youtube.com/@ibc6ch"
   },
   {
+    "id": "tvi",
     "prefecture": "岩手県",
     "broadcastName": "テレビ岩手",
     "playlistId": "UU7qQJi_WE9yNhA48kP6TT0Q",
     "channelURL": "https://www.youtube.com/@tvinewsch"
   },
   {
+    "id": "mit",
     "prefecture": "岩手県",
     "broadcastName": "岩手めんこいテレビ",
     "playlistId": "UUw14eNQAUDqCg-fX3Uvd07w",
     "channelURL": "https://www.youtube.com/@menkoichannel"
   },
   {
+    "id": "iat",
     "prefecture": "岩手県",
     "broadcastName": "岩手朝日テレビ",
     "playlistId": "UUPPyaDqgxNlbiyOkq2FzMOQ",
     "channelURL": "https://www.youtube.com/@IwateAsahiTV"
   },
   {
+    "id": "tbc",
     "prefecture": "宮城県",
     "broadcastName": "東北放送",
     "playlistId": "UUFUbielypfKRLADGekw0TnA",
     "channelURL": "https://www.youtube.com/@tbc1260_official"
   },
   {
+    "id": "mmt",
     "prefecture": "宮城県",
     "broadcastName": "宮城テレビ放送",
     "playlistId": "UUp0vHbq1su20AqZoND_LH_Q",
     "channelURL": "https://www.youtube.com/@miyateleNEWSNNN"
   },
   {
+    "id": "ox",
     "prefecture": "宮城県",
     "broadcastName": "仙台放送",
     "playlistId": "UUlElfQ7F1QndkPEFuqrDCLQ",
     "channelURL": "https://www.youtube.com/@%E4%BB%99%E5%8F%B0%E6%94%BE%E9%80%81%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB"
   },
   {
+    "id": "khb",
     "prefecture": "宮城県",
     "broadcastName": "東日本放送",
     "playlistId": "UUkW_baVbq6aGPWeYY4hOPCA",
     "channelURL": "https://www.youtube.com/@khb"
   },
   {
+    "id": "abs",
     "prefecture": "秋田県",
     "broadcastName": "秋田放送",
     "playlistId": "UUVRs8dYm9OH-_g4V84BfbQw",
     "channelURL": "https://www.youtube.com/@ABS4ch"
   },
   {
+    "id": "akt",
     "prefecture": "秋田県",
     "broadcastName": "秋田テレビ",
     "playlistId": "UURTTHlDJMiCrnZOVelyAkuQ",
     "channelURL": "https://www.youtube.com/@livenewsakt969"
   },
   {
+    "id": "aab",
     "prefecture": "秋田県",
     "broadcastName": "秋田朝日放送",
     "playlistId": "UUEobbi8fWt_DibQzOImnKqQ",
     "channelURL": "https://www.youtube.com/@aab5ch"
   },
   {
+    "id": "ybc",
     "prefecture": "山形県",
     "broadcastName": "山形放送",
     "playlistId": "UUq4EHq2s9H8hBPXZVOi9alw",
     "channelURL": "https://www.youtube.com/@yamagatahoso"
   },
   {
+    "id": "yts",
     "prefecture": "山形県",
     "broadcastName": "山形テレビ",
     "playlistId": "UUayCFjTKn1SsljcNvzYlDRQ",
     "channelURL": "https://www.youtube.com/@YTS5ch"
   },
   {
+    "id": "tuy",
     "prefecture": "山形県",
     "broadcastName": "テレビユー山形",
     "playlistId": "UUTWatTAOnFVB0vwIetZCTHw",
     "channelURL": "https://www.youtube.com/@tuy6ch"
   },
   {
+    "id": "say",
     "prefecture": "山形県",
     "broadcastName": "さくらんぼテレビジョン",
     "playlistId": "UUM2MyjD4BtXOcTcHSDKPNjg",
     "channelURL": "https://www.youtube.com/@SakuranboJp-tv"
   },
   {
+    "id": "ftv",
     "prefecture": "福島県",
     "broadcastName": "福島テレビ",
     "playlistId": "UU8_eP66-QjHHM_pTXA9UuDw",
     "channelURL": "https://www.youtube.com/@ftv-news"
   },
   {
+    "id": "fct",
     "prefecture": "福島県",
     "broadcastName": "福島中央テレビ",
     "playlistId": "UU8Y0ZErdlAnA9uW7ZeRdreQ",
     "channelURL": "https://www.youtube.com/@fct_news"
   },
   {
+    "id": "kfb",
     "prefecture": "福島県",
     "broadcastName": "福島放送",
     "playlistId": "UU32pF1BZLteNqIaXUVs7Slg",
     "channelURL": "https://www.youtube.com/@TV-qm8xe"
   },
   {
+    "id": "tuf",
     "prefecture": "福島県",
     "broadcastName": "テレビユー福島",
     "playlistId": "UUsci9tL9g8QPOvUwjJeDAgA",
     "channelURL": "https://www.youtube.com/@TUFchannel"
   },
   {
+    "id": "mx",
     "prefecture": "東京都",
     "broadcastName": "TOKYO MX",
     "playlistId": "UUJf85jSgFayOSsZfJ051ZKw",
     "channelURL": "https://www.youtube.com/@tokyomxnews9813"
   },
   {
+    "id": "tvk",
     "prefecture": "神奈川県",
     "broadcastName": "テレビ神奈川",
     "playlistId": "UUqaWGntsmpG4dzWd1sksLMQ",
     "channelURL": "https://www.youtube.com/@tvknewslink"
   },
   {
+    "id": "tvs",
     "prefecture": "埼玉県",
     "broadcastName": "テレビ埼玉",
     "playlistId": "UUW7uiApbFl_E852MGqNILDw",
     "channelURL": "https://www.youtube.com/@teletama_news"
   },
   {
+    "id": "ctc",
     "prefecture": "千葉県",
     "broadcastName": "千葉テレビ放送",
     "playlistId": "UUWSxunaMHDB-CJXCs4Cq7Uw",
     "channelURL": "https://www.youtube.com/@chibaNEWS"
   },
   {
+    "id": "gtv",
     "prefecture": "群馬県",
     "broadcastName": "群馬テレビ",
     "playlistId": "UUYwPpbi6PqfY1KJbg4H6xwA",
     "channelURL": "https://www.youtube.com/@GTV"
   },
   {
+    "id": "gyt",
     "prefecture": "栃木県",
     "broadcastName": "とちぎテレビ",
     "playlistId": "UU_SN3bimHrEFQ0qe-5X5zFw",
     "channelURL": "https://www.youtube.com/@tochitele_news"
   },
   {
+    "id": "teny",
     "prefecture": "新潟県",
     "broadcastName": "テレビ新潟放送網",
     "playlistId": "UU_0tfCjB-pPNR8r9G9G1fTA",
     "channelURL": "https://www.youtube.com/@TeNYNEWS"
   },
   {
+    "id": "bsn",
     "prefecture": "新潟県",
     "broadcastName": "新潟放送",
     "playlistId": "UUSFteALQuWkhEeKqIGVc_UQ",
     "channelURL": "https://www.youtube.com/@bsnnewslive2270"
   },
   {
+    "id": "nst",
     "prefecture": "新潟県",
     "broadcastName": "NST新潟総合テレビ",
     "playlistId": "UU8iN-WKPu820ve-4t9NxHRw",
     "channelURL": "https://www.youtube.com/@niigata-news"
   },
   {
+    "id": "ux",
     "prefecture": "新潟県",
     "broadcastName": "UX新潟テレビ21",
     "playlistId": "UUmBnPrnbYpbUZ10TMIlY9YA",
     "channelURL": "https://www.youtube.com/@UXTV"
   },
   {
+    "id": "sbc",
     "prefecture": "長野県",
     "broadcastName": "信越放送",
     "playlistId": "UUpin9fWaJ2bdeOtvx3OGjww",
     "channelURL": "https://www.youtube.com/@SBCNews_Documentary"
   },
   {
+    "id": "nbs",
     "prefecture": "長野県",
     "broadcastName": "長野放送",
     "playlistId": "UU8Cb__xPfEf6wriBekEpZqA",
     "channelURL": "https://www.youtube.com/@nbs6746"
   },
   {
+    "id": "tsb",
     "prefecture": "長野県",
     "broadcastName": "テレビ信州",
     "playlistId": "UUQfA9KJ3eT-fLk8DPqaeS1A",
     "channelURL": "https://www.youtube.com/@NEWStsb"
   },
   {
+    "id": "abn",
     "prefecture": "長野県",
     "broadcastName": "長野朝日放送",
     "playlistId": "UUXS-XXaDHDyjYcFqy7UFp4g",
     "channelURL": "https://www.youtube.com/@abn5ch"
   },
   {
+    "id": "ybs",
     "prefecture": "山梨県",
     "broadcastName": "山梨放送",
     "playlistId": "UUL3peEBSiAkEMDuxNkffbvw",
     "channelURL": "https://www.youtube.com/@YBS_4ch"
   },
   {
+    "id": "uty",
     "prefecture": "山梨県",
     "broadcastName": "テレビ山梨",
     "playlistId": "UUk2oG--VyYST4SYyQkeadjA",
     "channelURL": "https://www.youtube.com/@UTYUTY_6ch"
   },
   {
+    "id": "knb",
     "prefecture": "富山県",
     "broadcastName": "北日本放送",
     "playlistId": "UUX5d3AvqSXbnvvf12BTlgIA",
     "channelURL": "https://www.youtube.com/@knb_official"
   },
   {
+    "id": "tut",
     "prefecture": "富山県",
     "broadcastName": "チューリップテレビ",
     "playlistId": "UUk4bgav5X0rlbGefFnPcuoQ",
     "channelURL": "https://www.youtube.com/@bansenTUT"
   },
   {
+    "id": "bbt",
     "prefecture": "富山県",
     "broadcastName": "富山テレビ放送",
     "playlistId": "UUF0D1rQCibB7XNZUz0tWEtQ",
     "channelURL": "https://www.youtube.com/@news_bbt"
   },
   {
+    "id": "mro",
     "prefecture": "石川県",
     "broadcastName": "北陸放送",
     "playlistId": "UUF5te9Y8oBT7oVJNyQkhWWQ",
     "channelURL": "https://www.youtube.com/@mro_ishikawa"
   },
   {
+    "id": "ktk",
     "prefecture": "石川県",
     "broadcastName": "テレビ金沢",
     "playlistId": "UUzeRR8rMI8IkjqGx_MFlUjQ",
     "channelURL": "https://www.youtube.com/@tv_kanazawa"
   },
   {
+    "id": "hab",
     "prefecture": "石川県",
     "broadcastName": "北陸朝日放送",
     "playlistId": "UUt6LB-BvEmDm-oWbe_TO7mw",
     "channelURL": "https://www.youtube.com/@habmigochannel"
   },
   {
+    "id": "itc",
     "prefecture": "石川県",
     "broadcastName": "石川テレビ放送",
     "playlistId": "UUA5dBoYZe7dgvk4cTl5PLSg",
     "channelURL": "https://www.youtube.com/@ishikawaTV-channel"
   },
   {
+    "id": "fbc",
     "prefecture": "福井県",
     "broadcastName": "福井放送",
     "playlistId": "UUS713ZZe80p12889JyaiKCA",
     "channelURL": "https://www.youtube.com/@FBC"
   },
   {
+    "id": "ftb",
     "prefecture": "福井県",
     "broadcastName": "福井テレビジョン放送",
     "playlistId": "UUgJsBXU5ofuzI3ysVtIBvIw",
     "channelURL": "https://www.youtube.com/@fukuitv8ch"
   },
   {
+    "id": "sbs",
     "prefecture": "静岡県",
     "broadcastName": "静岡放送",
     "playlistId": "UUOLVB0iYK8ahQ0mFn-lF-8g",
     "channelURL": "https://www.youtube.com/@SBSnews6"
   },
   {
+    "id": "sut",
     "prefecture": "静岡県",
     "broadcastName": "テレビ静岡",
     "playlistId": "UUFIlFvYMWkPE6uDcjdro1UA",
     "channelURL": "https://www.youtube.com/@sut-news"
   },
   {
+    "id": "satv",
     "prefecture": "静岡県",
     "broadcastName": "静岡朝日テレビ",
     "playlistId": "UUvF5vIejmf-H_XSluaBldfg",
     "channelURL": "https://www.youtube.com/@satv_news"
   },
   {
+    "id": "sdt",
     "prefecture": "静岡県",
     "broadcastName": "静岡第一テレビ",
     "playlistId": "UUNGwxGuezr6aSAn9IYk4F1Q",
     "channelURL": "https://www.youtube.com/@daiichi-tvnews"
   },
   {
+    "id": "mtv",
     "prefecture": "三重県",
     "broadcastName": "三重テレビ放送",
     "playlistId": "UUD8zqZumr5CzsmXCMPZVA2g",
     "channelURL": "https://www.youtube.com/@Mietv_news"
   },
   {
+    "id": "bbc",
     "prefecture": "滋賀県",
     "broadcastName": "びわ湖放送",
     "playlistId": "UUbmPPH1lE7T6AwCQw0ZV8RA",
     "channelURL": "https://www.youtube.com/@BBC_biwako"
   },
   {
+    "id": "kbs",
     "prefecture": "京都府",
     "broadcastName": "京都放送",
     "playlistId": "UUGqbhE5MbFdwPjS4goqymrw",
     "channelURL": "https://www.youtube.com/@kbskyoto"
   },
   {
+    "id": "sun",
     "prefecture": "兵庫県",
     "broadcastName": "サンテレビジョン",
     "playlistId": "UUoslznRuvXIAriI5z51-DPg",
     "channelURL": "https://www.youtube.com/@SuntvCoJp_ohsun"
   },
   {
+    "id": "tvn",
     "prefecture": "奈良県",
     "broadcastName": "奈良テレビ放送",
     "playlistId": "UUcd7HqsWwm2vks3oefxEGzA",
     "channelURL": "https://www.youtube.com/@tvn_news9"
   },
   {
+    "id": "wtv",
     "prefecture": "和歌山県",
     "broadcastName": "テレビ和歌山",
     "playlistId": "UURIIrdFTB6jdToXF8KkJQFQ",
     "channelURL": "https://www.youtube.com/@telewaka5ch"
   },
   {
+    "id": "nkt",
     "prefecture": "鳥取県/島根県",
     "broadcastName": "日本海テレビジョン放送",
     "playlistId": "UUDeNzPNV3K8nNkOsMFRB-sw",
     "channelURL": "https://www.youtube.com/@nihonkai-news"
   },
   {
+    "id": "bss",
     "prefecture": "鳥取県/島根県",
     "broadcastName": "山陰放送",
     "playlistId": "UU9J9Zv8m2nsOpiGk7FITvRw",
     "channelURL": "https://www.youtube.com/@TPS6ch"
   },
   {
+    "id": "tsk",
     "prefecture": "鳥取県/島根県",
     "broadcastName": "山陰中央テレビジョン放送",
     "playlistId": "UU2IZ5vF-E699LBp7NNqQrpw",
     "channelURL": "https://www.youtube.com/@TSK_Sanin_news"
   },
   {
+    "id": "rsk",
     "prefecture": "岡山県/香川県",
     "broadcastName": "RSK山陽放送",
     "playlistId": "UUTUbmRxExnIYmoXRsRSEdBw",
     "channelURL": "https://www.youtube.com/@rsk4243"
   },
   {
+    "id": "ohk",
     "prefecture": "岡山県/香川県",
     "broadcastName": "岡山放送",
     "playlistId": "UUDveJHk8JXfw2ubmixMkogg",
     "channelURL": "https://www.youtube.com/@ohk163"
   },
   {
+    "id": "ksb",
     "prefecture": "岡山県/香川県",
     "broadcastName": "瀬戸内海放送",
     "playlistId": "UUH9jlbggZY_mRx7Q0k49TuQ",
     "channelURL": "https://www.youtube.com/@ksb5ch"
   },
   {
+    "id": "tsc",
     "prefecture": "岡山県/香川県",
     "broadcastName": "テレビせとうち",
     "playlistId": "UUAzaZfwgfjYVRGn4S60xM6Q",
     "channelURL": "https://www.youtube.com/@tsc2048"
   },
   {
+    "id": "htv",
     "prefecture": "広島県",
     "broadcastName": "広島テレビ放送",
     "playlistId": "UUyHdFYJyt4Ihwuscuk5ALJA",
     "channelURL": "https://www.youtube.com/@hiroshimatvnews"
   },
   {
+    "id": "rcc",
     "prefecture": "広島県",
     "broadcastName": "中国放送",
     "playlistId": "UUATnyu9lou_Lw43gvyoh8uA",
     "channelURL": "https://www.youtube.com/@rccnewsdig"
   },
   {
+    "id": "home",
     "prefecture": "広島県",
     "broadcastName": "広島ホームテレビ",
     "playlistId": "UURnFGOp_mjaCYEhMzsE2iHA",
     "channelURL": "https://www.youtube.com/@home-news"
   },
   {
+    "id": "tss",
     "prefecture": "広島県",
     "broadcastName": "テレビ新広島",
     "playlistId": "UU7_jFLwpm5apDF-v-pXZb4w",
     "channelURL": "https://www.youtube.com/@tss3367"
   },
   {
+    "id": "kry",
     "prefecture": "山口県",
     "broadcastName": "山口放送",
     "playlistId": "UUUY22wZDhE6MM4E9F7139nQ",
     "channelURL": "https://www.youtube.com/@KRYNewsChannel"
   },
   {
+    "id": "tys",
     "prefecture": "山口県",
     "broadcastName": "テレビ山口",
     "playlistId": "UUAlnFug89RWAIueWw82nWiA",
     "channelURL": "https://www.youtube.com/@tysNEWSDIG"
   },
   {
+    "id": "yab",
     "prefecture": "山口県",
     "broadcastName": "山口朝日放送",
     "playlistId": "UUKIglIH9_xIK0feahuKhJEQ",
     "channelURL": "https://www.youtube.com/@yab_news"
   },
   {
+    "id": "jrt",
     "prefecture": "徳島県",
     "broadcastName": "四国放送",
     "playlistId": "UUuhA-fogYs0MwglwZbnL_8A",
     "channelURL": "https://www.youtube.com/@JRT_tokushima"
   },
   {
+    "id": "rnb",
     "prefecture": "愛媛県",
     "broadcastName": "南海放送",
     "playlistId": "UU-2L3iPWxVyvvnPLplpdCHA",
     "channelURL": "https://www.youtube.com/@RNBnewsch4"
   },
   {
+    "id": "ebc",
     "prefecture": "愛媛県",
     "broadcastName": "テレビ愛媛",
     "playlistId": "UUISf7aH1HqBtTD9jPgzIfVA",
     "channelURL": "https://www.youtube.com/@EBCLiveNews%E3%83%86%E3%83%AC%E3%83%93%E6%84%9B%E5%AA%9B"
   },
   {
+    "id": "eat",
     "prefecture": "愛媛県",
     "broadcastName": "愛媛朝日テレビ",
     "playlistId": "UUXeLyiz18tOeWeeC48nFFQQ",
     "channelURL": "https://www.youtube.com/@eatnews5"
   },
   {
+    "id": "itv",
     "prefecture": "愛媛県",
     "broadcastName": "あいテレビ",
     "playlistId": "UUXwz4wdczQnOfL8RAUC8Ibg",
     "channelURL": "https://www.youtube.com/@itv6ch"
   },
   {
+    "id": "rkc",
     "prefecture": "高知県",
     "broadcastName": "高知放送",
     "playlistId": "UUI8NjCAztJIipObtK1sYueQ",
     "channelURL": "https://www.youtube.com/@rkc5325"
   },
   {
+    "id": "kutv",
     "prefecture": "高知県",
     "broadcastName": "テレビ高知",
     "playlistId": "UUoc4gX4ZhI8TMBpv8EJMnXQ",
     "channelURL": "https://www.youtube.com/@kutv"
   },
   {
+    "id": "kss",
     "prefecture": "高知県",
     "broadcastName": "高知さんさんテレビ",
     "playlistId": "UUpgGl1uKYpx5eN-gvSnbCSQ",
     "channelURL": "https://www.youtube.com/@sunsuntv"
   },
   {
+    "id": "kbc",
     "prefecture": "福岡県",
     "broadcastName": "九州朝日放送",
     "playlistId": "UUS8ZQejq2CL-nZcnRWZCA5Q",
     "channelURL": "https://www.youtube.com/@KBCnewsCH"
   },
   {
+    "id": "rkb",
     "prefecture": "福岡県",
     "broadcastName": "RKB毎日放送",
     "playlistId": "UUgrmHAblzN-QzMMgl2oNRog",
     "channelURL": "https://www.youtube.com/@rkbnews"
   },
   {
+    "id": "fbs",
     "prefecture": "福岡県",
     "broadcastName": "福岡放送",
     "playlistId": "UU3X-tn7gpipCqOdYWCmdyJQ",
     "channelURL": "https://www.youtube.com/@fbsnews5"
   },
   {
+    "id": "tnc",
     "prefecture": "福岡県",
     "broadcastName": "テレビ西日本",
     "playlistId": "UUZ0U1AoJOKVdlejhjUU1fBg",
     "channelURL": "https://www.youtube.com/@fukuokatncnews"
   },
   {
+    "id": "tvq",
     "prefecture": "福岡県",
     "broadcastName": "TVQ九州放送",
     "playlistId": "UU0O1BPRKdBRt86b9JcvxjuQ",
     "channelURL": "https://www.youtube.com/@tvqnews_fukuoka"
   },
   {
+    "id": "sts",
     "prefecture": "佐賀県",
     "broadcastName": "サガテレビ",
     "playlistId": "UUmXfKCasdSTe9B49-Es9XZA",
     "channelURL": "https://www.youtube.com/@STSsagatv"
   },
   {
+    "id": "nbc",
     "prefecture": "長崎県",
     "broadcastName": "長崎放送",
     "playlistId": "UUh0-nAqSYSYed_A4Qdz-0ww",
     "channelURL": "https://www.youtube.com/@NBCnagasaki"
   },
   {
+    "id": "nib",
     "prefecture": "長崎県",
     "broadcastName": "長崎国際テレビ",
     "playlistId": "UU5cpRf7BIMj9DKebtJxR8Ig",
     "channelURL": "https://www.youtube.com/@NIB"
   },
   {
+    "id": "ktn",
     "prefecture": "長崎県",
     "broadcastName": "テレビ長崎",
     "playlistId": "UUFVI14YKxx42CZPRyZX_g0A",
     "channelURL": "https://www.youtube.com/@KTN.nagasaki"
   },
   {
+    "id": "ncc",
     "prefecture": "長崎県",
     "broadcastName": "長崎文化放送",
     "playlistId": "UUWkqxFZQSdkR_q8kGz6p9mw",
     "channelURL": "https://www.youtube.com/@ncctvnagasaki"
   },
   {
+    "id": "rkk",
     "prefecture": "熊本県",
     "broadcastName": "熊本放送",
     "playlistId": "UUG1ApxYbWaC9xUxgHCWyR5Q",
     "channelURL": "https://www.youtube.com/@rkknews"
   },
   {
+    "id": "tku",
     "prefecture": "熊本県",
     "broadcastName": "テレビ熊本",
     "playlistId": "UU4wpY8jmg-n4W-UddQBr1Ag",
     "channelURL": "https://www.youtube.com/@TKUofficial"
   },
   {
+    "id": "kkt",
     "prefecture": "熊本県",
     "broadcastName": "くまもと県民テレビ",
     "playlistId": "UUHVgNZeav4snXQs93TyNp8g",
     "channelURL": "https://www.youtube.com/@KKT"
   },
   {
+    "id": "kab",
     "prefecture": "熊本県",
     "broadcastName": "熊本朝日放送",
     "playlistId": "UUu8GW2WcGp_9Lic2wZY_IVg",
     "channelURL": "https://www.youtube.com/@kabnews5983"
   },
   {
+    "id": "obs",
     "prefecture": "大分県",
     "broadcastName": "大分放送",
     "playlistId": "UU04SqLqLWaH01DOka8e2yEQ",
     "channelURL": "https://www.youtube.com/@obs_news"
   },
   {
+    "id": "tos",
     "prefecture": "大分県",
     "broadcastName": "テレビ大分",
     "playlistId": "UUhx_y6aLWNkifSDUt2TVAzg",
     "channelURL": "https://www.youtube.com/@tos4120"
   },
   {
+    "id": "oab",
     "prefecture": "大分県",
     "broadcastName": "大分朝日放送",
     "playlistId": "UUekmK9BsmFY_PujFeV6ryqg",
     "channelURL": "https://www.youtube.com/@oab8320"
   },
   {
+    "id": "mrt",
     "prefecture": "宮崎県",
     "broadcastName": "宮崎放送",
     "playlistId": "UUET0Zu3i8I0mwh2yDDy6vfQ",
     "channelURL": "https://www.youtube.com/@MRTmiyazaki"
   },
   {
+    "id": "umk",
     "prefecture": "宮崎県",
     "broadcastName": "テレビ宮崎",
     "playlistId": "UUJlpqOQ-FZ8d-8XKemLyK8Q",
     "channelURL": "https://www.youtube.com/@umk_news"
   },
   {
+    "id": "mbc",
     "prefecture": "鹿児島県",
     "broadcastName": "南日本放送",
     "playlistId": "UU7f4czw8TuG69HuVt_uXRtQ",
     "channelURL": "https://www.youtube.com/@KagoshimaMBC"
   },
   {
+    "id": "kyt",
     "prefecture": "鹿児島県",
     "broadcastName": "鹿児島読売テレビ",
     "playlistId": "UUqPDZgcJtyPFhJM4qx-PuKg",
     "channelURL": "https://www.youtube.com/@KagoshimaNEWS_KYT"
   },
   {
+    "id": "kts",
     "prefecture": "鹿児島県",
     "broadcastName": "鹿児島テレビ放送",
     "playlistId": "UUiyk6cY1ux2HCDycnMTksdg",
     "channelURL": "https://www.youtube.com/@KagoshimaNewsKTS"
   },
   {
+    "id": "kkb",
     "prefecture": "鹿児島県",
     "broadcastName": "鹿児島放送",
     "playlistId": "UUAhZnTMHk-TPyDzT0rt34IQ",
     "channelURL": "https://www.youtube.com/@KKB5ch"
   },
   {
+    "id": "rbc",
     "prefecture": "沖縄県",
     "broadcastName": "琉球放送",
     "playlistId": "UUl27leged0PT2kIrRtrFYKA",
     "channelURL": "https://www.youtube.com/@rbcnewslink"
   },
   {
+    "id": "otv",
     "prefecture": "沖縄県",
     "broadcastName": "沖縄テレビ放送",
     "playlistId": "UUjPVLguFrd6DTfHl2McrPjw",
     "channelURL": "https://www.youtube.com/@otv-okinawa"
   },
   {
+    "id": "qab",
     "prefecture": "沖縄県",
     "broadcastName": "琉球朝日放送",
     "playlistId": "UUmGMmudDo3qQUHA9GPOEEvA",
