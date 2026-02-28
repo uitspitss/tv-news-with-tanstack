@@ -32,7 +32,7 @@ export function VideoPlayerPanel() {
       aria-label={`${selectedBroadcast.broadcastName} の動画プレイヤー`}
       className="fixed bottom-4 right-4 z-[1100] w-[min(480px,calc(100vw-32px))] overflow-hidden rounded-lg border border-white/10 bg-[#1c1c1c] shadow-[0_8px_32px_rgba(0,0,0,0.6)]"
     >
-      <div className="flex items-center justify-between border-b border-white/10 px-6 py-2">
+      <div className="flex items-center justify-between border-b border-white/10 py-1 px-2">
         <span className="truncate text-[13px] font-semibold text-[#eaeaea]">
           {selectedBroadcast.broadcastName}
         </span>

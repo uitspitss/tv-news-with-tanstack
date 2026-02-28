@@ -71,7 +71,17 @@ function JapanMapComponent({ initialZoom = 5, initialCenter = [138, 36] }: Japan
         }
 
         .broadcast-name:hover {
-          background-color: rgba(60, 60, 200, 0.8);
+          background-color: rgba(80, 80, 220, 0.8);
+        }
+
+        .broadcast-name--active {
+          background-color: rgba(220, 50, 50, 0.85);
+          color: #fff;
+          box-shadow: 0 0 8px rgba(220, 50, 50, 0.5);
+        }
+
+        .broadcast-name--active:hover {
+          background-color: rgba(220, 50, 50, 0.95);
         }
       `}</style>
     </div>
