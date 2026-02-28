@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 interface YouTubePlayerProps {
   playlistId: string;
@@ -6,6 +6,12 @@ interface YouTubePlayerProps {
 
 export function YouTubePlayer({ playlistId }: Readonly<YouTubePlayerProps>) {
   const [loading, setLoading] = useState(true);
+  const prevPlaylistId = useRef(playlistId);
+
+  if (prevPlaylistId.current !== playlistId) {
+    prevPlaylistId.current = playlistId;
+    setLoading(true);
+  }
 
   const handleLoad = useCallback(() => {
     setLoading(false);
