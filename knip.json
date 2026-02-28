@@ -9,5 +9,5 @@
   "project": ["src/**/*.{ts,tsx}"],
   "ignore": ["src/routeTree.gen.ts", "src/components/ui/**"],
   "ignoreBinaries": ["tsc", "knip"],
-  "ignoreDependencies": ["@vitest/coverage-v8"]
+  "ignoreDependencies": ["@vitest/coverage-v8", "@types/youtube"]
 }

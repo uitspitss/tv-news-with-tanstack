@@ -8,31 +8,8 @@ interface YouTubePlayerProps {
 
 declare global {
   interface Window {
+    YT: { Player: new (el: HTMLElement, options?: YT.PlayerOptions) => YT.Player };
     onYouTubeIframeAPIReady: (() => void) | undefined;
-    YT: {
-      Player: new (el: HTMLElement, options: YT.PlayerOptions) => YT.Player;
-    };
-  }
-  namespace YT {
-    interface PlayerOptions {
-      width?: string | number;
-      height?: string | number;
-      playerVars?: {
-        listType?: string;
-        list?: string;
-        autoplay?: number;
-      };
-      events?: {
-        onReady?: (event: PlayerEvent) => void;
-      };
-    }
-    interface Player {
-      destroy(): void;
-      setVolume(volume: number): void;
-    }
-    interface PlayerEvent {
-      target: Player;
-    }
   }
 }
 

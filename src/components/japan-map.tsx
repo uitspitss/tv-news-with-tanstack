@@ -78,10 +78,16 @@ function JapanMapComponent({ initialZoom = 5, initialCenter = [138, 36] }: Japan
           background-color: rgba(220, 50, 50, 0.85);
           color: #fff;
           box-shadow: 0 0 8px rgba(220, 50, 50, 0.5);
+          animation: active-pulse 2s ease-in-out infinite;
         }
 
         .broadcast-name--active:hover {
           background-color: rgba(220, 50, 50, 0.95);
+        }
+
+        @keyframes active-pulse {
+          0%, 100% { box-shadow: 0 0 8px rgba(220, 50, 50, 0.5); }
+          50% { box-shadow: 0 0 14px rgba(220, 50, 50, 0.8); }
         }
       `}</style>
     </div>
