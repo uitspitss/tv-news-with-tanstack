@@ -1,11 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-
-interface Broadcast {
-  prefecture: string;
-  broadcastName: string;
-  playlistURL: string;
-  playlistId: string;
-}
+import type { Broadcast } from "@/types/broadcast";
 
 interface UseBroadcastsReturn {
   data: Broadcast[] | null;

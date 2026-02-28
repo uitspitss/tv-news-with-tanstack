@@ -1,9 +1,11 @@
 import type { DivIcon } from "leaflet";
 import { divIcon } from "leaflet";
-import { memo, useMemo } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { Marker } from "react-leaflet";
+import { useVideoPlayer } from "@/contexts/video-player-context";
 import { useBroadcasts } from "@/hooks/useBroadcasts";
 import { usePrefectureOffices } from "@/hooks/usePrefectureOffices";
+import type { Broadcast } from "@/types/broadcast";
 
 function escapeHtml(str: string): string {
   const escapeMap: Record<string, string> = {
@@ -21,11 +23,14 @@ function getPrimaryPrefecture(prefecture: string): string {
   return prefecture.split("/")[0];
 }
 
-function createBroadcastLabelIcon(broadcastNames: string[]) {
+function createBroadcastLabelIcon(broadcasts: Broadcast[]) {
   const LINE_HEIGHT = 17;
-  const height = Math.max(broadcastNames.length * LINE_HEIGHT, LINE_HEIGHT);
-  const linesHtml = broadcastNames
-    .map((name) => `<div class="broadcast-name">${escapeHtml(name)}</div>`)
+  const height = Math.max(broadcasts.length * LINE_HEIGHT, LINE_HEIGHT);
+  const linesHtml = broadcasts
+    .map(
+      (b) =>
+        `<div class="broadcast-name" data-broadcast-name="${escapeHtml(b.broadcastName)}">${escapeHtml(b.broadcastName)}</div>`,
+    )
     .join("");
 
   return divIcon({
@@ -47,16 +52,17 @@ function PrefectureOfficeMarkersComponent() {
     isLoading: broadcastsLoading,
     error: broadcastsError,
   } = useBroadcasts();
+  const { openPlayer } = useVideoPlayer();
 
   const broadcastsByPrefecture = useMemo(() => {
-    if (!broadcastData) return new Map<string, string[]>();
+    if (!broadcastData) return new Map<string, Broadcast[]>();
 
     return broadcastData.reduce((acc, broadcast) => {
       const primary = getPrimaryPrefecture(broadcast.prefecture);
       const existing = acc.get(primary) ?? [];
-      acc.set(primary, [...existing, broadcast.broadcastName]);
+      acc.set(primary, [...existing, broadcast]);
       return acc;
-    }, new Map<string, string[]>());
+    }, new Map<string, Broadcast[]>());
   }, [broadcastData]);
 
   // アイコンをメモ化して不要なMarker再描画を防止
@@ -73,6 +79,24 @@ function PrefectureOfficeMarkersComponent() {
     return icons;
   }, [officeData, broadcastsByPrefecture]);
 
+  const handleMarkerClick = useCallback(
+    (e: L.LeafletMouseEvent, prefectureName: string) => {
+      const target = e.originalEvent.target as HTMLElement;
+      const nameEl = target.closest<HTMLElement>("[data-broadcast-name]");
+      if (!nameEl) return;
+
+      const broadcastName = nameEl.dataset.broadcastName;
+      if (!broadcastName) return;
+
+      const broadcasts = broadcastsByPrefecture.get(prefectureName) ?? [];
+      const broadcast = broadcasts.find((b) => b.broadcastName === broadcastName);
+      if (broadcast) {
+        openPlayer(broadcast);
+      }
+    },
+    [broadcastsByPrefecture, openPlayer],
+  );
+
   if (officesLoading || broadcastsLoading || officesError || broadcastsError || !officeData) {
     return null;
   }
@@ -83,7 +107,16 @@ function PrefectureOfficeMarkersComponent() {
         const markerIcon = markerIcons.get(office.code);
         if (!markerIcon) return null;
 
-        return <Marker key={office.code} position={[office.lat, office.lon]} icon={markerIcon} />;
+        return (
+          <Marker
+            key={office.code}
+            position={[office.lat, office.lon]}
+            icon={markerIcon}
+            eventHandlers={{
+              click: (e) => handleMarkerClick(e, office.name),
+            }}
+          />
+        );
       })}
     </>
   );

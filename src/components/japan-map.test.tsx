@@ -5,7 +5,7 @@
 
 import { render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { JapanMap } from "./JapanMap";
+import { JapanMap } from "./japan-map";
 
 // Leafletのモック
 vi.mock("react-leaflet", () => ({
@@ -21,7 +21,7 @@ vi.mock("react-leaflet", () => ({
 }));
 
 // PrefectureOfficeMarkersのモック
-vi.mock("@/components/PrefectureOfficeMarkers", () => ({
+vi.mock("@/components/prefecture-office-markers", () => ({
   PrefectureOfficeMarkers: () => <div data-testid="prefecture-office-markers" />,
 }));
 
