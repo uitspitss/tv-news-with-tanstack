@@ -25,6 +25,23 @@ vi.mock("@/components/prefecture-office-markers", () => ({
   PrefectureOfficeMarkers: () => <div data-testid="prefecture-office-markers" />,
 }));
 
+// VideoPlayerPanelのモック
+vi.mock("@/components/video-player-panel", () => ({
+  VideoPlayerPanel: () => <div data-testid="video-player-panel" />,
+}));
+
+// VideoPlayerProviderのモック
+vi.mock("@/contexts/video-player-context", () => ({
+  VideoPlayerProvider: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+  useVideoPlayer: () => ({
+    selectedBroadcast: null,
+    selectedIndex: undefined,
+    openPlayer: vi.fn(),
+    closePlayer: vi.fn(),
+    updateIndex: vi.fn(),
+  }),
+}));
+
 describe("JapanMap", () => {
   it("地図コンテナをレンダリングする", async () => {
     render(<JapanMap />);
