@@ -47,11 +47,12 @@ export function VideoPlayerPanel() {
 
   const prevBroadcastIdRef = useRef<string | null>(null);
   useEffect(() => {
-    if (selectedBroadcast && prevBroadcastIdRef.current !== selectedBroadcast.id) {
+    if (selectedBroadcast) {
+      if (prevBroadcastIdRef.current === null) {
+        setBounds(computeInitialBounds());
+      }
       prevBroadcastIdRef.current = selectedBroadcast.id;
-      setBounds(computeInitialBounds());
-    }
-    if (!selectedBroadcast) {
+    } else {
       prevBroadcastIdRef.current = null;
     }
   }, [selectedBroadcast]);
