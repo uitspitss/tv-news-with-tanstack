@@ -23,14 +23,15 @@ function getPrimaryPrefecture(prefecture: string): string {
   return prefecture.split("/")[0];
 }
 
-function createBroadcastLabelIcon(broadcasts: Broadcast[]) {
+function createBroadcastLabelIcon(broadcasts: Broadcast[], activeBroadcastName?: string) {
   const LINE_HEIGHT = 17;
   const height = Math.max(broadcasts.length * LINE_HEIGHT, LINE_HEIGHT);
   const linesHtml = broadcasts
-    .map(
-      (b) =>
-        `<div class="broadcast-name" data-broadcast-name="${escapeHtml(b.broadcastName)}">${escapeHtml(b.broadcastName)}</div>`,
-    )
+    .map((b) => {
+      const isActive = activeBroadcastName === b.broadcastName;
+      const cls = isActive ? "broadcast-name broadcast-name--active" : "broadcast-name";
+      return `<div class="${cls}" data-broadcast-name="${escapeHtml(b.broadcastName)}">${escapeHtml(b.broadcastName)}</div>`;
+    })
     .join("");
 
   return divIcon({
@@ -52,7 +53,7 @@ function PrefectureOfficeMarkersComponent() {
     isLoading: broadcastsLoading,
     error: broadcastsError,
   } = useBroadcasts();
-  const { openPlayer } = useVideoPlayer();
+  const { openPlayer, selectedBroadcast } = useVideoPlayer();
 
   const broadcastsByPrefecture = useMemo(() => {
     if (!broadcastData) return new Map<string, Broadcast[]>();
@@ -73,11 +74,11 @@ function PrefectureOfficeMarkersComponent() {
     for (const office of officeData) {
       const broadcasts = broadcastsByPrefecture.get(office.name) ?? [];
       if (broadcasts.length > 0) {
-        icons.set(office.code, createBroadcastLabelIcon(broadcasts));
+        icons.set(office.code, createBroadcastLabelIcon(broadcasts, selectedBroadcast?.broadcastName));
       }
     }
     return icons;
-  }, [officeData, broadcastsByPrefecture]);
+  }, [officeData, broadcastsByPrefecture, selectedBroadcast]);
 
   const handleMarkerClick = useCallback(
     (e: L.LeafletMouseEvent, prefectureName: string) => {

@@ -34,29 +34,8 @@ export function Home() {
 
   return (
     <>
-      <header
-        className="border-b will-change-transform"
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          width: "100vw",
-          zIndex: 1000,
-          height: "40px",
-          display: "flex",
-          alignItems: "center",
-          backgroundColor: "#1c1c1c",
-          color: "#eaeaea",
-          border: "none",
-        }}
-      >
-        <h1
-          // className="text- font-bold leading-none"
-          style={{ textAlign: "center", width: "100%", margin: 0, padding: 0 }}
-        >
-          tv-news
-        </h1>
+      <header className="fixed top-0 left-0 right-0 w-screen z-1000 h-10 flex items-center bg-[#1c1c1c] text-[#eaeaea] border-none will-change-transform">
+        <h1 className="text-center w-full m-0 p-0 text-xl font-bold">tv-news</h1>
       </header>
       <main className="h-screen w-screen m-0 p-0">
         <div className="h-full w-full pt-8">
