@@ -1,7 +1,9 @@
 /// <reference types="vite/client" />
 
+import { TanStackDevtools } from "@tanstack/react-devtools";
 import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import "@/globals.css";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -25,6 +27,7 @@ function RootComponent() {
   return (
     <RootDocument>
       <Outlet />
+      <TanStackDevtools />
     </RootDocument>
   );
 }

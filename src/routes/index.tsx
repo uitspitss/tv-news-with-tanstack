@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { type ComponentType, useEffect, useState } from "react";
-import type { JapanMapProps } from "@/components/JapanMap";
-import { MapErrorFallback } from "@/components/MapErrorFallback";
-import { MapLoadingIndicator } from "@/components/MapLoadingIndicator";
+import type { JapanMapProps } from "@/components/japan-map";
+import { MapErrorFallback } from "@/components/map-error-fallback";
+import { MapLoadingIndicator } from "@/components/map-loading-indicator";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -22,7 +22,7 @@ export function Home() {
     }, 200);
 
     // クライアントサイドでのみ地図コンポーネントを動的インポート（SSR回避）
-    import("@/components/JapanMap").then((mod) => {
+    import("@/components/japan-map").then((mod) => {
       setMapComponent(() => mod.JapanMap);
       setShowLoading(false); // ローディング完了
     });
@@ -34,11 +34,11 @@ export function Home() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 w-screen z-[1000] bg-background border-b h-6 flex items-center will-change-transform">
-        <h1 className="text-sm font-bold text-center w-full leading-none m-0 p-0">tv-news</h1>
+      <header className="fixed top-0 left-0 right-0 w-screen z-1000 h-10 flex items-center bg-[#1c1c1c] text-[#eaeaea] border-none will-change-transform">
+        <h1 className="text-center w-full m-0 p-0 text-xl font-bold">tv-news</h1>
       </header>
       <main className="h-screen w-screen m-0 p-0">
-        <div className="h-full w-full pt-6">
+        <div className="h-full w-full pt-8">
           {!MapComponent && showLoading && <MapLoadingIndicator />}
           {MapComponent && <MapComponent />}
         </div>
