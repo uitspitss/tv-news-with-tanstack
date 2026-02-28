@@ -5,7 +5,7 @@
 
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { MapLoadingIndicator } from "./MapLoadingIndicator";
+import { MapLoadingIndicator } from "./map-loading-indicator";
 
 describe("MapLoadingIndicator", () => {
   it("ローディングメッセージを表示する", () => {
