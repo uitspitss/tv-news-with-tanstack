@@ -74,7 +74,10 @@ function PrefectureOfficeMarkersComponent() {
     for (const office of officeData) {
       const broadcasts = broadcastsByPrefecture.get(office.name) ?? [];
       if (broadcasts.length > 0) {
-        icons.set(office.code, createBroadcastLabelIcon(broadcasts, selectedBroadcast?.broadcastName));
+        icons.set(
+          office.code,
+          createBroadcastLabelIcon(broadcasts, selectedBroadcast?.broadcastName),
+        );
       }
     }
     return icons;
