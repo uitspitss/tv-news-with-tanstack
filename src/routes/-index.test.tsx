@@ -35,7 +35,7 @@ describe("Index Page", () => {
 
       const header = screen.getByRole("banner");
       // z-indexクラスが設定されていることを確認（Leafletより高い値）
-      expect(header).toHaveClass("z-[1000]");
+      expect(header).toHaveClass("z-1000");
     });
   });
 });
