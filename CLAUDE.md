@@ -162,10 +162,6 @@ bun dev
   - HMR（Hot Module Replacement）が高速
   - 軽量で快適な開発体験
 
-### Basic認証について
-
-開発環境では Basic 認証は無効化されています。本番環境では環境変数 `BASIC_AUTH_USER` と `BASIC_AUTH_PASSWORD` を設定することで有効になります。
-
 ### package.json のスクリプト
 
 ```json
