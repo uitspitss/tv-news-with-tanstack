@@ -1,29 +1,62 @@
+import { useNavigate, useSearch } from "@tanstack/react-router";
 import type { ReactNode } from "react";
-import { createContext, useCallback, useContext, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useMemo } from "react";
+import { useBroadcasts } from "@/hooks/useBroadcasts";
 import type { Broadcast } from "@/types/broadcast";
 
 interface VideoPlayerContextValue {
   selectedBroadcast: Broadcast | null;
-  openPlayer: (broadcast: Broadcast) => void;
+  selectedIndex: number | undefined;
+  openPlayer: (broadcast: Broadcast, index?: number) => void;
   closePlayer: () => void;
+  updateIndex: (index: number) => void;
 }
 
 const VideoPlayerContext = createContext<VideoPlayerContextValue | null>(null);
 
 export function VideoPlayerProvider({ children }: { children: ReactNode }) {
-  const [selectedBroadcast, setSelectedBroadcast] = useState<Broadcast | null>(null);
+  const { broadcast: broadcastId, index } = useSearch({ from: "/" });
+  const navigate = useNavigate();
+  const { data: broadcasts } = useBroadcasts();
 
-  const openPlayer = useCallback((broadcast: Broadcast) => {
-    setSelectedBroadcast(broadcast);
-  }, []);
+  const selectedBroadcast = useMemo(
+    () =>
+      broadcastId && broadcasts ? (broadcasts.find((b) => b.id === broadcastId) ?? null) : null,
+    [broadcasts, broadcastId],
+  );
+
+  const openPlayer = useCallback(
+    (broadcast: Broadcast, playerIndex?: number) => {
+      const isSameBroadcast = broadcast.id === broadcastId;
+      navigate({
+        to: "/",
+        search: isSameBroadcast
+          ? { broadcast: broadcast.id, index: playerIndex ?? index }
+          : { broadcast: broadcast.id, index: playerIndex },
+      });
+    },
+    [navigate, broadcastId, index],
+  );
 
   const closePlayer = useCallback(() => {
-    setSelectedBroadcast(null);
-  }, []);
+    navigate({ to: "/", search: {} });
+  }, [navigate]);
+
+  const updateIndex = useCallback(
+    (newIndex: number) => {
+      if (!broadcastId) return;
+      navigate({
+        to: "/",
+        search: { broadcast: broadcastId, index: newIndex },
+        replace: true,
+      });
+    },
+    [navigate, broadcastId],
+  );
 
   const value = useMemo(
-    () => ({ selectedBroadcast, openPlayer, closePlayer }),
-    [selectedBroadcast, openPlayer, closePlayer],
+    () => ({ selectedBroadcast, selectedIndex: index, openPlayer, closePlayer, updateIndex }),
+    [selectedBroadcast, index, openPlayer, closePlayer, updateIndex],
   );
 
   return <VideoPlayerContext.Provider value={value}>{children}</VideoPlayerContext.Provider>;
