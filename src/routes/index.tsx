@@ -4,7 +4,25 @@ import type { JapanMapProps } from "@/components/japan-map";
 import { MapErrorFallback } from "@/components/map-error-fallback";
 import { MapLoadingIndicator } from "@/components/map-loading-indicator";
 
+export interface HomeSearchParams {
+  broadcast?: string;
+  index?: number;
+}
+
 export const Route = createFileRoute("/")({
+  validateSearch: (search: Record<string, unknown>): HomeSearchParams => {
+    const broadcast =
+      typeof search.broadcast === "string" && search.broadcast.length > 0
+        ? search.broadcast
+        : undefined;
+    const rawIndex =
+      typeof search.index === "string" || typeof search.index === "number"
+        ? Number(search.index)
+        : undefined;
+    const index =
+      rawIndex !== undefined && !Number.isNaN(rawIndex) && rawIndex >= 0 ? rawIndex : undefined;
+    return { broadcast, index };
+  },
   component: Home,
   errorComponent: ({ error, reset }) => <MapErrorFallback error={error as Error} onRetry={reset} />,
 });
