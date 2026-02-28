@@ -3,7 +3,7 @@ import { YouTubePlayer } from "@/components/youtube-player";
 import { useVideoPlayer } from "@/contexts/video-player-context";
 
 export function VideoPlayerPanel() {
-  const { selectedBroadcast, closePlayer } = useVideoPlayer();
+  const { selectedBroadcast, selectedIndex, closePlayer, updateIndex } = useVideoPlayer();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -63,7 +63,11 @@ export function VideoPlayerPanel() {
         </button>
       </div>
       <div className="aspect-4/3">
-        <YouTubePlayer playlistId={selectedBroadcast.playlistId} />
+        <YouTubePlayer
+          playlistId={selectedBroadcast.playlistId}
+          index={selectedIndex}
+          onIndexChange={updateIndex}
+        />
       </div>
     </div>
   );
