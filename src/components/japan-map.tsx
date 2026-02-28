@@ -1,8 +1,8 @@
 import { memo, useEffect, useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
-import { VideoPlayerProvider } from "@/contexts/video-player-context";
 import { PrefectureOfficeMarkers } from "@/components/prefecture-office-markers";
 import { VideoPlayerPanel } from "@/components/video-player-panel";
+import { VideoPlayerProvider } from "@/contexts/video-player-context";
 import "leaflet/dist/leaflet.css";
 
 export interface JapanMapProps {
