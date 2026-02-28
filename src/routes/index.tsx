@@ -35,7 +35,7 @@ export function Home() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 w-screen z-1000 h-10 flex items-center bg-[#1c1c1c] text-[#eaeaea] border-none will-change-transform">
-        <h1 className="text-center w-full m-0 p-0 text-xl font-bold">tv-news</h1>
+        <h1 className="text-center w-full m-0 p-0 text-xl font-bold">Japanese Local TV NEWS</h1>
       </header>
       <main className="h-screen w-screen m-0 p-0">
         <div className="h-full w-full pt-8">
