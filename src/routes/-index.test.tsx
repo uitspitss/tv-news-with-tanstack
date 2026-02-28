@@ -9,10 +9,10 @@ import { Home } from "./index";
 
 describe("Index Page", () => {
   describe("User Story 2: Application Title", () => {
-    it("ページ上部にアプリケーション名「tv-news」を表示する", () => {
+    it("ページ上部にアプリケーション名「Japanese Local TV NEWS」を表示する", () => {
       render(<Home />);
 
-      const title = screen.getByRole("heading", { name: /tv-news/i });
+      const title = screen.getByRole("heading", { name: /Japanese Local TV NEWS/i });
       expect(title).toBeInTheDocument();
     });
 
@@ -20,7 +20,7 @@ describe("Index Page", () => {
       render(<Home />);
 
       const title = screen.getByRole("heading", { level: 1 });
-      expect(title).toHaveTextContent("tv-news");
+      expect(title).toHaveTextContent("Japanese Local TV NEWS");
     });
 
     it("タイトルがページの上部に固定配置される", () => {
