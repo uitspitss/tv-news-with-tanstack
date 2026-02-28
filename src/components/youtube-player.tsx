@@ -79,6 +79,10 @@ export function YouTubePlayer({ playlistId, index, onIndexChange }: Readonly<You
       events: {
         onReady: (event: YT.PlayerEvent) => {
           event.target.setVolume(DEFAULT_VOLUME);
+          if (targetIndex != null) {
+            skipNextIndexSyncRef.current = true;
+            event.target.playVideoAt(targetIndex);
+          }
           setLoading(false);
         },
         onStateChange: (event: YT.OnStateChangeEvent) => {
