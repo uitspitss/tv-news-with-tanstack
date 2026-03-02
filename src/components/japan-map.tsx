@@ -1,5 +1,6 @@
 import { memo, useEffect, useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
+import { BroadcastFontSizeController } from "@/components/broadcast-font-size-controller";
 import { PrefectureOfficeMarkers } from "@/components/prefecture-office-markers";
 import { VideoPlayerPanel } from "@/components/video-player-panel";
 import { VideoPlayerProvider } from "@/contexts/video-player-context";
@@ -38,6 +39,7 @@ function JapanMapComponent({ initialZoom = 5, initialCenter = [138, 36] }: Japan
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
             url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
           />
+          <BroadcastFontSizeController />
           <PrefectureOfficeMarkers />
         </MapContainer>
         <VideoPlayerPanel />
@@ -57,9 +59,9 @@ function JapanMapComponent({ initialZoom = 5, initialCenter = [138, 36] }: Japan
         }
 
         .broadcast-name {
-          font-size: 11px;
+          font-size: var(--broadcast-font-size, 9px);
           font-weight: 600;
-          line-height: 16px;
+          line-height: var(--broadcast-line-height, 13px);
           color: #ffffff;
           background-color: rgba(0, 0, 0, 0.65);
           padding: 0 3px;
