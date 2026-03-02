@@ -20,6 +20,11 @@ vi.mock("react-leaflet", () => ({
   useMapEvents: () => null,
 }));
 
+// BroadcastFontSizeControllerのモック
+vi.mock("@/components/broadcast-font-size-controller", () => ({
+  BroadcastFontSizeController: () => null,
+}));
+
 // PrefectureOfficeMarkersのモック
 vi.mock("@/components/prefecture-office-markers", () => ({
   PrefectureOfficeMarkers: () => <div data-testid="prefecture-office-markers" />,
