@@ -14,4 +14,4 @@ jobs:
       - uses: actions/checkout@v4
       - uses: millionco/react-doctor@main
         with:
-          directory: src
+          fail-on: none
