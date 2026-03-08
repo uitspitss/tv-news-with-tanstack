@@ -9,3 +9,5 @@ pre-commit:
         fi
     knip:
       run: bun run knip
+    typecheck:
+      run: bun run type-check

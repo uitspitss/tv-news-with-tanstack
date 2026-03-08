@@ -32,3 +32,9 @@ jobs:
 
       - name: Run tests
         run: bun run test --run
+
+      - name: Build
+        run: bun run build
+
+      - name: Check unused dependencies
+        run: bun run knip
