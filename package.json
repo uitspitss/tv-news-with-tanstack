@@ -19,7 +19,7 @@
     "lint": "biome lint .",
     "check": "biome check --write .",
     "ci": "biome ci .",
-    "knip": "knip",
+    "knip": "bunx --bun knip",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
