@@ -19,6 +19,13 @@ export const Route = createRootRoute({
         title: "Japanese Local TV NEWS",
       },
     ],
+    scripts: [
+      {
+        src: "https://cloud.umami.is/script.js",
+        defer: true,
+        "data-website-id": "8b499640-0fd6-43d8-8a57-7c0ca3675367",
+      },
+    ],
   }),
   component: RootComponent,
 });
