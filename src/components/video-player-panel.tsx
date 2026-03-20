@@ -120,24 +120,22 @@ export function VideoPlayerPanel() {
       onResizeStop={handleResizeStop}
       bounds="window"
       style={{ zIndex: 1100 }}
-      className="overflow-hidden rounded-lg border border-white/10 bg-[#1c1c1c] shadow-[0_8px_32px_rgba(0,0,0,0.6)]"
+      className="video-player-panel"
       role="dialog"
       aria-label={`${selectedBroadcast.broadcastName} の動画プレイヤー`}
     >
-      <div className="drag-handle flex cursor-grab items-center justify-between border-b border-white/10 py-1 px-2 select-none active:cursor-grabbing">
-        <div className="flex min-w-0 items-center gap-1.5">
-          <span className="truncate text-[13px] font-semibold text-[#eaeaea]">
-            {selectedBroadcast.broadcastName}
-          </span>
+      <div className="drag-handle video-player-header">
+        <div className="flex min-w-0 items-center gap-2">
+          <span className="video-player-title">{selectedBroadcast.broadcastName}</span>
           <a
             href={selectedBroadcast.channelURL}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${selectedBroadcast.broadcastName} のYouTubeチャンネルを開く`}
-            className="shrink-0 text-[#eaeaea]/60 transition-colors hover:text-[#ff0000]"
+            className="youtube-link"
             onMouseDown={(e) => e.stopPropagation()}
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.55 9.38.55 9.38.55s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.54 15.51V8.49L15.82 12l-6.28 3.51z" />
             </svg>
             <span className="sr-only">
@@ -151,9 +149,20 @@ export function VideoPlayerPanel() {
           type="button"
           aria-label="動画プレイヤーを閉じる"
           onMouseDown={(e) => e.stopPropagation()}
-          className="ml-2 shrink-0 cursor-pointer border-none bg-transparent p-1 text-base leading-none text-[#eaeaea]/60 transition-colors hover:text-[#eaeaea]"
+          className="video-player-close"
         >
-          ✕
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            aria-hidden="true"
+          >
+            <path d="M2 2l8 8M10 2l-8 8" />
+          </svg>
         </button>
       </div>
       <div
