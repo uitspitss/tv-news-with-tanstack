@@ -4,10 +4,14 @@ import viteReact from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import tsConfigPaths from "vite-tsconfig-paths";
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   server: {
     port: 3000,
   },
+  resolve:
+    mode === "production"
+      ? { alias: { "react-scan": "/dev/null" } }
+      : undefined,
   plugins: [
     devtools(),
     tsConfigPaths(),
@@ -24,4 +28,4 @@ export default defineConfig({
     globals: true,
     setupFiles: "./src/test/setup.ts",
   },
-});
+}));
