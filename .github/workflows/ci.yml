@@ -6,35 +6,14 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Install mise
-        run: |
-          curl https://mise.run | sh
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
-
-      - name: Install tools
-        run: |
-          mise install
-          echo "$HOME/.local/share/mise/shims" >> $GITHUB_PATH
-
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
-
-      - name: Lint and format check
-        run: bun run ci
-
-      - name: Type check
-        run: bun run type-check
-
-      - name: Run tests
-        run: bun run test --run
-
-      - name: Build
-        run: bun run build
-
-      - name: Check unused dependencies
-        run: bun run knip
+      - uses: jdx/mise-action@v2
+      - run: bun install --frozen-lockfile
+      - run: bun run ci
+      - run: bun run type-check
+      - run: bun run test --run
+      - run: bun run build
+      - run: bun run knip
