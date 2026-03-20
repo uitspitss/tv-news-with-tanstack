@@ -134,8 +134,11 @@ export function YouTubePlayer({ playlistId, index, onIndexChange }: Readonly<You
   return (
     <div className="relative h-full w-full">
       {loading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-[#1c1c1c]">
-          <div className="h-6 w-6 animate-spin rounded-full border-2 border-white/20 border-t-white/80" />
+        <div
+          className="absolute inset-0 flex items-center justify-center"
+          style={{ background: "var(--surface-glass)" }}
+        >
+          <div className="loading-pulse" style={{ width: 28, height: 28 }} />
         </div>
       )}
       <div ref={containerRef} className="h-full w-full" />

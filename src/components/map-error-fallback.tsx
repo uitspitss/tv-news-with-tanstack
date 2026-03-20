@@ -1,20 +1,6 @@
-/**
- * MapErrorFallbackコンポーネント
- * Feature: 001-add-japan-map / User Story 1
- *
- * 地図データの読み込みエラー時に表示されるエラーUI
- */
-
-import { AlertCircle } from "lucide-react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
-
 interface MapErrorFallbackProps {
-  /** エラーオブジェクト */
   error: Error;
-  /** 再試行ハンドラー */
   onRetry?: () => void;
-  /** エラーの詳細を表示するか（デフォルト: 開発環境のみ） */
   showDetails?: boolean;
 }
 
@@ -24,34 +10,52 @@ export function MapErrorFallback({
   showDetails = import.meta.env.DEV,
 }: MapErrorFallbackProps) {
   return (
-    <div className="flex h-screen w-full items-center justify-center p-8">
-      <div className="w-full max-w-2xl">
-        <Alert variant="destructive" role="alert">
-          <AlertCircle className="h-4 w-4" />
-          <AlertTitle>地図データの読み込みに失敗しました</AlertTitle>
-          <AlertDescription className="mt-2 space-y-3">
-            <p>
-              申し訳ございません。地図データを読み込めませんでした。ネットワーク接続を確認して、再度お試しください。
-            </p>
+    <div className="error-container">
+      <div className="error-card" role="alert">
+        <svg
+          className="error-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="8" x2="12" y2="12" />
+          <line x1="12" y1="16" x2="12.01" y2="16" />
+        </svg>
 
-            {showDetails && (
-              <details className="mt-2">
-                <summary className="cursor-pointer text-sm font-medium">エラーの詳細</summary>
-                <pre className="mt-2 overflow-auto rounded bg-muted p-2 text-xs">
-                  {error.message}
-                </pre>
-              </details>
-            )}
+        <h2 className="error-title">地図データの読み込みに失敗しました</h2>
+        <p className="error-message">ネットワーク接続を確認して、再度お試しください。</p>
 
-            {onRetry && (
-              <div className="mt-4">
-                <Button onClick={onRetry} variant="outline" size="sm">
-                  再試行
-                </Button>
-              </div>
-            )}
-          </AlertDescription>
-        </Alert>
+        {showDetails && (
+          <details className="error-details">
+            <summary>エラーの詳細</summary>
+            <pre>{error.message}</pre>
+          </details>
+        )}
+
+        {onRetry && (
+          <button onClick={onRetry} type="button" className="error-retry-btn">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <polyline points="23 4 23 10 17 10" />
+              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+            </svg>
+            再試行
+          </button>
+        )}
       </div>
     </div>
   );
