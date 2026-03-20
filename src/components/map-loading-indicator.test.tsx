@@ -10,19 +10,17 @@ import { MapLoadingIndicator } from "./map-loading-indicator";
 describe("MapLoadingIndicator", () => {
   it("ローディングメッセージを表示する", () => {
     render(<MapLoadingIndicator />);
-    expect(screen.getByText(/地図を読み込んでいます/i)).toBeInTheDocument();
+    expect(screen.getByText(/loading map/i)).toBeInTheDocument();
   });
 
-  it("Skeletonコンポーネントを表示する", () => {
+  it("ローディングパルスアニメーションを表示する", () => {
     const { container } = render(<MapLoadingIndicator />);
-    // Skeletonコンポーネントには特定のクラスが付与されている
-    const skeleton = container.querySelector('[data-testid="map-skeleton"]');
-    expect(skeleton).toBeInTheDocument();
+    const pulse = container.querySelector(".loading-pulse");
+    expect(pulse).toBeInTheDocument();
   });
 
   it("ローディング状態を視覚的に示す要素がある", () => {
     const { container } = render(<MapLoadingIndicator />);
-    // ローディングインジケーターのコンテナ
     const loadingContainer = container.querySelector('[role="status"]');
     expect(loadingContainer).toBeInTheDocument();
   });

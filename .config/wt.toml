@@ -1,0 +1,2 @@
+[hooks.post_create]
+run = ["ni"]

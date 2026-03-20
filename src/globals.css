@@ -4,74 +4,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  html,
-  body {
-    margin: 0;
-    padding: 0;
-    @apply bg-background text-foreground;
-  }
-}
+/* ========================================
+   Broadcast Noir — Design System
+   Japanese Local TV NEWS
+   ======================================== */
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -79,8 +15,6 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -99,88 +33,40 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
+  --radius: 0.375rem;
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* Broadcast Noir — Dark-first palette */
+  --background: oklch(0.11 0.005 270);
+  --foreground: oklch(0.92 0.005 270);
+  --card: oklch(0.14 0.005 270);
+  --card-foreground: oklch(0.92 0.005 270);
+  --popover: oklch(0.14 0.005 270);
+  --popover-foreground: oklch(0.92 0.005 270);
+  --primary: oklch(0.62 0.22 15);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.18 0.005 270);
+  --secondary-foreground: oklch(0.85 0.005 270);
+  --muted: oklch(0.18 0.005 270);
+  --muted-foreground: oklch(0.55 0.01 270);
+  --accent: oklch(0.78 0.15 195);
+  --accent-foreground: oklch(0.12 0.005 270);
+  --destructive: oklch(0.62 0.22 15);
+  --border: oklch(1 0 0 / 6%);
+  --input: oklch(1 0 0 / 8%);
+  --ring: oklch(0.62 0.22 15);
+
+  /* Broadcast accent tokens */
+  --broadcast-red: #e8364f;
+  --broadcast-red-soft: rgba(232, 54, 79, 0.15);
+  --broadcast-red-glow: rgba(232, 54, 79, 0.4);
+  --broadcast-cyan: #3dd8e8;
+  --broadcast-cyan-soft: rgba(61, 216, 232, 0.12);
+  --broadcast-cyan-glow: rgba(61, 216, 232, 0.35);
+  --surface-glass: rgba(14, 14, 20, 0.82);
+  --surface-glass-border: rgba(255, 255, 255, 0.08);
 }
 
 @layer base {
@@ -191,6 +77,516 @@
   body {
     margin: 0;
     padding: 0;
+    font-family: "M PLUS 1", "Noto Sans JP", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     @apply bg-background text-foreground;
+  }
+}
+
+/* ========================================
+   Noise Texture Overlay
+   ======================================== */
+.noise-overlay::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ========================================
+   Header — Broadcast Ticker Bar
+   ======================================== */
+.broadcast-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-glass);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border-bottom: 1px solid var(--surface-glass-border);
+  will-change: transform;
+}
+
+.broadcast-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--broadcast-red) 15%,
+    var(--broadcast-red) 85%,
+    transparent 100%
+  );
+}
+
+.broadcast-title {
+  font-family: "M PLUS 1", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(228, 228, 236, 0.9);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.broadcast-title::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--broadcast-red);
+  box-shadow: 0 0 8px var(--broadcast-red-glow);
+  animation: on-air-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes on-air-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 8px var(--broadcast-red-glow);
+  }
+  50% {
+    opacity: 0.4;
+    box-shadow: 0 0 4px var(--broadcast-red-glow);
+  }
+}
+
+/* ========================================
+   Map — Broadcast Label Markers
+   ======================================== */
+.broadcast-label-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+.broadcast-label-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.broadcast-name {
+  font-family: "M PLUS 1", "Noto Sans JP", sans-serif;
+  font-size: var(--broadcast-font-size, 9px);
+  font-weight: 600;
+  line-height: var(--broadcast-line-height, 13px);
+  color: rgba(228, 228, 236, 0.95);
+  background: var(--surface-glass);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 1px 5px;
+  white-space: nowrap;
+  border-radius: 2px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+.broadcast-name:hover {
+  background: rgba(61, 216, 232, 0.18);
+  border-color: rgba(61, 216, 232, 0.3);
+  box-shadow: 0 0 12px var(--broadcast-cyan-glow);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.broadcast-name--active {
+  background: var(--broadcast-red-soft) !important;
+  border-color: var(--broadcast-red) !important;
+  color: #fff;
+  box-shadow:
+    0 0 12px var(--broadcast-red-glow),
+    inset 0 0 8px rgba(232, 54, 79, 0.08);
+  animation: active-marker-glow 2.5s ease-in-out infinite;
+}
+
+.broadcast-name--active:hover {
+  background: rgba(232, 54, 79, 0.3) !important;
+  box-shadow: 0 0 18px var(--broadcast-red-glow);
+}
+
+@keyframes active-marker-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 12px var(--broadcast-red-glow),
+      inset 0 0 8px rgba(232, 54, 79, 0.08);
+  }
+  50% {
+    box-shadow:
+      0 0 20px var(--broadcast-red-glow),
+      inset 0 0 12px rgba(232, 54, 79, 0.12);
+  }
+}
+
+/* ========================================
+   Video Player Panel
+   ======================================== */
+.video-player-panel {
+  overflow: hidden;
+  border-radius: 6px;
+  border: 1px solid var(--surface-glass-border);
+  background: var(--surface-glass);
+  backdrop-filter: blur(20px) saturate(1.3);
+  -webkit-backdrop-filter: blur(20px) saturate(1.3);
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.55),
+    0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.video-player-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--broadcast-red) 30%,
+    var(--broadcast-red) 70%,
+    transparent
+  );
+  z-index: 1;
+}
+
+.video-player-header {
+  position: relative;
+  display: flex;
+  cursor: grab;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--surface-glass-border);
+  padding: 6px 10px;
+  user-select: none;
+}
+
+.video-player-header:active {
+  cursor: grabbing;
+}
+
+.video-player-title {
+  font-family: "M PLUS 1", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(228, 228, 236, 0.9);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.video-player-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-left: 8px;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: rgba(228, 228, 236, 0.45);
+  font-size: 13px;
+  line-height: 1;
+  transition: all 0.15s ease;
+}
+
+.video-player-close:hover {
+  background: rgba(232, 54, 79, 0.15);
+  color: var(--broadcast-red);
+}
+
+.video-player-close:focus-visible {
+  outline: 2px solid var(--broadcast-red);
+  outline-offset: 1px;
+}
+
+.youtube-link {
+  flex-shrink: 0;
+  color: rgba(228, 228, 236, 0.4);
+  transition: color 0.2s ease;
+}
+
+.youtube-link:hover {
+  color: #ff0000;
+}
+
+/* ========================================
+   Loading State
+   ======================================== */
+.map-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  background: var(--background);
+  position: relative;
+  overflow: hidden;
+}
+
+.map-loading::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 60% 40% at 50% 45%,
+    rgba(61, 216, 232, 0.04) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.loading-pulse {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid rgba(228, 228, 236, 0.08);
+  border-top-color: var(--broadcast-red);
+  animation: loading-spin 0.8s linear infinite;
+}
+
+@keyframes loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  margin-top: 20px;
+  font-family: "M PLUS 1", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(228, 228, 236, 0.35);
+}
+
+/* ========================================
+   Scan Line (subtle atmospheric effect)
+   ======================================== */
+.scan-line::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(61, 216, 232, 0.06), transparent);
+  z-index: 9998;
+  pointer-events: none;
+  animation: scan-move 8s linear infinite;
+}
+
+@keyframes scan-move {
+  0% {
+    top: -2px;
+  }
+  100% {
+    top: 100vh;
+  }
+}
+
+/* ========================================
+   Error State
+   ======================================== */
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  padding: 2rem;
+  background: var(--background);
+}
+
+.error-card {
+  max-width: 420px;
+  width: 100%;
+  padding: 28px;
+  background: var(--surface-glass);
+  border: 1px solid var(--surface-glass-border);
+  border-radius: 6px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  position: relative;
+}
+
+.error-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--broadcast-red) 30%,
+    var(--broadcast-red) 70%,
+    transparent
+  );
+}
+
+.error-icon {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 16px;
+  color: var(--broadcast-red);
+  opacity: 0.8;
+}
+
+.error-title {
+  font-family: "M PLUS 1", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: rgba(228, 228, 236, 0.9);
+  margin-bottom: 8px;
+}
+
+.error-message {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(228, 228, 236, 0.5);
+  margin-bottom: 20px;
+}
+
+.error-details {
+  margin-bottom: 20px;
+}
+
+.error-details summary {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(228, 228, 236, 0.35);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.error-details summary:hover {
+  color: rgba(228, 228, 236, 0.6);
+}
+
+.error-details pre {
+  margin-top: 8px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 4px;
+  font-family: "IBM Plex Mono", "M PLUS 1", monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  color: rgba(228, 228, 236, 0.6);
+  overflow-x: auto;
+}
+
+.error-retry-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-family: "M PLUS 1", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: rgba(228, 228, 236, 0.85);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.error-retry-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.error-retry-btn:focus-visible {
+  outline: 2px solid var(--broadcast-red);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   Leaflet Overrides
+   ======================================== */
+.leaflet-container {
+  background: #08080c !important;
+  font-family: "M PLUS 1", "Noto Sans JP", sans-serif !important;
+}
+
+.leaflet-control-attribution {
+  background: var(--surface-glass) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  color: rgba(228, 228, 236, 0.3) !important;
+  font-size: 9px !important;
+  border: none !important;
+  padding: 2px 6px !important;
+}
+
+.leaflet-control-attribution a {
+  color: rgba(61, 216, 232, 0.4) !important;
+}
+
+.leaflet-control-attribution a:hover {
+  color: rgba(61, 216, 232, 0.7) !important;
+}
+
+/* ========================================
+   Reduced Motion
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  .broadcast-title::before {
+    animation: none;
+    opacity: 1;
+  }
+  .broadcast-name--active {
+    animation: none;
+  }
+  .scan-line::after {
+    animation: none;
+    display: none;
+  }
+  .loading-pulse {
+    animation: none;
+    border-color: var(--broadcast-red);
+  }
+  .broadcast-name:hover {
+    transform: none;
   }
 }

@@ -18,6 +18,25 @@ export const Route = createRootRoute({
       {
         title: "Japanese Local TV NEWS",
       },
+      {
+        name: "theme-color",
+        content: "#08080c",
+      },
+    ],
+    links: [
+      {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
+      },
+      {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@300;400;500;600;700;800&display=swap",
+      },
     ],
     scripts: [
       {
@@ -45,7 +64,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className="noise-overlay scan-line">
         {children}
         <Scripts />
       </body>
