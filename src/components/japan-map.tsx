@@ -44,54 +44,6 @@ function JapanMapComponent({ initialZoom = 5, initialCenter = [138, 36] }: Japan
         </MapContainer>
         <VideoPlayerPanel />
       </VideoPlayerProvider>
-
-      <style>{`
-        .broadcast-label-marker {
-          background: transparent !important;
-          border: none !important;
-        }
-
-        .broadcast-label-container {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 1px;
-        }
-
-        .broadcast-name {
-          font-size: var(--broadcast-font-size, 9px);
-          font-weight: 600;
-          line-height: var(--broadcast-line-height, 13px);
-          color: #ffffff;
-          background-color: rgba(0, 0, 0, 0.65);
-          padding: 0 3px;
-          white-space: nowrap;
-          border-radius: 2px;
-          letter-spacing: 0.02em;
-          cursor: pointer;
-          transition: background-color 0.15s;
-        }
-
-        .broadcast-name:hover {
-          background-color: rgba(80, 80, 220, 0.8);
-        }
-
-        .broadcast-name--active {
-          background-color: rgba(220, 50, 50, 0.85);
-          color: #fff;
-          box-shadow: 0 0 8px rgba(220, 50, 50, 0.5);
-          animation: active-pulse 2s ease-in-out infinite;
-        }
-
-        .broadcast-name--active:hover {
-          background-color: rgba(220, 50, 50, 0.95);
-        }
-
-        @keyframes active-pulse {
-          0%, 100% { box-shadow: 0 0 8px rgba(220, 50, 50, 0.5); }
-          50% { box-shadow: 0 0 14px rgba(220, 50, 50, 0.8); }
-        }
-      `}</style>
     </div>
   );
 }
