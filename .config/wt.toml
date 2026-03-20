@@ -1,2 +1,3 @@
-[hooks.post_create]
-run = ["ni"]
+[post-create]
+trust = "mise trust"
+install = "ni"
