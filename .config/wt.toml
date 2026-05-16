@@ -1,3 +1,1 @@
-[post-create]
-trust = "mise trust"
-install = "ni"
+pre-start = ["mise trust", "ni"]
