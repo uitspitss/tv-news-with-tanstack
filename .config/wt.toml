@@ -1,1 +1,5 @@
-pre-start = ["mise trust", "ni"]
+[[pre-start]]
+trust = "mise trust"
+
+[[pre-start]]
+install = "ni"
