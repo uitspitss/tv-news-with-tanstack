@@ -175,6 +175,47 @@ bun dev
 }
 ```
 
+## Storybook
+
+**重要**: Storybook 10 + `@storybook/addon-vitest`。ストーリーは Chromium 実機で走ります。
+
+### コマンド
+
+| 操作 | コマンド |
+|------|----------|
+| Storybook 起動 | `bun run storybook` |
+| 静的ビルド | `bun run build-storybook` |
+| 全テスト | `bun run test`（unit + storybook） |
+| ユニットのみ | `bun run test:unit` |
+| ストーリーのみ | `bun run test:storybook` |
+
+### ストーリーの置き場所
+
+対象コンポーネントと同じディレクトリに `*.stories.tsx` を置きます
+（例: `src/components/map-error-fallback.stories.tsx`）。
+
+### モジュールモック
+
+ブラウザで動かせない・外部リソースを取りに行くモジュールは
+`.storybook/mock-modules.ts` で Vite の解決を差し替えています。
+
+| 元モジュール | モック | 理由 |
+|---|---|---|
+| `src/components/youtube-player.tsx` | `src/components/__mocks__/youtube-player.js` | YouTube IFrame API を読みに行く |
+| `src/contexts/video-player-context.tsx` | `src/contexts/__mocks__/video-player-context.js` | TanStack Router の `useSearch` に依存 |
+
+- **元モジュールに export を足したらモックにも足すこと**（手作業）
+- モックは **JavaScript の ESM**（TypeScript 不可）。実体を re-export しない
+- ストーリー側では `mocked()` で振る舞いを差し込む
+
+### 注意事項
+
+- `.storybook/main.ts` の `stories` / `framework` / `viteFinal` を変えたら dev サーバーを再起動する
+- ストーリーから外部リソース（画像・API）を取りに行かない。data URI かモックにする
+- `optimizeDeps` の取りこぼしはウォームキャッシュでは再現しない。
+  疑うときは `rm -rf node_modules/.cache/storybook node_modules/.vite` してから `bun run test:storybook`
+- a11y は `test: "todo"`（違反を表示するだけで CI は落とさない）
+
 ## Git Workflow
 
 ### Feature開発時のWorktree使用
