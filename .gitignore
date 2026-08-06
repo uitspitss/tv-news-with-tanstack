@@ -28,6 +28,12 @@ lerna-debug.log*
 coverage
 .nyc_output
 
+# Playwright (E2E)
+/test-results
+/playwright-report
+/blob-report
+/playwright/.cache
+
 # Misc
 .cache
 .temp

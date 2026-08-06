@@ -6,7 +6,7 @@
     "src/router.tsx",
     "src/routes/**/*.tsx"
   ],
-  "project": ["src/**/*.{ts,tsx}"],
+  "project": ["src/**/*.{ts,tsx}", "e2e/**/*.ts"],
   "ignore": ["src/routeTree.gen.ts", "src/components/ui/**"],
   "ignoreBinaries": ["tsc"],
   "ignoreDependencies": ["@types/youtube", "babel-plugin-react-compiler", "@tanstack/react-query"]
