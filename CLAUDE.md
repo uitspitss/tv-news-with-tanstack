@@ -216,6 +216,49 @@ bun dev
   疑うときは `rm -rf node_modules/.cache/storybook node_modules/.vite` してから `bun run test:storybook`
 - a11y は `test: "todo"`（違反を表示するだけで CI は落とさない）
 
+## E2E テスト
+
+**重要**: `@playwright/test` を使い、**本番ビルドを配ったサーバー**に対して走らせます。
+
+### 3種類のテストの境界
+
+| | 何を起動するか | 何を確かめるか |
+|---|---|---|
+| Vitest `unit`（jsdom） | 何も起動しない | 純粋なロジック、DOM 構造 |
+| Vitest `storybook`（browser mode） | Chromium。**サーバーは起動しない** | 1コンポーネントの見た目とインタラクション |
+| **`@playwright/test`** | Chromium **＋ `vite preview`（本番ビルド）** | ページ配信、SSR/hydration、URL ↔ 状態、静的データの配信 |
+
+**Vitest browser mode で E2E を書かないこと。** ブラウザは動くがサーバーは動かない。
+
+### コマンド
+
+| 操作 | コマンド |
+|------|----------|
+| E2E 実行 | `bun run test:e2e` |
+| UI モード | `bun run test:e2e:ui` |
+
+`bun run test`（Vitest）には E2E を含めません。pre-commit にも入れません。
+
+### 構成
+
+- テストは `e2e/*.spec.ts`（unit は `*.test.ts`。**拡張子で役割を分ける**）
+- `playwright.config.ts` の `webServer` が `bun run build && bun run serve --port 3100` を実行
+  - `vite dev` は使わない（オンデマンドコンパイル待ちが「要素が見つからない」として現れる）
+  - ポートは開発サーバー（3000）とずらす。ずらさないと `bun dev` に対してテストが走る
+  - ローカルは `reuseExistingServer: true`。既に 3100 が上がっていればビルドは走らない
+- `e2e/fixtures.ts` が YouTube / CARTO タイル / Google Fonts を **abort** する
+  （アプリの `/data/*.json` はブロックしない。あれはサーバーが配る本物）
+- Leaflet のラベルは role を持たないので `[data-broadcast-name="…"]` で取る。
+  それ以外は `getByRole` を第一候補にする
+
+### 注意事項
+
+- `@playwright/test` と無印 `playwright`（Storybook が使う）は**別パッケージ**。
+  **バージョンを揃えること**（片方だけ上がるとブラウザバイナリが2世代になり CI が壊れる）
+- `page.waitForTimeout` を書かない。`expect(locator)` の web-first assertion が自動で待つ
+- 視覚回帰（`toHaveScreenshot`）は E2E に混ぜない。見た目は Storybook 側
+- 網羅しようとしない。E2E は主要導線の番人で、仕様の検証器ではない
+
 ## Git Workflow
 
 ### Feature開発時のWorktree使用
