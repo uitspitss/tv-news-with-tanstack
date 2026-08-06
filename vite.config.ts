@@ -8,10 +8,7 @@ export default defineConfig(({ mode }) => ({
   server: {
     port: 3000,
   },
-  resolve:
-    mode === "production"
-      ? { alias: { "react-scan": "/dev/null" } }
-      : undefined,
+  resolve: mode === "production" ? { alias: { "react-scan": "/dev/null" } } : undefined,
   plugins: [
     devtools(),
     tsConfigPaths(),

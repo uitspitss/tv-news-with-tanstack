@@ -4,6 +4,7 @@
     "strictNullChecks": true,
     "jsx": "react-jsx",
     "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
     "module": "ESNext",
     "target": "ES2024",
     "lib": ["ES2024", "DOM", "DOM.Iterable"],
@@ -20,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", ".storybook", "vite.config.ts", "vitest.config.ts", "vitest.shims.d.ts"],
   "exclude": ["node_modules", "dist", ".output"]
 }

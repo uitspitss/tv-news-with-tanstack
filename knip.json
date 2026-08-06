@@ -9,10 +9,5 @@
   "project": ["src/**/*.{ts,tsx}"],
   "ignore": ["src/routeTree.gen.ts", "src/components/ui/**"],
   "ignoreBinaries": ["tsc"],
-  "ignoreDependencies": [
-    "@vitest/coverage-v8",
-    "@types/youtube",
-    "babel-plugin-react-compiler",
-    "@tanstack/react-query"
-  ]
+  "ignoreDependencies": ["@types/youtube", "babel-plugin-react-compiler", "@tanstack/react-query"]
 }

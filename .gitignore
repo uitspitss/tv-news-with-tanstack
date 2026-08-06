@@ -37,3 +37,6 @@ coverage
 .tanstack
 
 # Claude Code (project-specific skills and commands are tracked)
+
+*storybook.log
+storybook-static
