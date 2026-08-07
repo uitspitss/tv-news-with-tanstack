@@ -11,7 +11,11 @@ jobs:
   react-doctor:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: millionco/react-doctor@main
+      - uses: actions/checkout@v7
         with:
-          fail-on: none
+          # scope: changed（PR が持ち込んだ問題のみ）は base との merge-base を
+          # 必要とする。shallow checkout だと解決できず GitHub API に
+          # フォールバックし、変更ファイル内の既存の問題まで報告される。
+          fetch-depth: 0
+
+      - uses: millionco/react-doctor@v2
