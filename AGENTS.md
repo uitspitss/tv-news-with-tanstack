@@ -246,7 +246,7 @@ bun dev
   - `vite dev` は使わない（オンデマンドコンパイル待ちが「要素が見つからない」として現れる）
   - ポートは開発サーバー（3000）とずらす。ずらさないと `bun dev` に対してテストが走る
   - ローカルは `reuseExistingServer: true`。既に 3100 が上がっていればビルドは走らない
-- `e2e/fixtures.ts` が YouTube / CARTO タイル / Google Fonts を **abort** する
+- `e2e/fixtures.ts` が YouTube / Esri タイル / Google Fonts を **abort** する
   （アプリの `/data/*.json` はブロックしない。あれはサーバーが配る本物）
 - Leaflet のラベルは role を持たないので `[data-broadcast-name="…"]` で取る。
   それ以外は `getByRole` を第一候補にする
