@@ -291,9 +291,9 @@ git worktree remove ../tv-news-feature-name
 
 **参考：** using-git-worktrees スキルを使用すると、worktreeの操作をより簡単に行えます。
 
-## 推奨Claude Codeスキル
+## 推奨Codexスキル
 
-このプロジェクトでは以下のClaude Codeスキルの使用を推奨します：
+このプロジェクトでは以下のCodexスキルの使用を推奨します：
 
 ### コア開発スキル
 - **tanstack-query** - TanStack Query v5のサーバー状態管理
@@ -323,7 +323,7 @@ git worktree remove ../tv-news-feature-name
 
 ### インストール方法
 
-Claude Codeのスキルは、通常グローバルまたはプロジェクト固有でインストールされます。
-詳細は[Claude Codeのドキュメント](https://github.com/anthropics/claude-code)を参照してください。
+Codexのスキルは、通常グローバルまたはプロジェクト固有でインストールされます。
+詳細は[Codexのドキュメント](https://github.com/anthropics/Codex)を参照してください。
 
 <!-- MANUAL ADDITIONS END -->
