@@ -1,5 +1,7 @@
 # tv-news-with-tanstack Development Guidelines
 
+> このファイルが開発ルールの Single Source of Truth。`CLAUDE.md` は `@AGENTS.md` で本ファイルを import するだけ。
+
 Auto-generated from all feature plans. Last updated: 2026-02-08
 
 ## Active Technologies
