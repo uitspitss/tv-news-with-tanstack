@@ -420,4 +420,4 @@ bun run deploy
 
 ## ⚖️ ライセンス
 
-MIT
+ライセンスは設定していません。著作権はすべて留保されます（All rights reserved）。
