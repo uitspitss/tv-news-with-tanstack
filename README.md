@@ -115,7 +115,3 @@ lsof -ti:3000 | xargs kill -9
 **Biome の自動整形が効かない** — VS Code の Biome 拡張を入れて再起動し、`.vscode/settings.json` を確認。
 
 **地図が真っ黒** — `maplibre-gl` が v6 になっていないか確認（v5 系に固定が必要）。
-
-## ライセンス
-
-ライセンスは設定していません。著作権はすべて留保されます（All rights reserved）。
