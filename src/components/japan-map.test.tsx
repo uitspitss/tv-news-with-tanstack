@@ -14,6 +14,7 @@ vi.mock("react-leaflet", () => ({
       {children}
     </div>
   ),
+  AttributionControl: () => <div data-testid="attribution-control" />,
   Marker: ({ children }: any) => <div data-testid="prefecture-office-marker">{children}</div>,
   Tooltip: ({ children }: any) => <div data-testid="marker-tooltip">{children}</div>,
   useMapEvents: () => null,

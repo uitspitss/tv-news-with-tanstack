@@ -1,5 +1,5 @@
 import { memo, useEffect, useState } from "react";
-import { MapContainer } from "react-leaflet";
+import { AttributionControl, MapContainer } from "react-leaflet";
 import { BaseMapLayer } from "@/components/base-map-layer";
 import { BroadcastFontSizeController } from "@/components/broadcast-font-size-controller";
 import { PrefectureOfficeMarkers } from "@/components/prefecture-office-markers";
@@ -24,7 +24,9 @@ function JapanMapComponent({ initialZoom = 5, initialCenter = [138, 36] }: Japan
   }
 
   return (
-    <div className="h-screen w-full" aria-label="日本地図" role="application">
+    // h-screen だと親の pt-[44px] と合わせて 100vh + 44px になり、
+    // 地図の下端（＝帰属表示）が画面外に押し出される
+    <div className="h-full w-full" aria-label="日本地図" role="application">
       <VideoPlayerProvider>
         <MapContainer
           center={[initialCenter[1], initialCenter[0]]}
@@ -35,7 +37,11 @@ function JapanMapComponent({ initialZoom = 5, initialCenter = [138, 36] }: Japan
           scrollWheelZoom={true}
           className="h-full w-full"
           aria-label="日本のTV局放送エリア地図"
+          // 既定の bottomright はプレイヤーパネルに隠れる。
+          // OpenFreeMap / OpenStreetMap は帰属表示が必須なので左下へ逃がす
+          attributionControl={false}
         >
+          <AttributionControl position="bottomleft" />
           <BaseMapLayer />
           <BroadcastFontSizeController />
           <PrefectureOfficeMarkers />
