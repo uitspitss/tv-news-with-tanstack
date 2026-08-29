@@ -96,8 +96,6 @@ GitHub の Settings → Secrets and variables → Actions に以下が必要で�
 
 [AGENTS.md](./AGENTS.md) が Single Source of Truth です。`CLAUDE.md` はそれを import しているだけ。
 
-機能ごとの仕様と実装計画は [specs/](./specs/) にあります。
-
 ## トラブルシューティング
 
 **mise が見つからない**
