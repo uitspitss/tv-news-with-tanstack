@@ -41,7 +41,8 @@ test("帰属表示がプレイヤーを開いても画面内に見えている",
   const a = await attribution.boundingBox();
   const p = await player.boundingBox();
   if (!a || !p) throw new Error("座標が取れない");
-  const overlaps = a.x < p.x + p.width && p.x < a.x + a.width && a.y < p.y + p.height && p.y < a.y + a.height;
+  const overlaps =
+    a.x < p.x + p.width && p.x < a.x + a.width && a.y < p.y + p.height && p.y < a.y + a.height;
   expect(overlaps).toBe(false);
 });
 
