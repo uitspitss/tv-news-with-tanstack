@@ -6,11 +6,8 @@ import type { ReactNode } from "react";
 import "@/globals.css";
 
 /**
- * umami の website ID。ビルド時に .env から埋め込む。
- *
- * 計測スクリプトはブラウザに配られるので DevTools からは見える（クライアントサイド
- * 計測の構造上の限界）。ここで避けているのは「リポジトリに載ること」だけ。
- * 未設定なら計測タグごと出さない。
+ * umami の website ID。CI がデプロイ時のビルドにだけ渡す。
+ * 未設定なら計測タグごと出さないので、ローカルでは何も設定しない。
  */
 const UMAMI_WEBSITE_ID = import.meta.env.VITE_UMAMI_WEBSITE_ID;
 

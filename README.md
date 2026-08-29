@@ -33,20 +33,13 @@ bun run dev
 
 詳細な手順は [specs/001-dev-setup/quickstart.md](./specs/001-dev-setup/quickstart.md) を参照
 
-### 環境変数（任意）
+### アクセス解析
 
-| 変数 | 用途 |
-|---|---|
-| `VITE_UMAMI_WEBSITE_ID` | umami の website ID。未設定なら計測タグを出力しない |
+デプロイ時のみ umami で計測します。GitHub Actions のシークレット `UMAMI_WEBSITE_ID`
+を `VITE_UMAMI_WEBSITE_ID` としてビルドに渡しています（`.github/workflows/deploy.yml`）。
 
-`VITE_` 接頭辞の変数は**ビルド時にクライアントバンドルへ埋め込まれ、ブラウザから参照できます**。秘密にすべき値は置かないでください。
-
-```bash
-# リポジトリには含めない（.gitignore 済み）
-echo 'VITE_UMAMI_WEBSITE_ID=your-website-id' > .env
-```
-
-CI では GitHub Actions のシークレット `UMAMI_WEBSITE_ID` からビルド時に渡しています。
+**ローカルでは何も設定しません。** 未設定なら計測タグ自体を出力しないので、
+開発中のアクセスが計測に混ざりません。
 
 ## 📚 プロジェクト憲章
 
