@@ -5,6 +5,15 @@ import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-r
 import type { ReactNode } from "react";
 import "@/globals.css";
 
+/**
+ * umami の website ID。ビルド時に .env から埋め込む。
+ *
+ * 計測スクリプトはブラウザに配られるので DevTools からは見える（クライアントサイド
+ * 計測の構造上の限界）。ここで避けているのは「リポジトリに載ること」だけ。
+ * 未設定なら計測タグごと出さない。
+ */
+const UMAMI_WEBSITE_ID = import.meta.env.VITE_UMAMI_WEBSITE_ID;
+
 export const Route = createRootRoute({
   head: () => ({
     meta: [
@@ -38,13 +47,15 @@ export const Route = createRootRoute({
         href: "https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@300;400;500;600;700;800&display=swap",
       },
     ],
-    scripts: [
-      {
-        src: "https://cloud.umami.is/script.js",
-        defer: true,
-        "data-website-id": "8b499640-0fd6-43d8-8a57-7c0ca3675367",
-      },
-    ],
+    scripts: UMAMI_WEBSITE_ID
+      ? [
+          {
+            src: "https://cloud.umami.is/script.js",
+            defer: true,
+            "data-website-id": UMAMI_WEBSITE_ID,
+          },
+        ]
+      : [],
   }),
   component: RootComponent,
 });

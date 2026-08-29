@@ -15,7 +15,10 @@ jobs:
       - run: bun run type-check
       - run: bun run ci
       - run: bun run test
+      # umami の website ID はソースに置かず、ビルド時に埋め込む
       - run: bun run build
+        env:
+          VITE_UMAMI_WEBSITE_ID: ${{ secrets.UMAMI_WEBSITE_ID }}
       - uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
