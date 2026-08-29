@@ -147,7 +147,7 @@ cat wrangler.jsonc
 2. 右上のアカウントアイコン → **Manage Account** をクリック
 3. 左メニューから **Account Details** を選択
 4. **Workers Subdomain** セクションで「Change」をクリック
-5. 新しいサブドメイン名を入力（例: `placeastro-test-u7s` → `u7s`）
+5. 新しいサブドメイン名を入力（例: `my-account-a1b2c3` → `myaccount`）
 6. **Save** をクリック
 
 **変更後**:
