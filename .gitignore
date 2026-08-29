@@ -42,7 +42,14 @@ coverage
 .wrangler
 .tanstack
 
-# Claude Code (project-specific skills and commands are tracked)
+# Claude Code (project-specific commands は追跡する)
+.claude/settings.local.json
+.claude/worktrees
+
+# ベンダリングされたサードパーティ製スキル。ライセンス表記のないものが混ざるため
+# リポジトリには含めない（各自の環境で導入する）。.claude/skills はここへの symlink。
+.agents
+.claude/skills
 
 *storybook.log
 storybook-static
