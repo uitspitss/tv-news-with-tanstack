@@ -28,6 +28,28 @@ const ATTRIBUTION = [
   'Data from <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>',
 ].join(" ");
 
+/**
+ * 消すレイヤーの source-layer。主役は局名ラベルなので、ベースマップは
+ * 陸と海の区別と国境だけ残して引っ込める。dark スタイルは素のままだと
+ * 道路網と各国語の地名で埋まり、局名が読めない。
+ *
+ * ID ではなく source-layer と type で判定する。ID の許可リストにすると
+ * OpenFreeMap 側の改名で全レイヤーが消えて真っ黒になるが、この方式なら
+ * レイヤーが増えたときに多少賑やかになるだけで済む。
+ */
+const HIDDEN_SOURCE_LAYERS = new Set([
+  "transportation",
+  "transportation_name",
+  "aeroway",
+  "building",
+  "landuse",
+  "landcover",
+]);
+
+/** ラベルは全部消す。残すのは background / water / waterway / boundary_* */
+const isHidden = (layer: { type: string; "source-layer"?: string }) =>
+  layer.type === "symbol" || HIDDEN_SOURCE_LAYERS.has(layer["source-layer"] ?? "");
+
 export function BaseMapLayer() {
   const map = useMap();
 
@@ -37,6 +59,17 @@ export function BaseMapLayer() {
       attributionControl: { customAttribution: ATTRIBUTION },
     });
     layer.addTo(map);
+
+    const gl = layer.getMaplibreMap();
+    const hideNoise = () => {
+      for (const l of gl.getStyle().layers) {
+        if (isHidden(l)) {
+          gl.setLayoutProperty(l.id, "visibility", "none");
+        }
+      }
+    };
+    // style.load はレイヤーが揃った時点で発火する。addTo 直後は間に合わない
+    gl.on("style.load", hideNoise);
 
     return () => {
       layer.remove();
