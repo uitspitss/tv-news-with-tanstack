@@ -1,5 +1,6 @@
 import { memo, useEffect, useState } from "react";
-import { MapContainer, TileLayer } from "react-leaflet";
+import { MapContainer } from "react-leaflet";
+import { BaseMapLayer } from "@/components/base-map-layer";
 import { BroadcastFontSizeController } from "@/components/broadcast-font-size-controller";
 import { PrefectureOfficeMarkers } from "@/components/prefecture-office-markers";
 import { VideoPlayerPanel } from "@/components/video-player-panel";
@@ -35,10 +36,7 @@ function JapanMapComponent({ initialZoom = 5, initialCenter = [138, 36] }: Japan
           className="h-full w-full"
           aria-label="日本のTV局放送エリア地図"
         >
-          <TileLayer
-            attribution="Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ"
-            url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}"
-          />
+          <BaseMapLayer />
           <BroadcastFontSizeController />
           <PrefectureOfficeMarkers />
         </MapContainer>

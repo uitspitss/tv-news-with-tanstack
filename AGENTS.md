@@ -218,6 +218,24 @@ bun dev
   疑うときは `rm -rf node_modules/.cache/storybook node_modules/.vite` してから `bun run test:storybook`
 - a11y は `test: "todo"`（違反を表示するだけで CI は落とさない）
 
+## 地図タイル
+
+ベースマップは **OpenFreeMap**（`src/components/base-map-layer.tsx`）。API キー不要・
+リクエスト数無制限・商用可で、利用条件が明示されている数少ない提供元。
+
+ベクタータイルなので Leaflet の `TileLayer` では描画できず、
+`@maplibre/maplibre-gl-leaflet` で MapLibre GL を Leaflet のレイヤーとして挟んでいる。
+
+### maplibre-gl は v5 系に固定する
+
+**`maplibre-gl` を v6 に上げてはいけない。** peerDependencies は `^6.0.0` を許容しているが、
+プラグイン 0.1.4 は v6 で動かない（`map.transform` などの内部 API を触っており、
+v6 では `undefined` になる）。**エラーは出ず、タイルのリクエストが発生しないまま
+地図が真っ黒になるだけ**なので気づきにくい。
+
+E2E はタイルを abort するのでこの故障を検出できない。バージョンを上げたときは
+`bun dev` で実際に地図が描画されるか目視すること。
+
 ## E2E テスト
 
 **重要**: `@playwright/test` を使い、**本番ビルドを配ったサーバー**に対して走らせます。
@@ -248,7 +266,7 @@ bun dev
   - `vite dev` は使わない（オンデマンドコンパイル待ちが「要素が見つからない」として現れる）
   - ポートは開発サーバー（3000）とずらす。ずらさないと `bun dev` に対してテストが走る
   - ローカルは `reuseExistingServer: true`。既に 3100 が上がっていればビルドは走らない
-- `e2e/fixtures.ts` が YouTube / Esri タイル / Google Fonts を **abort** する
+- `e2e/fixtures.ts` が YouTube / OpenFreeMap タイル / Google Fonts を **abort** する
   （アプリの `/data/*.json` はブロックしない。あれはサーバーが配る本物）
 - Leaflet のラベルは role を持たないので `[data-broadcast-name="…"]` で取る。
   それ以外は `getByRole` を第一候補にする

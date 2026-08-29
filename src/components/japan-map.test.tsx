@@ -14,10 +14,14 @@ vi.mock("react-leaflet", () => ({
       {children}
     </div>
   ),
-  TileLayer: () => <div data-testid="tile-layer" />,
   Marker: ({ children }: any) => <div data-testid="prefecture-office-marker">{children}</div>,
   Tooltip: ({ children }: any) => <div data-testid="marker-tooltip">{children}</div>,
   useMapEvents: () => null,
+}));
+
+// BaseMapLayerのモック（MapLibre GL はjsdomで動かない）
+vi.mock("@/components/base-map-layer", () => ({
+  BaseMapLayer: () => <div data-testid="base-map-layer" />,
 }));
 
 // BroadcastFontSizeControllerのモック
@@ -55,10 +59,10 @@ describe("JapanMap", () => {
     });
   });
 
-  it("タイルレイヤーをレンダリングする", async () => {
+  it("ベースマップレイヤーをレンダリングする", async () => {
     render(<JapanMap />);
     await waitFor(() => {
-      expect(screen.getByTestId("tile-layer")).toBeInTheDocument();
+      expect(screen.getByTestId("base-map-layer")).toBeInTheDocument();
     });
   });
 
