@@ -72,6 +72,9 @@ export function BaseMapLayer() {
     gl.on("style.load", hideNoise);
 
     return () => {
+      // layer.remove() が MapLibre の Map ごと破棄するのでリスナーも道連れになるが、
+      // プラグインの後始末に依存せず自分で外す
+      gl.off("style.load", hideNoise);
       layer.remove();
     };
   }, [map]);
