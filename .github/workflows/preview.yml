@@ -1,0 +1,75 @@
+name: Preview on Cloudflare Workers
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+# 同じ PR への push が続いたら古い実行は捨てる
+concurrency:
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    # フォークと Dependabot の PR には Secrets が渡らないので走らせない
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: jdx/mise-action@v4
+      - run: bun install --frozen-lockfile
+      # テストは ci.yml が回すのでここではビルドだけ。
+      # UMAMI_WEBSITE_ID は渡さない（プレビューのアクセスを本番の計測に混ぜないため）
+      - run: bun run build
+
+      # `versions upload` は新しいバージョンを上げるだけで、本番のトラフィックは切り替えない。
+      # --preview-alias で PR ごとに固定の URL（pr-<番号>-<Worker 名>.<サブドメイン>.workers.dev）が付く
+      - name: Upload preview version
+        id: upload
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          bunx wrangler versions upload \
+            --preview-alias "pr-${PR_NUMBER}" \
+            --message "PR #${PR_NUMBER} (${HEAD_SHA::7})" | tee upload.log
+          alias_url=$(grep -oE 'Version Preview Alias URL: https://[^ ]+' upload.log | awk '{print $NF}' || true)
+          version_url=$(grep -oE 'Version Preview URL: https://[^ ]+' upload.log | awk '{print $NF}' || true)
+          echo "alias_url=${alias_url}" >> "$GITHUB_OUTPUT"
+          echo "version_url=${version_url}" >> "$GITHUB_OUTPUT"
+
+      # PR に URL をコメントする。2回目以降は同じコメントを書き換える
+      - name: Comment preview URL
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          ALIAS_URL: ${{ steps.upload.outputs.alias_url }}
+          VERSION_URL: ${{ steps.upload.outputs.version_url }}
+        run: |
+          marker='<!-- cloudflare-preview -->'
+          if [ -z "${ALIAS_URL}${VERSION_URL}" ]; then
+            urls='プレビュー URL を取得できませんでした。Worker の workers.dev（Preview URLs）が有効か確認してください。'
+          else
+            urls="- PR 用（常に最新）: ${ALIAS_URL:-（なし）}
+          - このコミット: ${VERSION_URL:-（なし）}"
+          fi
+          body="${marker}
+          ### Cloudflare Workers プレビュー
+
+          ${urls}
+
+          コミット ${HEAD_SHA::7} 時点のビルドです。本番には反映されていません。"
+          existing=$(gh api "repos/${REPO}/issues/${PR_NUMBER}/comments?per_page=100" \
+            --jq "[.[] | select(.body | startswith(\"${marker}\"))][0].id // empty")
+          if [ -n "$existing" ]; then
+            gh api -X PATCH "repos/${REPO}/issues/comments/${existing}" -f body="$body" > /dev/null
+          else
+            gh api "repos/${REPO}/issues/${PR_NUMBER}/comments" -f body="$body" > /dev/null
+          fi

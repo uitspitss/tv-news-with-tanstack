@@ -64,6 +64,11 @@ bun run dev
 
 main への push で Cloudflare Workers に自動デプロイされます（`.github/workflows/deploy.yml`）。
 
+PR では `wrangler versions upload` でプレビュー用のバージョンだけを上げ、URL を PR にコメントします
+（`.github/workflows/preview.yml`）。本番のトラフィックは切り替わりません。URL は
+`pr-<PR 番号>-tv-news-with-tanstack.<サブドメイン>.workers.dev` で、PR が更新されるたびに同じ URL の中身が
+最新のコミットに置き換わります。フォークと Dependabot の PR は Secrets が渡らないため対象外です。
+
 GitHub の Settings → Secrets and variables → Actions に以下が必要です。
 
 | シークレット | 用途 |
