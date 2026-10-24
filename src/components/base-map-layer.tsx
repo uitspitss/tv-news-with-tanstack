@@ -1,7 +1,20 @@
 import { maplibreGL } from "@maplibre/maplibre-gl-leaflet";
+import { setWorkerUrl } from "maplibre-gl";
+import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?url";
 import { useEffect } from "react";
 import { useMap } from "react-leaflet";
 import "maplibre-gl/dist/maplibre-gl.css";
+
+/*
+ * Web Worker の URL を明示する。
+ *
+ * maplibre-gl v6 は ESM 専用になり、Worker を「自分自身（import.meta.url）の隣にある
+ * maplibre-gl-worker.mjs」から読む。Vite は依存を事前バンドル（dev）・チャンク化（build）
+ * するので、その「隣」にファイルが無く Worker の読み込みに失敗する。
+ * Worker が無いとタイルの取得・解析が一切走らず、**エラーも出ずに地図が真っ黒になる**。
+ * `?url` で Worker を asset として配り、その URL を渡す。
+ */
+setWorkerUrl(workerUrl);
 
 /**
  * ベースマップ。OpenFreeMap の dark スタイルを使う。

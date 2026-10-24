@@ -226,15 +226,22 @@ bun dev
 ベクタータイルなので Leaflet の `TileLayer` では描画できず、
 `@maplibre/maplibre-gl-leaflet` で MapLibre GL を Leaflet のレイヤーとして挟んでいる。
 
-### maplibre-gl は v5 系に固定する
+### maplibre-gl v6 は Worker の URL を明示しないと動かない
 
-**`maplibre-gl` を v6 に上げてはいけない。** peerDependencies は `^6.0.0` を許容しているが、
-プラグイン 0.1.4 は v6 で動かない（`map.transform` などの内部 API を触っており、
-v6 では `undefined` になる）。**エラーは出ず、タイルのリクエストが発生しないまま
-地図が真っ黒になるだけ**なので気づきにくい。
+**`base-map-layer.tsx` の `setWorkerUrl(workerUrl)` を消さないこと。** maplibre-gl v6 は
+ESM 専用になり、Web Worker を「自分（`import.meta.url`）の隣の `maplibre-gl-worker.mjs`」
+から読む。Vite は依存を事前バンドル（dev）・チャンク化（build）するので隣にファイルが無く、
+Worker の読み込みに失敗する。**エラーは出ず、タイルのリクエストが発生しないまま
+地図が真っ黒になるだけ**なので気づきにくい。`?url` で Worker を asset として配り、
+その URL を `setWorkerUrl` に渡している。
+
+（以前は「プラグイン 0.1.4 が v6 の内部 API を触るため動かない」としていたが、
+現行の 0.1.4 は v6 で公開 API の `setTransformConstrain` を使う経路に入る。
+真っ黒になる症状は上の Worker の件で説明がつく）
 
 E2E はタイルを abort するのでこの故障を検出できない。バージョンを上げたときは
-`bun dev` で実際に地図が描画されるか目視すること。
+`bun dev` と `bun run build && bun run serve` の両方で、実際に地図が描画されるか目視すること。
+build 後は `dist/client/assets/` に `maplibre-gl-worker-*.mjs` があることも確認する。
 
 ## E2E テスト
 
