@@ -57,8 +57,8 @@ bun run dev
 
 **帰属表示は ODbL 上の義務**です。消さないでください。画面内に見えていることを E2E で検証しています。
 
-`maplibre-gl` は v5 系に固定しています。**v6 に上げると地図が無言で真っ黒になります**
-（[AGENTS.md](./AGENTS.md) の「地図タイル」参照）。
+`maplibre-gl` は v6 系です。v6 は Web Worker の URL を明示しないと**地図が無言で真っ黒になる**ため、
+`base-map-layer.tsx` で `setWorkerUrl` を呼んでいます（[AGENTS.md](./AGENTS.md) の「地図タイル」参照）。
 
 ## デプロイ
 
@@ -112,4 +112,4 @@ lsof -ti:3000 | xargs kill -9
 
 **Biome の自動整形が効かない** — VS Code の Biome 拡張を入れて再起動し、`.vscode/settings.json` を確認。
 
-**地図が真っ黒** — `maplibre-gl` が v6 になっていないか確認（v5 系に固定が必要）。
+**地図が真っ黒** — `base-map-layer.tsx` の `setWorkerUrl` が残っているか、ビルド後の `dist/client/assets/` に `maplibre-gl-worker-*.mjs` があるかを確認。
