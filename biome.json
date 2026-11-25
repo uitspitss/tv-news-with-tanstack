@@ -55,6 +55,12 @@
       }
     },
     {
+      "includes": ["**/*.md"],
+      "formatter": {
+        "enabled": false
+      }
+    },
+    {
       "includes": [".agents/**", ".claude/**"],
       "linter": {
         "enabled": false
